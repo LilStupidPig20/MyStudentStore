@@ -3,7 +3,7 @@
 namespace RtfStore.Controllers;
 
 [ApiController]
-public class StoreController
+public class StoreController : Controller
 {
     public StoreController()
     {

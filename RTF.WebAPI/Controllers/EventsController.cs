@@ -3,7 +3,7 @@
 namespace RtfStore.Controllers;
 
 [ApiController]
-public class EventsController
+public class EventsController : Controller
 {
     public EventsController()
     {

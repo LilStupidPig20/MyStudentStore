@@ -3,7 +3,7 @@
 namespace RtfStore.AdminControllers;
 
 [ApiController]
-public class AdminEventsController
+public class AdminEventsController : Controller
 {
     public AdminEventsController()
     {

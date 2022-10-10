@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace RtfStore.Controllers;
 
 [ApiController]
-public class AccountController
+public class AccountController : Controller
 {
     public AccountController()
     {

@@ -3,7 +3,7 @@
 namespace RtfStore.Controllers;
 
 [ApiController]
-public class QrCodeController
+public class QrCodeController : Controller
 {
     public QrCodeController()
     {
