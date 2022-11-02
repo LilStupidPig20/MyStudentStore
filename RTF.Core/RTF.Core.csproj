@@ -7,13 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Domain" />
-      <Folder Include="Infrastucture" />
-      <Folder Include="Stores" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="EntityFramework" Version="6.4.4" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="6.0.10" />
       <PackageReference Include="Npgsql" Version="6.0.7" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
     </ItemGroup>

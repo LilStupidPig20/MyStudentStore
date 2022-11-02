@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "WdpBCf7G9j9rMpIhl1CpjpBaUVfGSwUmKTxq33PMIzdKi4Lo+HXhQ9pJbwj0zOAEiHv/r0sCJ47A4r410oySJA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RTF.CQS\\RTF.CQS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Артем\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\Артем\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

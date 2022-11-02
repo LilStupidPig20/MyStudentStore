@@ -1,6 +1,8 @@
-﻿namespace RTF.Core.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RTF.Core.Models;
 
 public interface IDataModel
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
 }
