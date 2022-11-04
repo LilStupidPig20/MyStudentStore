@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using RTF.Core.Models;
-using RTF.Core.Repositories;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using RTF.CQS.Commands;
 
 namespace RTF.WebApp.Controllers;
 
@@ -8,17 +8,18 @@ namespace RTF.WebApp.Controllers;
 [Route("test")]
 public class TestController : Controller
 {
-    private readonly UserRepository _userRepository;
+    private readonly IMediator _mediator;
 
-    public TestController(UserRepository userRepository)
+    public TestController(IMediator mediator)
     {
-        _userRepository = userRepository;
+        _mediator = mediator;
     }
     
     [HttpGet]
     [Route("getAllUsers")]
-    public async Task<IList<User>> GetAllUsers()
+    public async Task<IActionResult> GetAllUsers()
     {
-        return await _userRepository.GetAllAsync();
+        var result = await _mediator.Send(new GetAllStudentsQuery());
+        return Ok(result);
     }
 }

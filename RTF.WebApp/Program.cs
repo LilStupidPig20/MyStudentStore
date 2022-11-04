@@ -1,6 +1,9 @@
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RFT.Services.Extensions;
 using RTF.Core.Extensions;
 using RTF.Core.Repositories;
+using RTF.CQS.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +13,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<StorageContext>();
-builder.Services.ConfigureCoreServicesDependencies();
+builder.Services.RegisterRequestHandlers();
+builder.Services.AddDbContext<ConnectionContext>();
+builder.Services.ConfigureCoreDependencies();
+builder.Services.ConfigureServicesDependencies();
 
 var app = builder.Build();
 

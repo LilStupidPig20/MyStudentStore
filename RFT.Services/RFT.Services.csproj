@@ -9,7 +9,10 @@
     <ItemGroup>
       <Folder Include="DtoModels" />
       <Folder Include="Helpers" />
-      <Folder Include="Services" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RTF.Core\RTF.Core.csproj" />
     </ItemGroup>
 
 </Project>

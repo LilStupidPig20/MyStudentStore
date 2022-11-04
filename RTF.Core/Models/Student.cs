@@ -1,11 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RTF.Core.Models;
 
-// [Table("Students")]
-// public class Student : User
-// {
-//     public double Score { get; set; }
-//     public DateTime RegisterDate { get; set; }
-//     public DateTime LastLogin { get; set; }
-// }
+[Table("Students")]
+public record Student : User
+{
+    [Column("Score")]
+    [MaxLength(20)]
+    public double Score { get; set; }
+    
+    [Column("RegisterDate")]
+    public DateTime RegisterDate { get; set; }
+    
+    [Column("LastLogin")]
+    public DateTime LastLogin { get; set; }
+    
+    [Column("Group")]
+    [StringLength(20)]
+    public string Group { get; set; }
+}

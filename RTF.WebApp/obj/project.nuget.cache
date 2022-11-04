@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "e89Bea6aKftOBBoztKduclZfToVPaDF3cxtpN1fR4F6z4uERmrFyi30bu5+cwpjSZJgSuGb8/zgmSPxCjWJnvQ==",
+  "dgSpecHash": "f7XOyNEicngfOj1PFgwNub9VeVhrg1sN8Wl0B281gGQqlIrlg6PQ6UVISeQd+XvGrmgotZxhPiNCz5xki60qvA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RTF.WebApp\\RTF.WebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Артем\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Артем\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\Артем\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\Артем\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.0.0\\mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.10\\microsoft.aspnetcore.cryptography.internal.6.0.10.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.10\\microsoft.aspnetcore.cryptography.keyderivation.6.0.10.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

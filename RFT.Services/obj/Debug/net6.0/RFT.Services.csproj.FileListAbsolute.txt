@@ -1,0 +1,17 @@
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\bin\Debug\net6.0\RFT.Services.deps.json
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\bin\Debug\net6.0\RFT.Services.runtimeconfig.json
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\bin\Debug\net6.0\RFT.Services.dll
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\bin\Debug\net6.0\RFT.Services.pdb
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\bin\Debug\net6.0\RTF.Core.dll
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\bin\Debug\net6.0\RTF.Core.pdb
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\obj\Debug\net6.0\RFT.Services.csproj.AssemblyReference.cache
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\obj\Debug\net6.0\RFT.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\obj\Debug\net6.0\RFT.Services.AssemblyInfoInputs.cache
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\obj\Debug\net6.0\RFT.Services.AssemblyInfo.cs
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\obj\Debug\net6.0\RFT.Services.csproj.CoreCompileInputs.cache
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\obj\Debug\net6.0\RFT.Services.csproj.CopyComplete
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\obj\Debug\net6.0\RFT.Services.dll
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\obj\Debug\net6.0\refint\RFT.Services.dll
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\obj\Debug\net6.0\RFT.Services.pdb
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\obj\Debug\net6.0\RFT.Services.genruntimeconfig.cache
+C:\Users\Артем\Desktop\MSS\RtfStore\RFT.Services\obj\Debug\net6.0\ref\RFT.Services.dll

@@ -3,13 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RTF.Core.Models;
 
-[Table("Users")]
-public record User : IDataModel
+public abstract record User : DataModel
 {
-    [Column("Id")]
-    [Key]
-    public Guid Id { get; set; }
-    
     [Column("FirstName")]
     [StringLength(40)]
     [Required]
@@ -29,8 +24,4 @@ public record User : IDataModel
     [StringLength(255)]
     [Required]
     public string Password { get; set; }
-    
-    [Column("Group")]
-    [StringLength(20)]
-    public string Group { get; set; }
 }

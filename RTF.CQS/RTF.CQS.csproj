@@ -8,13 +8,17 @@
 
     <ItemGroup>
       <PackageReference Include="MediatR" Version="11.0.0" />
+      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="CommandHandlers" />
-      <Folder Include="Commands" />
       <Folder Include="Queries" />
       <Folder Include="QueryHandlers" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RFT.Services\RFT.Services.csproj" />
+      <ProjectReference Include="..\RTF.Core\RTF.Core.csproj" />
     </ItemGroup>
 
 </Project>

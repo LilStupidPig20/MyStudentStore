@@ -7,16 +7,10 @@ namespace RTF.Core.Extensions;
 
 public static class ServiceCollectionExtension
 {
-    public static void ConfigureCoreServices(this IServiceCollection services)
+    public static void ConfigureCoreDependencies(this IServiceCollection services)
     {
         services.AddSingleton<IDbProvider, NpgsqlProvider>();
-        services.AddScoped<StudentsRepository>();
-    }
-
-    public static void ConfigureCoreServicesDependencies(this IServiceCollection services)
-    {
-        services.AddSingleton<IDbProvider, NpgsqlProvider>();
-        services.AddScoped<StorageContext>();
-        services.AddScoped<UserRepository>();
+        services.AddScoped<IDbConnectionProvider, DbConnectionProvider>();
+        services.AddScoped<IRepositoryProvider, RepositoryProvider>();
     }
 }

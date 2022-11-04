@@ -4,12 +4,12 @@ using RTF.Core.Models;
 
 namespace RTF.Core.Repositories;
 
-public class StorageContext : DbContext
+public class ConnectionContext : DbContext
 {
     private readonly IDbProvider _dbProvider;
-    public DbSet<User> Users { get; set; }
+    private DbSet<Student> Students { get; set; }
 
-    public StorageContext(IDbProvider dbProvider)
+    public ConnectionContext(IDbProvider dbProvider)
     {
         _dbProvider = dbProvider;
     }
