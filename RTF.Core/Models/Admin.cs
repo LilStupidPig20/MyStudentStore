@@ -3,8 +3,9 @@ using System.Data.Entity;
 
 namespace RTF.Core.Models;
 
-// [Table("Admins")]
-// public class Admin : User
-// {
-//     public bool SuperRules { get; set; }
-// }
+[Table("Admins")]
+public record Admin : User
+{
+    [Column("SuperRules")]
+    public bool SuperRules { get; set; }
+}
