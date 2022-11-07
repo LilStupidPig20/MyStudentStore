@@ -1,0 +1,109 @@
+.user-layout {
+  &__side-menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-left: 96px;
+    padding-right: 96px;
+    width: 29%;
+    background: #FFFFFF;
+    box-shadow: 10px 6px 30px rgba(21, 182, 233, 0.4);
+    height: 100vh;
+  }
+
+  &__logo-cont {
+    display: flex;
+    align-items: center;
+    margin-bottom: 55px;
+    margin-top: 41px;
+  }
+  &__logo {
+    padding-right: 26px;
+  }
+
+  &__shop-name {
+    font-family: 'Alegreya Sans SC';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 37.6393px;
+    line-height: 45px;
+    color: #4C2C82;
+  }
+
+  &__user {
+    display: flex;
+    margin-bottom: 26px;
+
+    &-logo {
+      background: #CFF1FC;
+      border-radius: 10px;
+      font-family: 'Alegreya Sans SC';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 64.5px;
+      line-height: 77px;
+      color: #FFFFFF;
+      margin-right: 32px;
+      padding: 2px 17px;
+    }
+    &-name {
+      font-family: 'Alegreya Sans SC';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 38px;
+      color: #000000;
+    }
+  }
+
+  &__balance {
+    background: #FFFFFF;
+    border: 2px solid #15B6E9;
+    border-radius: 10px;
+    display: flex;
+    width: fit-content;
+    margin-bottom: 24px;
+
+    &-name, &-count {
+      font-family: 'Alegreya Sans SC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 29px;
+      color: #000000;
+      padding: 12px 22px;
+    }
+
+    &-name {
+      border-right: 2px solid #15B6E9;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    &-link {
+      font-family: 'Alegreya Sans SC';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 38px;
+      color: #000000;
+      text-decoration: none;
+    }
+  }
+
+  &__exit {
+    font-family: 'Alegreya Sans SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+    color: #000000;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 91px;
+  }
+}

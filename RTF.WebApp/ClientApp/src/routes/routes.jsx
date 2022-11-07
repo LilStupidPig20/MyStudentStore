@@ -1,11 +1,11 @@
 import React from 'react';
-import { NonAuthLayout } from '../components/NonAuthLayout/nonAuthLayout';
+import { NonAuthLayout } from '../components/Layouts/NonAuthLayout/nonAuthLayout';
 import { Route, Routes } from 'react-router-dom';
 import { authRoutesBook, nonAuthRoutesBook } from './book';
-import { UserLayout } from '../components/UserLayout/userLayout';
+import { UserLayout } from '../components/Layouts/UserLayout/userLayout';
 
 export const useRoutes = () => {
-    /*return (
+    return (
         <UserLayout>
             <Routes>
                 {authRoutesBook.map((x, index) => {
@@ -14,8 +14,8 @@ export const useRoutes = () => {
             </Routes>
         </UserLayout>
     )
-    */
-    return (
+
+    /*return (
         <NonAuthLayout>
             <Routes>
                 {nonAuthRoutesBook.map((x, index) => {
@@ -24,6 +24,6 @@ export const useRoutes = () => {
             </Routes>
         </NonAuthLayout>
         
-    )
+    )*/
     
 }
