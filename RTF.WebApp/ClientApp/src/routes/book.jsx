@@ -32,6 +32,14 @@ const authRoutesBook = [
         path: '/profile',
         element: <ProfilePage />
     },
+    {
+        path: '/shop',
+        element: <ShopPage />
+    },
+    {
+        path: '*',
+        element: <ProfilePage />
+    }
 ]
 
 export {nonAuthRoutesBook, authRoutesBook}

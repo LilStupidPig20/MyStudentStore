@@ -1,11 +1,13 @@
 .user-layout {
   display: grid;
   grid-template-columns: 543px 1fr;
+  
 
   &__side-menu {
     position: relative;
     display: flex;
     flex-direction: column;
+    position: fixed;
     padding-left: 96px;
     padding-right: 96px;
     //width: 29%;
@@ -13,6 +15,7 @@
     background: #FFFFFF;
     box-shadow: 10px 6px 30px rgba(21, 182, 233, 0.4);
     height: 100vh;
+    z-index: 2;
   }
 
   &__logo-cont {

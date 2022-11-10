@@ -23,7 +23,7 @@ export const UserLayout = ({children}) => {
                 </div>
                 <div className='user-layout__links'>
                     <Link to='/profile' className='user-layout__links-link'>Мой профиль</Link>
-                    <Link to='/profile' className='user-layout__links-link'>Магазин</Link>
+                    <Link to='/shop' className='user-layout__links-link'>Магазин</Link>
                     <Link to='/profile' className='user-layout__links-link'>Календарь мероприятий</Link>
                     <Link to='/profile' className='user-layout__links-link'>Мои заказы</Link>
                     <Link to='/profile' className='user-layout__links-link'>Правила начисления баллов</Link>
