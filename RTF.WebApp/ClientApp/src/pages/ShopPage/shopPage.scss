@@ -1,0 +1,113 @@
+.shopPage {
+    padding-left: 688px;
+    padding-right: 125px;
+    position: relative;
+    width: max-content;
+
+    &__back-img {
+        position: fixed;
+        right: 0;
+        height: 100vh;
+    }
+
+    &__navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 16px;
+        padding-top: 96px;
+        margin-bottom: 45px;
+
+        &__right-cont {
+            display: flex;
+        }
+
+        &__logo {
+            font-family: 'Alegreya Sans SC';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 40px;
+            line-height: 48px;
+            color: #000000;
+        }
+
+        &__cart, &__orders {
+            display: flex;
+            margin-right: 30px;
+            cursor: pointer;
+            color: #000000;
+            font-family: 'Alegreya Sans SC';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 29px;
+            color: #000000;
+
+            &-img {
+                margin-right: 10px;
+            }
+
+            &-amount {
+                position: relative;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                box-sizing: border-box;
+                background: #4C2C82;
+                font-family: 'Alegreya Sans SC';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 10px;
+                line-height: 12px;
+                color: #FFFFFF;
+            }
+        }
+    }
+
+    &__wrapper {
+        width: 1080px;
+        text-align: center;
+    }
+
+    &__search {
+
+        &-cont {
+            position: relative;
+            margin-bottom: 38px;
+            padding-left: 13px;
+            padding-right: 13px;
+        }
+
+        &-input {
+            border: 2px solid #15B6E9;
+            border-radius: 20px;
+            padding: 10px;
+            width: 100%;
+            font-family: 'Alegreya Sans SC';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 22px;
+            letter-spacing: 0.07em;
+            color: #302E2E;
+        }
+
+        &-logo {
+            position: absolute;
+            right: 36px;
+            top: 10px;
+        }
+    }
+
+    &__products {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 475px;
+        gap: 20px;
+        justify-items: center;
+    }
+}
