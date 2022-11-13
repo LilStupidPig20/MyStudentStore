@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RTF.Core.Infrastructure;
 using RTF.Core.Models;
 
 namespace RTF.Core.Repositories;
 
 public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : DataModel
 {
-    private readonly ConnectionContext _context;
-    private readonly DbSet<TEntity> _table;
+    protected readonly ConnectionContext _context;
+    protected readonly DbSet<TEntity> _table;
     protected Repository(ConnectionContext context)
     {
         _context = context;
@@ -48,7 +47,7 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
 
     public async Task<TEntity> AddAsync(TEntity entity)
     {
-        await CheckTableExist();
+        //await CheckTableExist();
         if (entity.Id != 0)
         {
             var existRecord = await _table.FirstOrDefaultAsync();
@@ -59,7 +58,15 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
             }
         }
 
-        entity.Id = await GetLastId();
+        if (!await _table.AnyAsync())
+        {
+            entity.Id = 1;
+        }
+        else
+        {
+            entity.Id = await GetLastId() + 1;
+        }
+        
         var addedRecord = (await _table.AddAsync(entity)).Entity;
         return addedRecord;
     }
@@ -78,7 +85,7 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         return updated;
     }
 
-    private async Task CheckTableExist()
+    protected async Task CheckTableExist()
     {
         if (!await _table.AnyAsync())
             throw new Exception($"Таблица {typeof(TEntity)} пуста, или не существует");
@@ -86,7 +93,7 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
 
     private async Task<long> GetLastId()
     {
-        var lastRecord = await _table.LastAsync();
+        var lastRecord = await _table.OrderBy(x => x.Id).LastAsync();
         return lastRecord.Id;
     }
 }

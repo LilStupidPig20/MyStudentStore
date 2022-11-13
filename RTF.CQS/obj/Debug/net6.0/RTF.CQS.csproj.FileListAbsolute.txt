@@ -17,3 +17,5 @@ C:\Users\Артем\Desktop\MSS\RtfStore\RTF.CQS\obj\Debug\net6.0\refint\RTF.CQS
 C:\Users\Артем\Desktop\MSS\RtfStore\RTF.CQS\obj\Debug\net6.0\RTF.CQS.pdb
 C:\Users\Артем\Desktop\MSS\RtfStore\RTF.CQS\obj\Debug\net6.0\RTF.CQS.genruntimeconfig.cache
 C:\Users\Артем\Desktop\MSS\RtfStore\RTF.CQS\obj\Debug\net6.0\ref\RTF.CQS.dll
+C:\Users\Артем\Desktop\MSS\RtfStore\RTF.CQS\bin\Debug\net6.0\RTF.Infrastructure.dll
+C:\Users\Артем\Desktop\MSS\RtfStore\RTF.CQS\bin\Debug\net6.0\RTF.Infrastructure.pdb

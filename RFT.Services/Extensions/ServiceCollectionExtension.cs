@@ -8,6 +8,7 @@ public static class ServiceCollectionExtension
 {
     public static void ConfigureServicesDependencies(this IServiceCollection services)
     {
-        services.AddScoped<IStudentService, StudentService>();
+        services.AddScoped<IEmailService, EmailService>();
+        services.AddScoped<IStudentBalanceService, StudentBalanceService>();
     }
 }

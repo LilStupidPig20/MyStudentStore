@@ -5,6 +5,6 @@ using RTF.Core.Repositories;
 namespace RTF.Core.Infrastructure;
 
 public interface IRepositoryProvider
-{
-    StudentRepository StudentRepository(ConnectionContext context);
+{ 
+    T GetRepository<T>(ConnectionContext context) where T : IRepository, new();
 }

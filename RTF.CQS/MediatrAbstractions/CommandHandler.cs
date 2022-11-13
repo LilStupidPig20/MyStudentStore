@@ -13,3 +13,15 @@ public abstract class CommandHandler<TCommand> : RequestHandler<TCommand, bool>,
 
     public abstract Task Handle(TCommand request, CancellationToken ct);
 }
+
+public abstract class CommandHandler<TCommand, TResult> : RequestHandler<TCommand, TResult>, ICommandHandler<TCommand, TResult>
+    where TCommand : Command<TResult>
+{
+    protected override async Task<TResult> CoreHandle(TCommand request, CancellationToken cancellationToken)
+    {
+        var result = await HandleWithResult(request, cancellationToken);
+        return result;
+    }
+    
+    public abstract Task<TResult> HandleWithResult(TCommand request, CancellationToken ct);
+}

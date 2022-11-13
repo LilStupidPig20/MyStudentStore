@@ -20,4 +20,13 @@ public class NpgsqlProvider : IDbProvider
             throw new Exception("Не задан ConnectionString для провайдера NpgSql");
         return pgConnection;
     }
+
+    public string GetIdentityConnectionString()
+    {
+        var connections = _configuration.GetSection("ConnectionStrings");
+        var pgConnection = connections["IdentityDataBaseConnection"];
+        if (string.IsNullOrEmpty(pgConnection))
+            throw new Exception("Не задан ConnectionString для базы Identity");
+        return pgConnection;
+    }
 }

@@ -7,7 +7,7 @@ namespace RTF.Core.Repositories;
 public class ConnectionContext : DbContext
 {
     private readonly IDbProvider _dbProvider;
-    private DbSet<Student> Students { get; set; }
+    private DbSet<StudentBalance> StudentBalances { get; set; }
 
     public ConnectionContext(IDbProvider dbProvider)
     {

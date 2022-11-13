@@ -6,4 +6,5 @@ namespace RTF.Core.Infrastructure;
 public interface IDbProvider
 {
     string GetDbConnectionString();
+    string GetIdentityConnectionString();
 }

@@ -9,16 +9,13 @@
     <ItemGroup>
       <PackageReference Include="MediatR" Version="11.0.0" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Queries" />
-      <Folder Include="QueryHandlers" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\RFT.Services\RFT.Services.csproj" />
       <ProjectReference Include="..\RTF.Core\RTF.Core.csproj" />
+      <ProjectReference Include="..\RTF.Infrastructure\RTF.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
