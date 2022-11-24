@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import { CalendarPage } from "../pages/CalendarPage/calendarPage";
 import { LoginPage } from "../pages/LoginPage/loginPage";
 import { ProfilePage } from "../pages/ProfilePage/profilePage";
@@ -6,7 +7,7 @@ import { ShopPage } from "../pages/ShopPage/shopPage";
 
 const nonAuthRoutesBook = [
     {
-        path: '/',
+        path: '/login',
         element: <LoginPage />
     },
     {
@@ -23,22 +24,26 @@ const nonAuthRoutesBook = [
     },
     {
         path: '*',
-        element: <LoginPage />
+        element: <Navigate to="/login" replace={true} />
     }
 ]
 
 const authRoutesBook = [
     {
         path: '/profile',
-        element: <ProfilePage />
+        element: <ProfilePage />,
     },
     {
         path: '/shop',
         element: <ShopPage />
     },
     {
+        path: '/calendar',
+        element: <CalendarPage />
+    },
+    {
         path: '*',
-        element: <ProfilePage />
+        element: <Navigate to="/profile" replace={true} />
     }
 ]
 

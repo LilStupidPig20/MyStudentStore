@@ -1,0 +1,89 @@
+.register {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 163px;
+    height: 100vh;
+    background: url(../../images/register/register-back.jpg) no-repeat;
+
+    &__halfCont {
+
+    }
+
+    &__title {
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 65px;
+        line-height: 89px;
+        color: #4C2C82;
+        margin-bottom: 30px;
+        margin-top: 43px;
+
+        & span {
+            font-weight: 800;
+        }
+    }
+
+    &__form {
+
+        &-input-cont {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 12px;
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 19px;
+            letter-spacing: 0.07em;
+            color: #666666;
+
+            &:last-of-type {
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+    &__input {
+        border: 2px solid #C7C7C7;
+        border-radius: 9px;
+        padding: 9px 16px;
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: 0.07em;
+        color: #302E2E;
+        width: 62%;
+    }
+
+    &__button {
+        background: #4C2C82;
+        border-radius: 15px;
+        padding: 10px 34px;
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 27px;
+        color: #FFFFFF;
+        border: none;
+    }
+
+    &__pic-bottom {
+        position: relative;
+        overflow: hidden;
+        height: 166px;
+        margin-top: -8%;
+
+        & img {
+            position: absolute;
+            top: 4.6%;
+            left: -3.2%;
+            transform: translate(0%, 0%);
+            object-fit: cover;
+        }
+    }
+}

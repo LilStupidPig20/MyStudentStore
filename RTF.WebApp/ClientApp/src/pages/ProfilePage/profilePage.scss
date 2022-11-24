@@ -26,7 +26,7 @@
         }
     
         &-greetings {
-            font-family: 'Alegreya Sans SC';
+            font-family: 'Manrope';
             font-style: normal;
             font-weight: 500;
             font-size: 40px;
@@ -39,7 +39,7 @@
         }
     
         &-group {
-            font-family: 'Alegreya Sans SC';
+            font-family: 'Manrope';
             font-style: normal;
             font-weight: 500;
             font-size: 32px;
@@ -48,7 +48,7 @@
         }
     
         &-balance {
-            font-family: 'Alegreya Sans SC';
+            font-family: 'Manrope';
             font-style: normal;
             font-weight: 500;
             font-size: 32px;
@@ -64,7 +64,7 @@
             padding: 18px 50px 18px 22px;
 
             &-count {
-                font-family: 'Alegreya Sans SC';
+                font-family: 'Manrope';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 40px;
@@ -74,7 +74,7 @@
         }
 
         &-qr {
-            font-family: 'Alegreya Sans SC';
+            font-family: 'Manrope';
             font-style: normal;
             font-weight: 500;
             font-size: 32px;
@@ -90,11 +90,10 @@
     }
 
     &__attended-meetings {
-        font-family: 'Alegreya Sans SC';
+        font-family: 'Manrope';
         font-style: normal;
         font-weight: 500;
         color: #000000;
-        overflow-y: scroll;
         max-height: 400px;
 
         &__title {
@@ -104,9 +103,15 @@
             margin-bottom: 16px;
         }
 
-        &__table {
+        &__table-body {
+            height: 32vh;
+            overflow-y: auto;
+        }
+
+        &__table, &__table-body table {
             width: 100%;
             border-collapse: collapse; 
+            height: 100%;
 
             & th {
                 font-size: 24px;
