@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="RTF.Mobile.Views.Auth.LoginPage"
+             x:Class="RTF.Mobile.Views.Login.LoginPage"
              Shell.NavBarIsVisible="False">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -12,7 +12,7 @@
                 <Setter Property="FontSize" Value="10"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderColor" Value="{StaticResource PrimaryBackground}" />
+                <!--<Setter Property="BorderColor" Value="{StaticResource PrimaryBackground}" />-->
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -38,9 +38,9 @@
                     Text="Зарегистрироваться" 
                     Style="{StaticResource HyperLinkLabel}">
                 </Label>
-                <!--<Image
+                <Image
                     WidthRequest="30"
-                    Source="Static/line.svg"/>-->
+                    Source="Static/line.svg"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

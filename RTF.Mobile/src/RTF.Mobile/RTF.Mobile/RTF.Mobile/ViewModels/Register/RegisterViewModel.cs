@@ -1,5 +1,6 @@
-﻿using Microsoft.Toolkit.Mvvm.Input;
+﻿
 using RTF.Mobile.Utils.Models;
+using Xamarin.Forms;
 
 namespace RTF.Mobile.ViewModels.Register
 {
@@ -7,9 +8,9 @@ namespace RTF.Mobile.ViewModels.Register
     {
         public RegisterModel Model { get; }
 
-        public RelayCommand ComeBackCommand { get; }
+        public Command ComeBackCommand { get; }
 
-        public RelayCommand RegisterCommand { get; }
+        public Command RegisterCommand { get; }
 
         public RegisterViewModel()
         {

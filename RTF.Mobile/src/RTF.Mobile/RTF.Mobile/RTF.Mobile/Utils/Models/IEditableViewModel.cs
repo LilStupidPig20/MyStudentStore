@@ -1,11 +1,11 @@
-﻿using Microsoft.Toolkit.Mvvm.Input;
+﻿using Xamarin.Forms;
 
 namespace RTF.Mobile.Utils.Models
 {
     public interface IEditableViewModel
     {
-        RelayCommand SaveCommand { get; }
+        Command SaveCommand { get; }
 
-        RelayCommand CancelCommand { get; }
+        Command CancelCommand { get; }
     }
 }
