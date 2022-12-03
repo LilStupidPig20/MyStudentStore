@@ -1,7 +1,5 @@
-﻿using RTF.Mobile.ViewModels;
-using RTF.Mobile.Views;
-using System;
-using System.Collections.Generic;
+﻿using RTF.Mobile.Views.Auth;
+using RTF.Mobile.Views.Register;
 using Xamarin.Forms;
 
 namespace RTF.Mobile
@@ -11,8 +9,8 @@ namespace RTF.Mobile
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
         }
 
     }

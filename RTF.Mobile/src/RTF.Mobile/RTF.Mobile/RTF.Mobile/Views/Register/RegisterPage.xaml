@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RTF.Mobile.Views.Register.RegisterPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout Margin="30,32,30,108">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="21"/>
+                    <RowDefinition Height="230"/>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Button
+                      Grid.Row="0"
+                      HorizontalOptions="StartAndExpand"
+                      WidthRequest="50"
+                      Text="&lt; Назад"
+                      Command="{Binding ComeBackCommand}"
+                      Style="{StaticResource LinkButton}">
+                </Button>
+                <Label
+                      Grid.Row="1"
+                      MinimumHeightRequest="230"
+                      Text="Регистрация"
+                      TextColor="{StaticResource PrimaryButton}"
+                      VerticalOptions="EndAndExpand" 
+                      HorizontalOptions="CenterAndExpand" />
+                <StackLayout 
+                    Grid.Row="2" 
+                    Margin="20, 30, 40, 20">
+                    <Label
+                        Style="{StaticResource AssistLabel}"
+                        Text="Имя"/>
+                    <Entry
+                        Text="{Binding Model.Name}"
+                        Margin="0,2,0,10"/>
+                    <Label
+                        Style="{StaticResource AssistLabel}"
+                        Text="Фамилия"/>
+                    <Entry
+                        Text="{Binding Model.LastName}"
+                        Margin="0,2,0,10"/>
+                    <Label
+                        Style="{StaticResource AssistLabel}"
+                        Text="Академическая группа"/>
+                    <Entry
+                        Text="{Binding Model.AcademicGroup}"
+                        Margin="0,2,0,10"/>
+                    <Label
+                        Style="{StaticResource AssistLabel}"
+                        Text="Почта"/>
+                    <Entry
+                        Text="{Binding Model.Email}"
+                        Margin="0,2,0,10"/>
+                    <Label
+                        Style="{StaticResource AssistLabel}"
+                        Text="Новый пароль"/>
+                    <Entry
+                        Text="{Binding Password}"
+                        IsPassword="True"
+                        Margin="0,2,0,10"/>
+                    <Label
+                        Style="{StaticResource AssistLabel}"
+                        Text="Повторите пароль"/>
+                    <Entry
+                        Text="{Binding RepeatPassword}"
+                        IsPassword="True"
+                        Margin="0,2,0,0"/>
+                </StackLayout>
+                <Button
+                    Command="{Binding RegisterCommand}"
+                    Text="Зарегистрироваться"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

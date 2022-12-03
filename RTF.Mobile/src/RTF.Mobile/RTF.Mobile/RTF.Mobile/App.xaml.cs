@@ -1,5 +1,6 @@
 ﻿using RTF.Mobile.Services;
 using RTF.Mobile.Views;
+using RTF.Mobile.Views.Auth;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

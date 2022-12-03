@@ -1,4 +1,5 @@
 ﻿using RTF.Mobile.Models;
+using RTF.Mobile.Utils.Models;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
