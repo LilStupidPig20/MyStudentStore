@@ -1,5 +1,6 @@
 ﻿
 using RTF.Mobile.Utils.Models;
+using System;
 using Xamarin.Forms;
 
 namespace RTF.Mobile.ViewModels.Register
@@ -14,12 +15,13 @@ namespace RTF.Mobile.ViewModels.Register
 
         public RegisterViewModel()
         {
-            
+            RegisterCommand = new Command(RegisterCommandExecute);
         }
 
-        private async void RegisterCommandExecute()
+        private void RegisterCommandExecute()
         {
-
+            throw new NotSupportedException();
+            throw new NotImplementedException("Hello");
         }
 
      

@@ -4,31 +4,25 @@
              x:Class="RTF.Mobile.Views.Register.RegisterPage"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <StackLayout Margin="30,32,30,108">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="21"/>
-                    <RowDefinition Height="230"/>
-                    <RowDefinition Height="300"/>
-                    <RowDefinition Height="20"/>
-                </Grid.RowDefinitions>
-                <Button
-                      Grid.Row="0"
+        <StackLayout HeightRequest="500" VerticalOptions="EndAndExpand" Margin="30,32,30,108">
+            <Button
+                HeightRequest="35"
                       HorizontalOptions="StartAndExpand"
                       WidthRequest="50"
-                      Text="&lt; Назад"
                       Command="{Binding ComeBackCommand}"
                       Style="{StaticResource LinkButton}">
+                    <Button.Text>
+                        <x:String>&lt; Назад</x:String>
+                    </Button.Text>
                 </Button>
                 <Label
-                      Grid.Row="1"
-                      MinimumHeightRequest="230"
+                      HeightRequest="45"
                       Text="Регистрация"
-                      TextColor="{StaticResource PrimaryButton}"
+                      Style="{StaticResource HeaderLabel}"
                       VerticalOptions="EndAndExpand" 
                       HorizontalOptions="CenterAndExpand" />
-                <StackLayout 
-                    Grid.Row="2" 
+                <StackLayout
+                    HeightRequest="300" 
                     Margin="20, 30, 40, 20">
                     <Label
                         Style="{StaticResource AssistLabel}"
@@ -69,10 +63,10 @@
                         IsPassword="True"
                         Margin="0,2,0,0"/>
                 </StackLayout>
-                <Button
-                    Command="{Binding RegisterCommand}"
-                    Text="Зарегистрироваться"/>
-            </Grid>
+            <Button
+                HeightRequest="40"
+                Command="{Binding RegisterCommand}"
+                Text="Зарегистрироваться"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

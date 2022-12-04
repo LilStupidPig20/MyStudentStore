@@ -44,6 +44,11 @@
             </Style>
             <Style TargetType="Entry" BasedOn="{StaticResource BaseEntry}"/>
 
+            <Style x:Key="HeaderLabel" TargetType="{x:Type Label}" BasedOn="{StaticResource BaseLabel}">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryButton}"/>
+                <Setter Property="FontSize" Value="40"/>
+            </Style>
+
             <!--Primary button style-->
             <Style x:Key="BaseButton" TargetType="Button">
                 <Setter Property="TextColor" Value="{StaticResource ContentBackground}"/>
@@ -75,6 +80,22 @@
                 <Setter Property="BorderColor" Value="Transparent"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="TextColor" Value="{StaticResource PrimaryBackground}"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
             </Style>
 
         </ResourceDictionary>        

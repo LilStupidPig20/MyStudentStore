@@ -15,15 +15,15 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource ContentBackground}" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource PrimaryButton}" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource ContentBackground}" />
                 <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource PrimaryButton}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource PrimaryButton}"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
@@ -31,8 +31,21 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="About" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate login:LoginPage}" />
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate register:RegisterPage}" />
+        <Tab Title="Магазин" Icon="shop.png">
+            <ShellContent ContentTemplate="{DataTemplate login:LoginPage}"/>
+        </Tab>
+        <Tab Title="Календарь" Icon="calendar.png">
+            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        </Tab>
+        <Tab Title="Мой профиль" Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        </Tab>
+        <Tab Title="Мои заказы" Icon="orders.png">
+            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        </Tab>
+        <Tab Title="Правила" Icon="question.png">
+            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        </Tab>
     </TabBar>
 
     <!--
