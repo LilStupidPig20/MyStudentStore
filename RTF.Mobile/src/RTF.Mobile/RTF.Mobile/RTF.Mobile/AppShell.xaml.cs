@@ -1,6 +1,5 @@
 ﻿using RTF.Mobile.ViewModels;
-using RTF.Mobile.ViewModels.Profile;
-using RTF.Mobile.Views;
+using RTF.Mobile.Views.Profile;
 using RTF.Mobile.Views.Login;
 using RTF.Mobile.Views.Register;
 using Xamarin.Forms;

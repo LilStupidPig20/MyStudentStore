@@ -1,5 +1,6 @@
 ﻿
 using RTF.Mobile.Utils.Models;
+using RTF.Mobile.Views.Login;
 using System;
 using Xamarin.Forms;
 
@@ -16,6 +17,7 @@ namespace RTF.Mobile.ViewModels.Register
         public RegisterViewModel()
         {
             RegisterCommand = new Command(RegisterCommandExecute);
+            ComeBackCommand = new Command(GoBackCommandExecute);
         }
 
         private void RegisterCommandExecute()
@@ -24,6 +26,9 @@ namespace RTF.Mobile.ViewModels.Register
             throw new NotImplementedException("Hello");
         }
 
-     
+        private async void GoBackCommandExecute()
+        {
+            await Shell.Current.GoToAsync(nameof(LoginPage));
+        }
     }
 }
