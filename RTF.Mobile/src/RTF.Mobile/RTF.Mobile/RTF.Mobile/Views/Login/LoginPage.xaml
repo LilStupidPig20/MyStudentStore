@@ -25,7 +25,6 @@
         <StackLayout VerticalOptions="Center">
             <Image Source="students.png"
                    HorizontalOptions="CenterAndExpand"
-                   WidthRequest="800"
                    HeightRequest="500"/>
             <custom:CustomEntry Placeholder="Почта"
                             Text="{Binding Model.Email}"/>
