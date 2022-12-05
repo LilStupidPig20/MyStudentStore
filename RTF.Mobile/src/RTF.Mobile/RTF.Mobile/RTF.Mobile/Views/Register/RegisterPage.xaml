@@ -1,70 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:RTF.Mobile.Custom"
              x:Class="RTF.Mobile.Views.Register.RegisterPage"
              Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <Style TargetType="{x:Type custom:CustomEntry}">
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            <Setter Property="WidthRequest" Value="250"/>
+            <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            <Setter Property="HeightRequest" Value="25"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout HeightRequest="500" VerticalOptions="EndAndExpand" Margin="30,32,30,108">
+        <StackLayout>
             <Button
-                HeightRequest="35"
-                      HorizontalOptions="StartAndExpand"
-                      WidthRequest="50"
-                      Command="{Binding ComeBackCommand}"
-                      Style="{StaticResource LinkButton}">
-                    <Button.Text>
-                        <x:String>&lt; Назад</x:String>
-                    </Button.Text>
-                </Button>
+                VerticalOptions="StartAndExpand"
+                HeightRequest="40"
+                HorizontalOptions="StartAndExpand"
+                WidthRequest="100"
+                Text="&lt; Назад"
+                Command="{Binding ComeBackCommand}"
+                Style="{StaticResource LinkButton}">
+            </Button>
                 <Label
-                      HeightRequest="45"
+                      HeightRequest="50"
                       Text="Регистрация"
                       Style="{StaticResource HeaderLabel}"
-                      VerticalOptions="EndAndExpand" 
+                      VerticalOptions="StartAndExpand" 
                       HorizontalOptions="CenterAndExpand" />
                 <StackLayout
-                    HeightRequest="300" 
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    HeightRequest="400"
+                    WidthRequest="250"
                     Margin="20, 30, 40, 20">
                     <Label
                         Style="{StaticResource AssistLabel}"
                         Text="Имя"/>
-                    <Entry
+                    <custom:CustomEntry
                         Text="{Binding Model.Name}"
                         Margin="0,2,0,10"/>
                     <Label
                         Style="{StaticResource AssistLabel}"
                         Text="Фамилия"/>
-                    <Entry
+                    <custom:CustomEntry
                         Text="{Binding Model.LastName}"
                         Margin="0,2,0,10"/>
                     <Label
                         Style="{StaticResource AssistLabel}"
                         Text="Академическая группа"/>
-                    <Entry
+                    <custom:CustomEntry
                         Text="{Binding Model.AcademicGroup}"
                         Margin="0,2,0,10"/>
                     <Label
                         Style="{StaticResource AssistLabel}"
                         Text="Почта"/>
-                    <Entry
+                    <custom:CustomEntry
                         Text="{Binding Model.Email}"
                         Margin="0,2,0,10"/>
                     <Label
                         Style="{StaticResource AssistLabel}"
                         Text="Новый пароль"/>
-                    <Entry
+                    <custom:CustomEntry
                         Text="{Binding Password}"
                         IsPassword="True"
                         Margin="0,2,0,10"/>
                     <Label
                         Style="{StaticResource AssistLabel}"
                         Text="Повторите пароль"/>
-                    <Entry
+                    <custom:CustomEntry
                         Text="{Binding RepeatPassword}"
                         IsPassword="True"
-                        Margin="0,2,0,0"/>
+                        Margin="0,2,0,10"/>
                 </StackLayout>
             <Button
-                HeightRequest="40"
+                WidthRequest="200"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="StartAndExpand"
+                HeightRequest="36"
                 Command="{Binding RegisterCommand}"
                 Text="Зарегистрироваться"/>
         </StackLayout>

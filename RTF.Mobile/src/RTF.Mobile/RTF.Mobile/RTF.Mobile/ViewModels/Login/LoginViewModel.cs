@@ -1,5 +1,7 @@
 ﻿using RTF.Mobile.Utils.Models;
+using RTF.Mobile.ViewModels.Profile;
 using RTF.Mobile.Views;
+using RTF.Mobile.Views.Register;
 using Xamarin.Forms;
 
 namespace RTF.Mobile.ViewModels.Login
@@ -8,18 +10,25 @@ namespace RTF.Mobile.ViewModels.Login
     {
         public Command LoginCommand { get; }
 
+        public Command GoToRegistrationCommand { get; }
+
         public LoginModel Model { get; }
 
         public LoginViewModel()
         {
             Model = new LoginModel();
-            LoginCommand = new Command(OnLoginClicked);
+            GoToRegistrationCommand = new Command(GoToRegistrationCommandExecute);
+            LoginCommand = new Command(LoginCommandExecute);
         }
 
-        private async void OnLoginClicked(object obj)
+        private async void GoToRegistrationCommandExecute()
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+            await Shell.Current.GoToAsync(nameof(RegisterPage), true);
+        }
+
+        private async void LoginCommandExecute()
+        {
+            await Shell.Current.GoToAsync(nameof(ProfilePage), true);
         }
     }
 }

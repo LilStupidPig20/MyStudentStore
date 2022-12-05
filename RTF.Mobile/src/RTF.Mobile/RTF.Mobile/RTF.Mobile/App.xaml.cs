@@ -15,6 +15,7 @@ namespace RTF.Mobile
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
+            this.BindingContext = new MockDataStore();
             MainPage = new AppShell();
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         }
