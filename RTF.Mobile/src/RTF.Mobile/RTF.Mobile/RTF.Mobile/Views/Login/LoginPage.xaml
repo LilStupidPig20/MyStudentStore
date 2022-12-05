@@ -11,36 +11,49 @@
             <Style TargetType="{x:Type Entry}">
                 <Setter Property="FontSize" Value="10"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="Background" Value="Transparent"/>
                 <!--<Setter Property="BorderColor" Value="{StaticResource PrimaryBackground}" />-->
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+        <StackLayout Padding="0,0,0,0" VerticalOptions="Center">
+            <Image Source="students.png"
+                   HorizontalOptions="CenterAndExpand"
+                   HeightRequest="500"/>
             <Entry Placeholder="Почта"
+                   WidthRequest="250"
                    Text="{Binding Model.Email}"/>
             <Entry Placeholder="Пароль"
+                   WidthRequest="250"
                    Text="{Binding Model.Password}"
                    IsPassword="True"/>
             <Button VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="115"
+                    HeightRequest="36"
                     Command="{Binding LoginCommand}" 
                     CornerRadius="6"
                     Text="Войти"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label
+                    HorizontalOptions="Center"
                     Grid.Column="1"
+                    VerticalOptions="Center"
                     Text="Зарегистрироваться" 
-                    Style="{StaticResource HyperLinkLabel}">
+                    Style="{StaticResource PrimaryHyperLinkLabel}">
                 </Label>
                 <Image
+                    HorizontalOptions="CenterAndExpand"
+                    Grid.Column="2"
                     WidthRequest="30"
-                    Source="Static/line.svg"/>
+                    Source="line.png"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

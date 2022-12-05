@@ -30,6 +30,10 @@
                 <Setter Property="TextDecorations" Value="Underline"/>
             </Style>
 
+            <Style x:Key="PrimaryHyperLinkLabel" TargetType="Label" BasedOn="{x:StaticResource HyperLinkLabel}">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryButton}"/>
+            </Style>
+
             <Style x:Key="AssistLabel" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
                 <Setter Property="TextColor" Value="{StaticResource SecondaryBackground}"/>
                 <Setter Property="FontSize" Value="12"/>
