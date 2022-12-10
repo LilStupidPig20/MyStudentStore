@@ -1,13 +1,8 @@
-﻿using RTF.Mobile.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RTF.Mobile.ViewModels.Login;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace RTF.Mobile.Views
+namespace RTF.Mobile.Views.Login
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage

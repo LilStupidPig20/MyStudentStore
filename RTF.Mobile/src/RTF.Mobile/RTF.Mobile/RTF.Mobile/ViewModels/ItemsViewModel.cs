@@ -1,4 +1,5 @@
 ﻿using RTF.Mobile.Models;
+using RTF.Mobile.Utils.Models;
 using RTF.Mobile.Views;
 using System;
 using System.Collections.ObjectModel;
