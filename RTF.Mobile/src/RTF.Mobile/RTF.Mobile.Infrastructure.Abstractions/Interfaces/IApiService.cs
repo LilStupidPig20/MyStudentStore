@@ -1,12 +1,16 @@
-﻿using System;
+﻿using RTF.Mobile.Infrastructure.Abstractions.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RTF.Mobile.Infrastructure.Abstractions.Interfaces
 {
-    internal interface IApiService
+    public interface IApiService
     {
+        Task<IEnumerable<EventDto>> GetEventsAsync(CancellationToken cancellationToken = default);
+
+        Task<LoginResponseDto> LoginAsync(LoginDto loginDto, CancellationToken cancellationToken = default);
+
+        Task RegisterAsync(RegisterDto registerDto, CancellationToken cancellationToken = default);
     }
 }
