@@ -1,14 +1,16 @@
 ﻿using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
 using RTF.Mobile.Infrastructure.Abstractions.Models;
+using RTF.Mobile.Utils.MockServices;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
+[assembly: Xamarin.Forms.Dependency(typeof(MockApiService))]
 namespace RTF.Mobile.Utils.MockServices
 {
     public class MockApiService : IApiService
     {
-        private readonly IUserStorage userStorage;
+        private IUserStorage userStorage;
 
         public MockApiService(IUserStorage userStorage)
         {

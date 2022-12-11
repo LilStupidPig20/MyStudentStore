@@ -1,4 +1,5 @@
-﻿using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
+﻿using RTF.Mobile.Infrastructure.Abstractions.Implementations;
+using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
 using RTF.Mobile.Infrastructure.Abstractions.Models;
 using System;
 using System.IO;
@@ -7,11 +8,12 @@ using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
+[assembly: Xamarin.Forms.Dependency(typeof(UserStorage))]
 namespace RTF.Mobile.Infrastructure.Abstractions.Implementations
 {
     public class UserStorage : IUserStorage
     {
-        private readonly string settingsPath;
+        private string settingsPath;
 
         public UserStorage()
         {

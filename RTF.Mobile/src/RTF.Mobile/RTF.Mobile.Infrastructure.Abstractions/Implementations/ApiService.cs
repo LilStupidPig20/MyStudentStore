@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using RestSharp;
-using RTF.Mobile.Infrastructure.Abstractions.Implementations;
 using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
 using RTF.Mobile.Infrastructure.Abstractions.Models;
 using System.Collections.Generic;
@@ -8,7 +7,6 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-[assembly: Dependency(nameof(ApiService), LoadHint.Always)]
 namespace RTF.Mobile.Infrastructure.Abstractions.Implementations
 {
     public class ApiService : IApiService
