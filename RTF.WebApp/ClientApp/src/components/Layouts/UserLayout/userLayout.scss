@@ -1,17 +1,16 @@
 .user-layout {
   display: grid;
-  grid-template-columns: 543px 1fr;
+  grid-template-columns: 572px 1fr;
   
 
   &__side-menu {
     position: relative;
+    grid-column: 1 / 2;
     display: flex;
     flex-direction: column;
     position: fixed;
-    padding-left: 96px;
-    padding-right: 96px;
-    //width: 29%;
-    //width: 543px;
+    padding-left: 66px;
+    padding-right: 66px;
     background: #FFFFFF;
     box-shadow: 10px 6px 30px rgba(21, 182, 233, 0.4);
     height: 100vh;
@@ -29,7 +28,7 @@
   }
 
   &__shop-name {
-    font-family: 'Alegreya Sans SC';
+    font-family: 'Manrope';
     font-style: normal;
     font-weight: 800;
     font-size: 37.6393px;
@@ -44,7 +43,7 @@
     &-logo {
       background: #CFF1FC;
       border-radius: 10px;
-      font-family: 'Alegreya Sans SC';
+      font-family: 'Manrope';
       font-style: normal;
       font-weight: 500;
       font-size: 64.5px;
@@ -54,7 +53,7 @@
       padding: 2px 17px;
     }
     &-name {
-      font-family: 'Alegreya Sans SC';
+      font-family: 'Manrope';
       font-style: normal;
       font-weight: 500;
       font-size: 32px;
@@ -72,7 +71,7 @@
     margin-bottom: 24px;
 
     &-name, &-count {
-      font-family: 'Alegreya Sans SC';
+      font-family: 'Manrope';
       font-style: normal;
       font-weight: 400;
       font-size: 24px;
@@ -92,7 +91,7 @@
     gap: 32px;
 
     &-link {
-      font-family: 'Alegreya Sans SC';
+      font-family: 'Manrope';
       font-style: normal;
       font-weight: 500;
       font-size: 32px;
@@ -103,7 +102,7 @@
   }
 
   &__exit {
-    font-family: 'Alegreya Sans SC';
+    font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
     font-size: 32px;
@@ -112,5 +111,6 @@
     position: absolute;
     bottom: 0;
     padding-bottom: 91px;
+    cursor: pointer;
   }
 }

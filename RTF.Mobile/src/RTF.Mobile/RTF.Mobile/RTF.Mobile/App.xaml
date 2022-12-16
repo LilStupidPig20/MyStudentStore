@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:RTF.Mobile.Custom"
+             x:Class="RTF.Mobile.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <Font x:Key="MainFontStyle">Manrope</Font>
+
+            <!--Application colors-->
+            <Color x:Key="PrimaryBold">#000000</Color>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="PrimaryButton">#4C2C82</Color>
+            <Color x:Key="LightPrimaryButton">#EDE3FF</Color>
+            <Color x:Key="Social">#B7FFBA</Color>
+            <Color x:Key="Educational">#9FA3FF</Color>
+            <Color x:Key="DisabledColor">#332196F3</Color>
+            <Color x:Key="PrimaryBackground">#15B6E9</Color>
+            <Color x:Key="ContentBackground">#FFFFFF</Color>
+            <Color x:Key="LightPrimaryBackground">#00b7eb</Color>
+            <Color x:Key="SecondaryBorder">#C7C7C7</Color>
+            <Color x:Key="SecondaryBackground">#666666</Color>
+            <SolidColorBrush x:Key="SocialBrush" Color="{StaticResource Social}"/>
+            <SolidColorBrush x:Key="EducationalBrush" Color="{StaticResource Educational}"/>
+
+            <Style x:Key="BaseLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryBold}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="{StaticResource MainFontStyle}"/>
+            </Style>
+            <Style TargetType="Label" BasedOn="{StaticResource BaseLabel}"/>
+
+            <Style x:Key="HyperLinkLabel" TargetType="Label" BasedOn="{x:StaticResource BaseLabel}">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryBackground}"/>
+                <Setter Property="TextDecorations" Value="Underline"/>
+            </Style>
+
+            <Style x:Key="PrimaryHyperLinkLabel" TargetType="Label" BasedOn="{x:StaticResource HyperLinkLabel}">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryButton}"/>
+            </Style>
+
+            <Style x:Key="AssistLabel" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+                <Setter Property="TextColor" Value="{StaticResource SecondaryBackground}"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+
+            <!--Base entry style-->
+            <Style x:Key="BaseEntry" TargetType="{x:Type custom:CustomEntry}">
+                <Setter Property="ClearButtonVisibility"
+                        Value="WhileEditing"/>
+                <Setter Property="FontFamily" Value="{StaticResource MainFontStyle}"/>
+                <Setter Property="FontSize" Value="10"/>
+            </Style>
+            <Style TargetType="{x:Type custom:CustomEntry}" BasedOn="{StaticResource BaseEntry}"/>
+
+            <Style x:Key="HeaderLabel" TargetType="{x:Type Label}" BasedOn="{StaticResource BaseLabel}">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryButton}"/>
+                <Setter Property="FontSize" Value="40"/>
+            </Style>
+
+            <!--Primary button style-->
+            <Style x:Key="BaseButton" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource ContentBackground}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="FontFamily" Value="{StaticResource MainFontStyle}"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource PrimaryButton}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource DisabledColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style TargetType="Button" BasedOn="{StaticResource BaseButton}"/>
+
+            <!--Link button style-->
+            <Style x:Key="LinkButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+                <Setter Property="BorderWidth" Value="0"/>
+                <Setter Property="BorderColor" Value="Transparent"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryBackground}"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                    <Setter Property="TextColor" Value="{StaticResource LightPrimaryBackground}"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>

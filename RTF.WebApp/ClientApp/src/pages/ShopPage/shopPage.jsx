@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { ProductItem } from '../../components/ProductItem/productItem';
 import './shopPage.scss';
 import pen from '../../images/shop/pen.jpg';
 import right_back from '../../images/shop/back-img.png'
 
-export const ShopPage = () => {
+export const ShopPage = memo(() => {
     return (
         <div className='shopPage'>
             <img className='shopPage__back-img' src={right_back} alt='' />
@@ -90,4 +90,4 @@ export const ShopPage = () => {
             </div>
         </div>
     )
-}
+})

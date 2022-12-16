@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:login="clr-namespace:RTF.Mobile.Views.Login"
+       xmlns:register="clr-namespace:RTF.Mobile.Views.Register"
+       Title="RTF.Mobile"
+       x:Class="RTF.Mobile.AppShell">
+
+    <!--
+        The overall app visual hierarchy is defined here, along with navigation.
+    
+        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
+    -->
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource ContentBackground}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource PrimaryButton}" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource ContentBackground}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource PrimaryButton}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource PrimaryButton}"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+        <Tab Title="Магазин" Icon="shop.png">
+            <ShellContent ContentTemplate="{DataTemplate login:LoginPage}"/>
+        </Tab>
+        <Tab Title="Календарь" Icon="calendar.png">
+            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        </Tab>
+        <Tab Title="Мой профиль" Icon="profile.png">
+            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        </Tab>
+        <Tab Title="Мои заказы" Icon="orders.png">
+            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        </Tab>
+        <Tab Title="Правила" Icon="question.png">
+            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        </Tab>
+    </TabBar>
+
+    <!--
+        If you would like to navigate to this content you can do so by calling
+        await Shell.Current.GoToAsync("//LoginPage");
+    -->
+    <!--<TabBar>
+        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+    </TabBar>-->
+
+
+</Shell>

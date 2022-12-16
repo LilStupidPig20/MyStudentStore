@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RTF.Mobile.Views.Profile.ProfilePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame WidthRequest="330"
+                   Opacity="15"
+                   HorizontalOptions="CenterAndExpand"
+                   BackgroundColor="{StaticResource PrimaryBackground}">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="105"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0">
+                        <Label FontSize="22">
+                            Привет,
+                        </Label>
+                        <Label FontSize="22"
+                               Text="{Binding ProfileModel.FullName}">
+                        </Label>
+                    </StackLayout>
+                    <Label Grid.Row="1"
+                           Text="{Binding ProfileModel.Group, 
+                           StringFormat=Группа: {0}}"/>
+                    <StackLayout Orientation="Horizontal" Grid.Row="2">
+                        <Frame Padding="15"
+                               BackgroundColor="{StaticResource ContentBackground}">
+                            <StackLayout>
+                                <Label FontSize="16"
+                                       Text="Твой баланс:"/>
+                                <Label TextColor="{StaticResource PrimaryBackground}"
+                                       Text="{Binding ProfileModel.Points, StringFormat=баллов {0}}"/>
+                            </StackLayout>
+                        </Frame>
+                        <Button CornerRadius="50" 
+                                Text="QR"
+                                BackgroundColor="{StaticResource PrimaryBackground}"
+                                TextColor="{StaticResource ContentBackground}"
+                                FontSize="30"/>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <Label Text="Посещенные мероприятия"
+                   WidthRequest="240"
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="18"
+                   Background=""/>
+            <Frame CornerRadius="20"
+                   HorizontalOptions="CenterAndExpand"
+                   BackgroundColor="{StaticResource LightPrimaryButton}">
+                <StackLayout Margin="25,10"
+                             Orientation="Horizontal">
+                    <Label Text="Название"
+                           HorizontalOptions="StartAndExpand"/>
+                    <Label Text="Баллы"
+                           HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </Frame>
+            <ListView
+                     ItemsSource="{Binding Events}"
+                     HorizontalOptions="CenterAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="20"
+                               Padding="0,0,0,1"
+                               BorderColor="{StaticResource SecondaryBorder}">
+                            <Frame>
+                                <StackLayout Orientation="Horizontal" Margin="25, 10">
+                                    <Ellipse x:Name="EventEllipse" Fill="{StaticResource SocialBrush}"/>
+                                    <Label Margin="7" 
+                                           Text="{Binding Title}"/>
+                                    <Label Text="{Binding Points}"
+                                           HorizontalOptions="EndAndExpand"/>
+                                    <StackLayout.Triggers>
+                                        <DataTrigger Binding="{Binding EventType}" TargetType="{x:Type Ellipse}" Value="0">
+                                            <Setter TargetName="EventEllipse" 
+                                                    Property="Fill" 
+                                                    Value="{StaticResource EducationalBrush}"/>
+                                        </DataTrigger>
+                                    </StackLayout.Triggers>
+                                </StackLayout>
+                            </Frame>
+                        </Frame>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

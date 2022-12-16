@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:custom="clr-namespace:RTF.Mobile.Custom"
+             mc:Ignorable="d"
+             x:Class="RTF.Mobile.Views.Login.LoginPage"
+             Shell.NavBarIsVisible="False"
+             HeightRequest="390">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type custom:CustomEntry}">
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="25"/>
+                <Setter Property="WidthRequest" Value="250"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <!--<Setter Property="BorderColor" Value="{StaticResource PrimaryBackground}" />-->
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <Image Source="students.png"
+                   HorizontalOptions="CenterAndExpand"
+                   HeightRequest="500"/>
+            <custom:CustomEntry Placeholder="Почта"
+                            Text="{Binding Model.Email}"/>
+            <custom:CustomEntry Placeholder="Пароль"
+                            Text="{Binding Model.Password}"
+                            IsPassword="True"/>
+            <Button Margin="0,20,0,0"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                WidthRequest="115"
+                HeightRequest="36"
+                Command="{Binding LoginCommand}" 
+                CornerRadius="6"
+                Text="Войти"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button
+                    HorizontalOptions="Center"
+                    Grid.Column="1"
+                    VerticalOptions="CenterAndExpand"
+                    Command="{Binding GoToRegistrationCommand}"
+                    Text="Зарегистрироваться"
+                    TextColor="{StaticResource PrimaryButton}"
+                    Style="{StaticResource LinkButton}">
+                </Button>
+                <Image
+                    HorizontalOptions="CenterAndExpand"
+                    Grid.Column="2"
+                    WidthRequest="30"
+                    Source="line.png"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
