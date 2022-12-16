@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "LG/PPFGKS1Z3Ib1wDZJclAvbmwIYY2W7vS/vCeo60KeD1YnygUYCiOomHdhtCYiC/XnFBmUaafrj7Cc6sZFMnA==",
+  "dgSpecHash": "n5Cq23H5l7zK43YoK20OpiWbv6JVmQRp3DTEl+lycfGgqzISkrjBUc2rPPaF1HS+pflwNlu0jLFUjSc6I9BGhA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RTF.CQS\\RTF.CQS.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Артем\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\Артем\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\mailkit\\3.4.2\\mailkit.3.4.2.nupkg.sha512",
     "C:\\Users\\Артем\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",

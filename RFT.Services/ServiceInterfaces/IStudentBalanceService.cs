@@ -6,8 +6,9 @@ public interface IStudentBalanceService
     /// Добавление новой записи в таблицу, связанной с id юзера
     /// </summary>
     /// <param name="userId"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task AddNewRecord(Guid userId);
+    Task AddNewRecord(Guid userId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Получает баланс пользователя по id пользователя

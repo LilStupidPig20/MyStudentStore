@@ -10,7 +10,7 @@ public class StudentBalanceRepository : Repository<StudentBalance>
 
     public async Task<StudentBalance> GetBalanceByUserId(Guid userId)
     {
-        var record = _table.FirstOrDefault(x => x.UserId == userId);
+        var record = Table.FirstOrDefault(x => x.UserId == userId);
         if (record == null)
         {
             throw new Exception($"У пользователя с переданным id {userId} отсутствует запись в таблице баланса");

@@ -8,8 +8,10 @@ public class ConnectionContext : DbContext
 {
     private readonly IDbProvider _dbProvider;
     private DbSet<StudentBalance> StudentBalances { get; set; }
+    private DbSet<Event> Events { get; set; }
 
-    public ConnectionContext(IDbProvider dbProvider)
+    public ConnectionContext(DbContextOptions<ConnectionContext> options, IDbProvider dbProvider)
+        : base(options)
     {
         _dbProvider = dbProvider;
     }

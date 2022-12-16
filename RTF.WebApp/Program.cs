@@ -10,6 +10,7 @@ using RTF.Core.Extensions;
 using RTF.Core.Infrastructure;
 using RTF.Core.Models.IdentityModels;
 using RTF.Core.Repositories;
+using RTF.CQS.Converters;
 using RTF.CQS.Extensions;
 using RTF.Infrastructure;
 using RTF.Infrastructure.Helpers;
@@ -73,9 +74,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ConnectionContext>();
+builder.Services.AddDbContext<ConnectionContext>()
+    .RegisterUnitOfWork()
+    .RegisterRepositories();
 
 // Регистрация наших зависимостей
+builder.Services.AddAutoMapper(typeof(CqsMappingProfile));
 builder.Services.RegisterRequestHandlers();
 builder.Services.ConfigureCoreDependencies();
 builder.Services.ConfigureServicesDependencies();

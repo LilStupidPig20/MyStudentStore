@@ -10,5 +10,7 @@ public static class ServiceCollectionExtension
     {
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IStudentBalanceService, StudentBalanceService>();
+        services.AddScoped<IUserInfoService, UserInfoService>();
+        services.AddScoped<IEventService, EventService>();
     }
 }

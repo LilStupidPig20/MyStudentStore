@@ -80,3 +80,8 @@ C:\Users\Артем\Desktop\MSS\RtfStore\RTF.WebApp\bin\Debug\net6.0\Microsoft.I
 C:\Users\Артем\Desktop\MSS\RtfStore\RTF.WebApp\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Артем\Desktop\MSS\RtfStore\RTF.WebApp\bin\Debug\net6.0\RTF.Infrastructure.dll
 C:\Users\Артем\Desktop\MSS\RtfStore\RTF.WebApp\bin\Debug\net6.0\RTF.Infrastructure.pdb
+C:\Users\Артем\Desktop\MSS\RtfStore\RTF.WebApp\bin\Debug\net6.0\ClientApp\package-lock.json
+C:\Users\Артем\Desktop\MSS\RtfStore\RTF.WebApp\bin\Debug\net6.0\ClientApp\package.json
+C:\Users\Артем\Desktop\MSS\RtfStore\RTF.WebApp\bin\Debug\net6.0\ClientApp\public\manifest.json
+C:\Users\Артем\Desktop\MSS\RtfStore\RTF.WebApp\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\Артем\Desktop\MSS\RtfStore\RTF.WebApp\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
