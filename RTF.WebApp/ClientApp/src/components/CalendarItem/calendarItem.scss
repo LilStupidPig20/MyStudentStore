@@ -1,0 +1,32 @@
+.calendarItem {
+  width: 800px;
+  background: #DCF4FC;
+  border-radius: 21.3144px;
+  display: flex;
+  padding: 11px 47px 11px 34px;
+  justify-content: space-between;
+  align-items: center;
+
+  &__name {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000;
+    margin-bottom: 6px;
+  }
+
+  &__time {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000;
+  }
+}
+
+.calendarItemDisabled {
+  background: #E7E7E7;
+}

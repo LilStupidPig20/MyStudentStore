@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './userLayout.scss';
 import logo from '../../../images/main/logo.png'
 import { Link } from "react-router-dom";
@@ -8,6 +8,17 @@ import { useCurrentPageContext } from '../../../context/CurrentPageContext';
 export const UserLayout = ({children}) => {
     const profileData = useAuthContext();
     const pageName = useCurrentPageContext().name;
+    const [userBalance, setUserBalance] = useState(null)
+    useEffect(() => {
+        fetch('/api/userBalance/getCurrentUserBalance', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${profileData.token}`
+            }
+        }).then(res => res.json())
+            .then(items => setUserBalance(items))
+    },[userBalance])
     return (
         <div className='user-layout'>
             <aside className='user-layout__side-menu'>
@@ -24,7 +35,7 @@ export const UserLayout = ({children}) => {
                     </div>
                     <div className='user-layout__balance'>
                         <div className='user-layout__balance-name'>Баланс</div>
-                        <div className='user-layout__balance-count'>7 баллов</div>
+                        <div className='user-layout__balance-count'>{userBalance !== null ? userBalance : ''} баллов</div>
                     </div>
                 </div>
                 <div className='user-layout__links'>
