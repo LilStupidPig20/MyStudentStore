@@ -14,20 +14,9 @@ public class StudentBalanceService : IStudentBalanceService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task AddNewRecord(Guid userId, CancellationToken cancellationToken)
-    {
-        var repository = _unitOfWork.GetRepository<StudentBalance>();
-        await repository.AddAsync(new StudentBalance
-        {
-            UserId = userId,
-            Balance = 0
-        });
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
-    }
-
     public async Task<double> GetUserBalance(Guid userId)
     {
-        var repository = (UserInfoRepository)_unitOfWork.GetRepository<UserInfo>();
+        var repository = _unitOfWork.GetRepository<UserInfo>();
         var userInfo = await repository.FindOneBy(x => x.Id == userId);
         if (userInfo == null)
         {

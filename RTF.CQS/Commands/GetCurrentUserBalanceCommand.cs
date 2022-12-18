@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using RTF.CQS.Abstractions;
+﻿using RTF.CQS.Abstractions;
 
 namespace RTF.CQS.Commands;
 
