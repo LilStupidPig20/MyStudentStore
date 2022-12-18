@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RTF.Core.Infrastructure;
-using RTF.Core.Models;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace RTF.Core.Repositories;
 
 public class ConnectionContext : DbContext
 {
     private readonly IDbProvider _dbProvider;
-    private DbSet<StudentBalance> StudentBalances { get; set; }
-    private DbSet<Event> Events { get; set; }
 
     public ConnectionContext(DbContextOptions<ConnectionContext> options, IDbProvider dbProvider)
         : base(options)
