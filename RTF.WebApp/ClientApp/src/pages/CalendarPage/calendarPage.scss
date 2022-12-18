@@ -1,0 +1,63 @@
+.calendarPage {
+    &__back-img {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100vh;
+    }
+
+    &__date {
+        padding: 8px 27px 8px 27px;
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 33px;
+        color: #666666;
+        border: 2px solid #666666;
+        border-radius: 31px;
+        width: fit-content;
+        margin-top: 59px;
+        margin-left: 143px;
+        margin-bottom: 19px;
+
+        &-selected {
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 27px;
+            color: #9D9D9D;
+            margin-left: 143px;
+        }
+    }
+
+    &__events {
+        &-day {
+            display: flex;
+            flex-direction: column;
+            margin-left: 55px;
+            &-name {
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 28px;
+                line-height: 38px;
+                color: #000000;
+            }
+
+            &-num {
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 300;
+                font-size: 40px;
+                line-height: 55px;
+                color: #000000;
+            }
+        }
+
+        &-event {
+            
+        }
+    }
+}
