@@ -27,7 +27,7 @@ public class LoginQueryHandler : QueryHandler<LoginQuery, LoginResponse>
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user == null)
         {
-            throw new RestException(HttpStatusCode.Unauthorized);
+            throw new RestException(HttpStatusCode.Unauthorized, "Неверный логин/пароль");
         }
 
         var result = await _signInManager.PasswordSignInAsync(
@@ -35,7 +35,7 @@ public class LoginQueryHandler : QueryHandler<LoginQuery, LoginResponse>
 
         if (!result.Succeeded)
         {
-            throw new RestException(HttpStatusCode.Unauthorized);
+            throw new RestException(HttpStatusCode.Unauthorized, "Неверный логин/пароль");
         }
 
         var roles = await _userManager.GetRolesAsync(user);

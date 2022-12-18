@@ -7,31 +7,34 @@ namespace RFT.Services.Services;
 
 public class StudentBalanceService : IStudentBalanceService
 {
-    private readonly IDbConnectionProvider _dbConnectionProvider;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public StudentBalanceService(IDbConnectionProvider dbConnectionProvider)
+    public StudentBalanceService(IUnitOfWork unitOfWork)
     {
-        _dbConnectionProvider = dbConnectionProvider;
+        _unitOfWork = unitOfWork;
     }
 
-    public async Task AddNewRecord(Guid userId)
+    public async Task AddNewRecord(Guid userId, CancellationToken cancellationToken)
     {
-        await using var conn = _dbConnectionProvider.GetDbConnection();
-        var repository = new StudentBalanceRepository(conn);
+        var repository = _unitOfWork.GetRepository<StudentBalance>();
         await repository.AddAsync(new StudentBalance
         {
             UserId = userId,
             Balance = 0
         });
-        await conn.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<double> GetUserBalance(Guid userId)
     {
-        await using var conn = _dbConnectionProvider.GetDbConnection();
-        var repository = new StudentBalanceRepository(conn);
-        var balance = await repository.GetBalanceByUserId(userId);
-        return balance.Balance;
+        var repository = (UserInfoRepository)_unitOfWork.GetRepository<UserInfo>();
+        var userInfo = await repository.FindOneBy(x => x.Id == userId);
+        if (userInfo == null)
+        {
+            throw new ArgumentNullException($"Пользователь с переданным идентификатором {userId} не найден");
+        }
+        
+        return userInfo.Balance;
     }
 
     public Task<double> IncreaseUserBalance(long userId, double coins)

@@ -21,10 +21,7 @@ public class UserBalanceController : Controller
     [Authorize(Roles = "Student")]
     public async Task<IActionResult> GetCurrentUserBalance()
     {
-        var result = await _mediator.Send(new GetCurrentUserBalance
-        {
-            CurrentUserClaims = HttpContext.User
-        });
+        var result = await _mediator.Send(new GetCurrentUserBalanceCommand());
 
         return Ok(result);
     }
