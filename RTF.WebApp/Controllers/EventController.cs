@@ -27,23 +27,28 @@ public class EventController : Controller
     }
     
     [HttpGet]
-    [Route("getExtendedEventInfo")]
-    public async Task<ActionResult<ExtendedEventInfoFrame>> GetExtendedEventInformation(
-        GetExtendedEventInformationCommand command)
+    [Route("getExtendedEventInfo/{eventId}")]
+    public async Task<ActionResult<ExtendedEventInfoFrame>> GetExtendedEventInformation(long eventId)
     {
-        var result = await _mediator.Send(command);
+        var result = await _mediator.Send(new GetExtendedEventInformationCommand
+        {
+            EventId = eventId
+        });
         return Ok(result);
     }
     
     [HttpGet]
-    [Route("getCalendarInfo")]
-    public async Task<ActionResult<EventCalendarFrame>> GetCalendarInfo(GetCalendarInfoCommand command)
+    [Route("getCalendarInfo/{monthNum}")]
+    public async Task<ActionResult<EventCalendarFrame>> GetCalendarInfo(int monthNum)
     {
-        var result = await _mediator.Send(command);
+        var result = await _mediator.Send(new GetCalendarInfoCommand
+        {
+            MonthNumber = monthNum
+        });
         return Ok(result);
     }
     
-    [HttpGet]
+    [HttpPost]
     [Route("getEventsByDateInterval")]
     public async Task<ActionResult<IReadOnlyList<EventFrame>>> GetEventsByDateInterval(
         GetEventsByDateIntervalCommand command)
