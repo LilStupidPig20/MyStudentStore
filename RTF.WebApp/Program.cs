@@ -100,8 +100,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
 ServiceLocator.SetProvider(() => app.Services);
-var a = new IdentityContext(new NpgsqlProvider(app.Configuration));
-a.Database.EnsureCreated();
+
+var identityContext = new IdentityContext(new NpgsqlProvider(app.Configuration));
+identityContext.Database.EnsureCreated();
 
 app.Run();

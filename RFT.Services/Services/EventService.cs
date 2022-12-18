@@ -16,6 +16,7 @@ public class EventService : IEventService
     public async Task<IReadOnlyList<Event>> GetVisitedEventsByUserAsync(Guid userId)
     {
         var repo = _unitOfWork.GetRepository<Event>();
+        var a = await repo.GetAllAsync();
         var visitedEvents = await repo
             .FindBy(e => e.Users.Any(x => x.Id == userId) && e.IsFinished);
         return visitedEvents;
