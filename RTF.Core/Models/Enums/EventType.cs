@@ -2,7 +2,6 @@
 
 namespace RTF.Core.Models.Enums;
 
-[EdmEnumType]
 public enum EventType
 {
     Entertainment = 0,

@@ -27,12 +27,12 @@ public class EventController : Controller
     }
     
     [HttpGet]
-    [Route("getExtendedEventInfo/{eventId}")]
-    public async Task<ActionResult<ExtendedEventInfoFrame>> GetExtendedEventInformation(long eventId)
+    [Route("getExtendedEventInfo/{id}")]
+    public async Task<ActionResult<ExtendedEventInfoFrame>> GetExtendedEventInformation(long id)
     {
         var result = await _mediator.Send(new GetExtendedEventInformationCommand
         {
-            EventId = eventId
+            EventId = id
         });
         return Ok(result);
     }

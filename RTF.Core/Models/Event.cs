@@ -24,7 +24,7 @@ public record Event : DataModel
     public bool IsFinished { get; set; }
     
     [Column("Users")]
-    public virtual List<UserInfo> Users { get; set; }
+    public ICollection<UserInfo> Users { get; set; }
     
     [Column("EventType")]
     [EnumDataType(typeof(EventType))]

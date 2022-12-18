@@ -2,7 +2,6 @@ using System.Data.Entity.Core.Objects.DataClasses;
 
 namespace RTF.Core.Models.Enums;
 
-[EdmEnumType]
 public enum Size
 {
     XsSize = 0,

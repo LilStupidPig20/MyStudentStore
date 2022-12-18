@@ -10,5 +10,8 @@ public class CqsMappingProfile : Profile
     {			
         CreateMap<Event, EventFrame>();
         CreateMap<Event, ExtendedEventInfoFrame>();
+        CreateMap<StoreProduct, ProductFrame>()
+            .ForMember(x => x.NotAvailable, x =>
+                x.MapFrom(y => y.TotalQuantity <= 0));
     }
 }

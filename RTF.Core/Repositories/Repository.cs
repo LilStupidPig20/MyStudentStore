@@ -7,7 +7,7 @@ namespace RTF.Core.Repositories;
 public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : DataModel
 {
     protected readonly ConnectionContext Context;
-    protected readonly DbSet<TEntity> Table;
+    public readonly DbSet<TEntity> Table;
 
     protected Repository(ConnectionContext context)
     {

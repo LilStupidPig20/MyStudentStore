@@ -25,12 +25,4 @@ public class UserBalanceController : Controller
 
         return Ok(result);
     }
-    
-    [HttpGet]
-    [Route("test")]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Test()
-    {
-        return Ok();
-    }
 }
