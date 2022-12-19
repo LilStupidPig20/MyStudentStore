@@ -82,10 +82,10 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         return updated;
     }
 
-    public Task<TEntity?> FindOneBy(Expression<Func<TEntity, bool>> predicate)
+    public async Task<TEntity?> FindOneBy(Expression<Func<TEntity, bool>> predicate)
     {
-        var result = Table.FirstOrDefault(predicate);
-        return Task.FromResult(result);
+        var result = await Table.FirstOrDefaultAsync(predicate);
+        return result;
     }
 
     public Task<IReadOnlyList<TEntity>> FindBy(Expression<Func<TEntity, bool>> predicate)

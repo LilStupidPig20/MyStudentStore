@@ -19,6 +19,7 @@ public class UserInfoService : IUserInfoService
         var repo = _unitOfWork.GetRepository<UserInfo>();
         await repo.AddAsync(new UserInfo
         {
+            Id = userInfoDto.Id,
             Email = userInfoDto.Email,
             Group = userInfoDto.Group,
             FirstName = userInfoDto.FirstName,
