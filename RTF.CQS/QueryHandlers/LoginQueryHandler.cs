@@ -39,13 +39,14 @@ public class LoginQueryHandler : QueryHandler<LoginQuery, LoginResponse>
         }
 
         var roles = await _userManager.GetRolesAsync(user);
-        return new LoginResponse()
+        return new LoginResponse
         {
             FirstName = user.FirstName,
             LastName = user.LastName,
             Group = user.Group,
             Token = _tokenGenerator.GenerateToken(user, roles),                       
             UserName = user.UserName,
+            Role = roles.FirstOrDefault()
         };
     }
 }
