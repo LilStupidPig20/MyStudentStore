@@ -84,7 +84,7 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
 
     public async Task<TEntity?> FindOneBy(Expression<Func<TEntity, bool>> predicate)
     {
-        var result = await Table.FindAsync(predicate);
+        var result = await Table.FirstOrDefaultAsync(predicate);
         return result;
     }
 
