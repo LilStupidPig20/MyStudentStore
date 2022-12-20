@@ -26,6 +26,9 @@ public record Event : DataModel
     [Column("Users")]
     public ICollection<UserInfo> Users { get; set; }
     
+    [Column("Organizers")]
+    public ICollection<AdminInfo> Organizers { get; set; }
+    
     [Column("EventType")]
     [EnumDataType(typeof(EventType))]
     public EventType EventType { get; set; }

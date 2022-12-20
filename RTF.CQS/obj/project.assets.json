@@ -1577,6 +1577,7 @@
         "dependencies": {
           "MailKit": "3.4.2",
           "MimeKit": "3.4.2",
+          "RTF.AdminServices": "1.0.0",
           "RTF.Core": "1.0.0"
         },
         "compile": {
@@ -1584,6 +1585,20 @@
         },
         "runtime": {
           "bin/placeholder/RFT.Services.dll": {}
+        }
+      },
+      "RTF.AdminServices/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AutoMapper": "12.0.0",
+          "RTF.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RTF.AdminServices.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RTF.AdminServices.dll": {}
         }
       },
       "RTF.Core/1.0.0": {
@@ -3998,6 +4013,11 @@
       "path": "../RFT.Services/RFT.Services.csproj",
       "msbuildProject": "../RFT.Services/RFT.Services.csproj"
     },
+    "RTF.AdminServices/1.0.0": {
+      "type": "project",
+      "path": "../RTF.AdminServices/RTF.AdminServices.csproj",
+      "msbuildProject": "../RTF.AdminServices/RTF.AdminServices.csproj"
+    },
     "RTF.Core/1.0.0": {
       "type": "project",
       "path": "../RTF.Core/RTF.Core.csproj",
@@ -4027,11 +4047,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RTF.CQS\\RTF.CQS.csproj",
+      "projectUniqueName": "D:\\RidersOfTheStorms\\MyStudentStore\\RTF.CQS\\RTF.CQS.csproj",
       "projectName": "RTF.CQS",
-      "projectPath": "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RTF.CQS\\RTF.CQS.csproj",
+      "projectPath": "D:\\RidersOfTheStorms\\MyStudentStore\\RTF.CQS\\RTF.CQS.csproj",
       "packagesPath": "C:\\Users\\Артем\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RTF.CQS\\obj\\",
+      "outputPath": "D:\\RidersOfTheStorms\\MyStudentStore\\RTF.CQS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Артем\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -4046,14 +4066,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RFT.Services\\RFT.Services.csproj": {
-              "projectPath": "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RFT.Services\\RFT.Services.csproj"
+            "D:\\RidersOfTheStorms\\MyStudentStore\\RFT.Services\\RFT.Services.csproj": {
+              "projectPath": "D:\\RidersOfTheStorms\\MyStudentStore\\RFT.Services\\RFT.Services.csproj"
             },
-            "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RTF.Core\\RTF.Core.csproj": {
-              "projectPath": "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RTF.Core\\RTF.Core.csproj"
+            "D:\\RidersOfTheStorms\\MyStudentStore\\RTF.Core\\RTF.Core.csproj": {
+              "projectPath": "D:\\RidersOfTheStorms\\MyStudentStore\\RTF.Core\\RTF.Core.csproj"
             },
-            "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RTF.Infrastructure\\RTF.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Артем\\Desktop\\MSS\\RtfStore\\RTF.Infrastructure\\RTF.Infrastructure.csproj"
+            "D:\\RidersOfTheStorms\\MyStudentStore\\RTF.Infrastructure\\RTF.Infrastructure.csproj": {
+              "projectPath": "D:\\RidersOfTheStorms\\MyStudentStore\\RTF.Infrastructure\\RTF.Infrastructure.csproj"
             }
           }
         }

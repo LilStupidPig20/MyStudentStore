@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\RTF.AdminServices\RTF.AdminServices.csproj" />
       <ProjectReference Include="..\RTF.Core\RTF.Core.csproj" />
     </ItemGroup>
 

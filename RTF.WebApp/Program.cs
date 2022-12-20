@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using RFT.Services.Extensions;
+using RTF.AdminServices.Converters;
+using RTF.AdminServices.Extensions;
 using RTF.Core.Extensions;
 using RTF.Core.Infrastructure;
 using RTF.Core.Models.IdentityModels;
@@ -80,10 +82,13 @@ builder.Services.AddDbContext<ConnectionContext>()
 
 // Регистрация наших зависимостей
 builder.Services.AddAutoMapper(typeof(CqsMappingProfile));
+builder.Services.AddAutoMapper(typeof(AdminServicesMappingProfile));
+
 builder.Services.RegisterRequestHandlers();
 builder.Services.ConfigureCoreDependencies();
 builder.Services.ConfigureServicesDependencies();
 builder.Services.AddInfrastructureServicedDependencies();
+builder.Services.ConfigureAdminServicesDependencies();
 
 var app = builder.Build();
 

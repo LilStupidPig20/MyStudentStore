@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using RFT.Services.DtoModels;
 using RFT.Services.ServiceInterfaces;
+using RTF.AdminServices.DtoModels;
+using RTF.AdminServices.Interfaces;
 using RTF.Core.Models;
 using RTF.Core.Models.Enums;
 using RTF.Core.Models.IdentityModels;
@@ -18,12 +20,17 @@ public class DataInitializer : IDataInitializer
     private readonly IUnitOfWork _unitOfWork;
     private readonly UserManager<User> _userManager;
     private readonly IUserInfoService _userInfoService;
+    private readonly IAdminInfoService _adminInfoService;
 
-    public DataInitializer(IUnitOfWork unitOfWork, UserManager<User> userManager, IUserInfoService userInfoService)
+    public DataInitializer(IUnitOfWork unitOfWork,
+        UserManager<User> userManager,
+        IUserInfoService userInfoService,
+        IAdminInfoService adminInfoService)
     {
         _unitOfWork = unitOfWork;
         _userManager = userManager;
         _userInfoService = userInfoService;
+        _adminInfoService = adminInfoService;
     }
 
     public async Task InitDataAsync()
@@ -67,27 +74,28 @@ public class DataInitializer : IDataInitializer
     
     private async Task InitDefaultAdminAsync()
     {
-        var user = new User
+        var admin = new User
         {
             Email = "testAdmin@urfu.me",
             Group = "admins",
             FirstName = "Админ",
             LastName = "ЭтойКачалки",
             PasswordHash = "Admin000!",
-            UserName = "MainAdmin"
+            UserName = "testAdmin@urfu.me"
         };
 
-        await _userManager.CreateAsync(user, "Admin000!");
-        await _userManager.AddToRoleAsync(user, "admin");
+        await _userManager.CreateAsync(admin, "Admin000!");
+        await _userManager.AddToRoleAsync(admin, "admin");
 
-        await _userInfoService.CreateUserInfoAsync(new UserInfoDto
+        await _adminInfoService.CreateAdminInfoAsync(new AdminInfoDto
         {
-            Id = Guid.Parse(user.Id),
-            Email = user.Email,
-            Group = user.Group,
-            FirstName = user.FirstName,
-            LastName = user.LastName
+            Id = Guid.Parse(admin.Id),
+            Email = admin.Email,
+            Group = admin.Group,
+            FirstName = admin.FirstName,
+            LastName = admin.LastName
         }, CancellationToken.None);
+        await _unitOfWork.SaveChangesAsync(CancellationToken.None);
     }
 
     private async Task InitEvents(Guid userId)
