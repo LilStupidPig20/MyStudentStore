@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './loginPage.scss';
 import login_picture from '../../images/login/login-picture.jpg';
 import wave from '../../images/main/wave.svg';
@@ -10,9 +10,7 @@ export const LoginPage = memo((redirect) => {
     const auth = useAuthContext();
     const [form, setForm] = useState({email: '', password: ''});
     const [fail, setFail] = useState(false);
-    const [shouldRedirect, setShouldRedirect] = useState(false);
     const navigate = useNavigate();
-    const [, forceUpdate] = useState();
     
     const changeHandler = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -33,21 +31,13 @@ export const LoginPage = memo((redirect) => {
             }
         })
 
-        auth.login(response.firstName, response.lastName, response.group, response.userName, response.token);
-        setShouldRedirect(true);
+        auth.login(response.firstName, response.lastName, response.group, response.userName, response.token, response.role);
+        navigate('/profile');
+        navigate(0);
     };
 
     let wrongStyle = fail ? { border: '2px solid #FF5D5D' } : {};
     let wrongStyleBtn = fail ? { marginTop: '17px' } : {};
-    useEffect(() => {
-        if (shouldRedirect) {
-          navigate('/profile');
-        }
-      });
-
-    useEffect(()=>{
-        setTimeout(forceUpdate, 2000);
-    },[])
 
     return (
         <>

@@ -35,12 +35,9 @@ export const CalendarPage = memo(() => {
     const options = { month: 'long', day: 'numeric' };
     const firstDefaultDay = new Date();
     const lastDefaultDay = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) ;
-    console.log(calendarInfo);
+
     const renderDayContents = (day) => {
         let infoObj = calendarInfo?.dayToEventsList;
-        for (let key in infoObj) {
-            console.log(infoObj[day]);
-        }
         return (
             <>
                 <span>{day}</span>

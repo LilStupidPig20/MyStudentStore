@@ -10,6 +10,7 @@ export const AuthContext = createContext({
     group: null,
     userName: null,
     token: null,
+    role: null,
     login: noop,
     logout: noop,
 })
@@ -17,7 +18,7 @@ export const AuthContext = createContext({
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthContextProvider = ({children}) => {
-    const {firstName, lastName, group, userName, token, login, logout} = useAuth();
+    const {firstName, lastName, group, userName, token, role, login, logout} = useAuth();
 
-    return <AuthContext.Provider value={{firstName, lastName, group, userName, token, login, logout}}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={{firstName, lastName, group, userName, token, role, login, logout}}>{children}</AuthContext.Provider>
 }

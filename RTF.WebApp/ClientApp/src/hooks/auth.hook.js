@@ -8,13 +8,15 @@ export const useAuth = () => {
     const [group, setGroup] = useState(null);
     const [userName, setUserName] = useState(null);
     const [token, setToken] = useState(null);
+    const [role, setRole] = useState(null);
 
-    const login = useCallback((first, last, gr, user, jwtToken) => {
+    const login = useCallback((first, last, gr, user, jwtToken, rl) => {
         setFirstName(first);
         setLastName(last);
         setGroup(gr);
         setUserName(user)
         setToken(jwtToken);
+        setRole(rl);
 
         localStorage.setItem(storageName, JSON.stringify({
             firstName: first,
@@ -22,6 +24,7 @@ export const useAuth = () => {
             group: gr,
             userName: user,
             token: jwtToken,
+            role: rl
         }))
     }, [])
 
@@ -31,14 +34,15 @@ export const useAuth = () => {
         setGroup(null);
         setUserName(null)
         setToken(null);
+        setRole(null);
         localStorage.removeItem(storageName);
     }, []);
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem(storageName));
         if (data && data.token) {
-            login(data.firstName, data.lastName, data.group, data.userName, data.token);
+            login(data.firstName, data.lastName, data.group, data.userName, data.token, data.role);
         };
     }, [login]);
 
-    return { firstName, lastName, group, userName, token, login, logout };
+    return { firstName, lastName, group, userName, token, role, login, logout };
 }

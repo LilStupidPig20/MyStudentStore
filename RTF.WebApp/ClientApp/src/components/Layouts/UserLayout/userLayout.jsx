@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './userLayout.scss';
 import logo from '../../../images/main/logo.png'
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useAuthContext } from '../../../context/AuthContext';
 import { useCurrentPageContext } from '../../../context/CurrentPageContext';
 
@@ -9,6 +9,7 @@ export const UserLayout = ({children}) => {
     const profileData = useAuthContext();
     const pageName = useCurrentPageContext().name;
     const [userBalance, setUserBalance] = useState(null)
+    const navigate = useNavigate();
     useEffect(() => {
         fetch('/api/userBalance/getCurrentUserBalance', {
             method: 'GET',
@@ -30,7 +31,7 @@ export const UserLayout = ({children}) => {
                         <span className='user-layout__shop-name'>My<br/>Student Store</span>
                     </div>
                     <div className='user-layout__user'>
-                        <div className='user-layout__user-logo'>Д</div>
+                        <div className='user-layout__user-logo'>{String(profileData.firstName).slice(0,1)}</div>
                         <span className='user-layout__user-name'>{profileData.firstName}<br/>{profileData.lastName}</span>
                     </div>
                     <div className='user-layout__balance'>
@@ -45,7 +46,7 @@ export const UserLayout = ({children}) => {
                     <Link to='/orders' className={pageName === 'orders' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Мои заказы</Link>
                     <Link to='/rules' className={pageName === 'rules' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Правила начисления баллов</Link>
                 </div>
-                <div className='user-layout__exit' onClick={() => profileData.logout()}>Выйти</div>
+                <div className='user-layout__exit' onClick={() => {profileData.logout(); navigate('/login'); navigate(0);}}>Выйти</div>
             </aside>
             <div style={{gridColumn: '2 / 3', minWidth: '-webkit-fill-available'}}>{children}</div>
         </div>

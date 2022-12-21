@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './profilePage.scss';
 import profile_top from '../../images/profile/profile-top.svg';
 import { memo } from 'react';
@@ -11,6 +11,17 @@ export const ProfilePage = memo(() => {
     useEffect(() => {
         pageContext.setName('profile')
     },[pageContext])
+    const [userBalance, setUserBalance] = useState(null)
+    useEffect(() => {
+        fetch('/api/userBalance/getCurrentUserBalance', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${profileData.token}`
+            }
+        }).then(res => res.json())
+            .then(items => setUserBalance(items))
+    },[userBalance])
     let typeOfEvent;
     const eventClasses = {
         green: 'profile__attended-meetings__table-body-green', 
@@ -32,7 +43,7 @@ export const ProfilePage = memo(() => {
                     <div className='profile__user-balance'>
                         Твой баланс:
                         <div className='profile__user-balance-count'>
-                            7 баллов
+                            {userBalance !== null ? userBalance : ''} баллов
                         </div>
                     </div>
                     <div className='profile__user-qr'>

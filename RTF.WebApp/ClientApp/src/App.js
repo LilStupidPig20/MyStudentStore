@@ -7,12 +7,12 @@ import { useRoutes } from './routes/routes';
 
 
 function App() {
-  const { token } = useAuth();
+  const { token, role } = useAuth();
 
   return (
     <AuthContextProvider>
       <CurrentPageContextProvider>
-        { useRoutes(!!token) }
+        { useRoutes(!!token, role) }
       </CurrentPageContextProvider>
     </AuthContextProvider>
   )

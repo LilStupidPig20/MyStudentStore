@@ -1,13 +1,25 @@
 import React from 'react';
 import { NonAuthLayout } from '../components/Layouts/NonAuthLayout/nonAuthLayout';
-import { Route, Routes } from 'react-router-dom';
-import { authRoutesBook, nonAuthRoutesBook } from './book';
+import {Route, Routes} from 'react-router-dom';
+import { authRoutesBook, nonAuthRoutesBook, adminRoutesBook } from './book';
 import { UserLayout } from '../components/Layouts/UserLayout/userLayout';
+import { AdminLayout } from "../components/Layouts/AdminLayout/adminLayout";
 
-export const useRoutes = (isAuthenticated) => {
+export const useRoutes = (isAuthenticated, role) => {
     const data = JSON.parse(localStorage.getItem('data'));
     console.log(window.location.pathname);
-    if ((data === null || data === {}) ? isAuthenticated : !!data.token) {
+    if (data === null ? isAuthenticated : !!data.token) {
+        if ((data === null ? role : data.role) === 'Admin') {
+            return (
+                <AdminLayout>
+                    <Routes>
+                        {adminRoutesBook.map((x, index) => {
+                            return <Route path={x.path} element={x.element} key={index}/>
+                        })}
+                    </Routes>
+                </AdminLayout>
+            )
+        }
         return (
             <UserLayout>
                 <Routes>
@@ -16,9 +28,8 @@ export const useRoutes = (isAuthenticated) => {
                     })}
                 </Routes>
             </UserLayout>
-        )
+        );
     }
-    
     return (
         <NonAuthLayout>
             <Routes>
