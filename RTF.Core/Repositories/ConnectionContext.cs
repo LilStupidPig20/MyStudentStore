@@ -5,14 +5,15 @@ using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace RTF.Core.Repositories;
 
-public class ConnectionContext : DbContext
+public sealed class ConnectionContext : DbContext
 {
     private readonly IDbProvider _dbProvider;
 
-    private DbSet<UserInfo> UserInfos { get; set; }
+    private DbSet<UserInfo> UsersInfo { get; set; }
     private DbSet<Event> Events { get; set; }
-    private DbSet<StoreProduct> Products { get; set; }
+    private DbSet<StoreProduct> Products { get; set; }  
     private DbSet<ClothesProduct> Clothes { get; set; }
+    private DbSet<AdminInfo> AdminsInfo { get; set; }
 
     public ConnectionContext(DbContextOptions<ConnectionContext> options, IDbProvider dbProvider)
         : base(options)

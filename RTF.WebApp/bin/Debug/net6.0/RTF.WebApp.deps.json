@@ -927,10 +927,20 @@
         "dependencies": {
           "MailKit": "3.4.2",
           "MimeKit": "3.4.2",
+          "RTF.AdminServices": "1.0.0",
           "RTF.Core": "1.0.0"
         },
         "runtime": {
           "RFT.Services.dll": {}
+        }
+      },
+      "RTF.AdminServices/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "12.0.0",
+          "RTF.Core": "1.0.0"
+        },
+        "runtime": {
+          "RTF.AdminServices.dll": {}
         }
       },
       "RTF.Core/1.0.0": {
@@ -1698,6 +1708,11 @@
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
     },
     "RFT.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RTF.AdminServices/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
