@@ -12,23 +12,39 @@ registerLocale("ru", ru);
 
 export const CalendarPage = memo(() => {
     const pageContext = useCurrentPageContext();
-    const token = useAuthContext().token;
+    const authData = useAuthContext();
     const [calendarInfo, setCalendarInfo] = useState({});
     useEffect(() => {
         pageContext.setName('calendar');
     },[pageContext])
     const today = new Date().getMonth() + 1;
-
+    
     useEffect(() => {
-        fetch(`/api/events/getCalendarInfo/${today}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        }).then(res => res.json())
-            .then(items => setCalendarInfo(items))
-    }, [])
+        if(authData.role === 'Student') {
+            fetch(`/api/events/getCalendarInfo/${today}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authData.token}`
+                }
+            }).then(res => res.json())
+                .then(items => setCalendarInfo(items))
+        }
+    }, [authData.role, authData.token, today])
+    const months = [
+        "январь",
+        "февраль",
+        "март",
+        "апрель",
+        "май",
+        "июнь",
+        "июль",
+        "август",
+        "сентябрь",
+        "октябрь",
+        "ноябрь",
+        "декабрь",
+    ];
 
     const [dateRange, setDateRange] = useState([null, null]);
     const [startDate, endDate] = dateRange;
@@ -76,6 +92,30 @@ export const CalendarPage = memo(() => {
                         id='datepicker'
                         dateFormat="dd.MM.yy"
                         locale={"ru"}
+                        renderCustomHeader={({
+                                 date,
+                                 changeYear,
+                                 changeMonth,
+                                 decreaseMonth,
+                                 increaseMonth,
+                                 prevMonthButtonDisabled,
+                                 nextMonthButtonDisabled,
+                             }) => (
+                            <div style={{
+                                    display: "flex",
+                                    justifyContent: "center"
+                                }}
+                            >
+                                <button className="react-datepicker__navigation react-datepicker__navigation--prev" onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+                                    <span className="react-datepicker__navigation-icon react-datepicker__navigation-icon--previous">Previous Month</span>
+                                </button>
+                                <p className="react-datepicker__current-month">{months[date.getMonth()]}, {date.getFullYear()}</p>
+
+                                <button className="react-datepicker__navigation react-datepicker__navigation--next" onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+                                    <span className="react-datepicker__navigation-icon react-datepicker__navigation-icon--next">Next Month</span>
+                                </button>
+                            </div>
+                        )}
                         selectsRange={true}
                         selected={startDate}
                         startDate={startDate}
@@ -98,8 +138,8 @@ export const CalendarPage = memo(() => {
                             </div>
                             <div onClick={() => setDateRange([null, null])}>
                                 <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <line x1="1" y1="-1" x2="20" y2="-1" transform="matrix(0.707107 0.707107 -0.657201 0.753715 0 2.0752)" stroke="#4C2C82" stroke-width="2" stroke-linecap="round"/>
-                                    <line x1="1" y1="-1" x2="20" y2="-1" transform="matrix(-0.707107 0.707107 0.657201 0.753715 15.8496 2.0752)" stroke="#4C2C82" stroke-width="2" stroke-linecap="round"/>
+                                    <line x1="1" y1="-1" x2="20" y2="-1" transform="matrix(0.707107 0.707107 -0.657201 0.753715 0 2.0752)" stroke="#4C2C82" strokeWidth="2" strokeLinecap="round"/>
+                                    <line x1="1" y1="-1" x2="20" y2="-1" transform="matrix(-0.707107 0.707107 0.657201 0.753715 15.8496 2.0752)" stroke="#4C2C82" strokeWidth="2" strokeLinecap="round"/>
                                 </svg>
                             </div>
                         </div>
