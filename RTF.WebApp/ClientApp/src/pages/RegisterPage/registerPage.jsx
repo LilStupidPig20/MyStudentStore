@@ -16,7 +16,7 @@ export const RegisterPage = memo(() => {
                 'Content-Type': 'application/json' 
             },
             body: JSON.stringify(form)
-        }).catch(err => console.log(err), setFail(true))
+        }).catch(err => {console.log(err); setFail(true)})
 
         const data = await response.json();
     };

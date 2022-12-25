@@ -3,12 +3,13 @@ import './loginPage.scss';
 import login_picture from '../../images/login/login-picture.jpg';
 import wave from '../../images/main/wave.svg';
 import { memo } from 'react';
-import {useDispatch} from "react-redux";
-import {setUserAsync} from "../../features/authSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {setUserAsync, showUser} from "../../features/authSlice";
 
 export const LoginPage = memo(() => {
     const [form, setForm] = useState({email: '', password: ''});
-    const [fail, setFail] = useState(false);
+    const isFail = useSelector(showUser).isFail;
+    console.log(isFail);
     const dispatch = useDispatch();
     
     const changeHandler = (event) => {
@@ -19,8 +20,8 @@ export const LoginPage = memo(() => {
         dispatch(setUserAsync(form));
     };
 
-    let wrongStyle = fail ? { border: '2px solid #FF5D5D' } : {};
-    let wrongStyleBtn = fail ? { marginTop: '17px' } : {};
+    let wrongStyle = isFail ? { border: '2px solid #FF5D5D' } : {};
+    let wrongStyleBtn = isFail ? { marginTop: '17px' } : {};
 
     return (
         <>
@@ -46,7 +47,7 @@ export const LoginPage = memo(() => {
                         style={wrongStyle}
                     />
                     {
-                        fail 
+                        isFail
                         ? 
                         <span className='login__wrong'>Неверный логин или пароль. Повторите попытку</span>
                     : ''

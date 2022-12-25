@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const localData = localStorage.getItem('page');
 
-export const pageNameSlide = createSlice({
+export const pageNameSlice = createSlice({
     name: 'pageName',
     initialState: {
         name: localData || null,
@@ -23,6 +23,6 @@ export const setPageName = (name) => async (dispatch) => {
     dispatch(setName(name));
 }
 
-export const { setName, deletePageName } = pageNameSlide.actions;
+export const { setName, deletePageName } = pageNameSlice.actions;
 export const showPageName = (state) => state.pageName.name;
-export default pageNameSlide.reducer;
+export default pageNameSlice.reducer;

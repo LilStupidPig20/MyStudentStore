@@ -4,7 +4,7 @@ const API_URL = 'api/account/login';
 const json = localStorage.getItem('auth');
 const localData = JSON.parse(json) || [];
 
-export const authSlide = createSlice({
+export const authSlice = createSlice({
     name: 'authData',
     initialState: {
         data: {
@@ -14,10 +14,12 @@ export const authSlide = createSlice({
             userName: localData.userName || null,
             token: localData.token || null,
             role: localData.role || null,
+            isFail: false,
         }
     },
     reducers: {
         setUser: (state, action) => {
+            console.log(action);
             state.data.firstName = action.payload.firstName;
             state.data.lastName = action.payload.lastName;
             state.data.group = action.payload.group;
@@ -41,25 +43,29 @@ export const authSlide = createSlice({
             state.data.token = null;
             state.data.role = null;
             window.localStorage.removeItem('auth');
+        },
+        setError: (state, action) => {
+            console.log(action);
+            state.data.isFail = action.payload;
         }
     }
 })
 
 export const setUserAsync = (form) => async (dispatch) => {
-    try {
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(form)
-        }).then(items => items.json())
-        dispatch(setUser(response));
-    } catch (err) {
-        throw new Error(err);
-    }
+    const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+    }).then(items => {
+        if (items.status !== 200) return dispatch(setError(true))
+        dispatch(setError(false));
+        return items.json()
+    })
+    dispatch(setUser(response));
 };
 
-export const { setUser, logout } = authSlide.actions;
+export const { setUser, logout, setError } = authSlice.actions;
 export const showUser = (state) => state.authData.data;
-export default authSlide.reducer;
+export default authSlice.reducer;

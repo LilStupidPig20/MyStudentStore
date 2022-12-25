@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const API_URL = '/api/events/getCalendarInfo/';
 
-export const calendarSlide = createSlice({
+export const calendarSlice = createSlice({
     name: 'calendarInfo',
     initialState: {
         data: {}
@@ -29,6 +29,6 @@ export const getCalendarInfoAsync = (today, token) => async (dispatch) => {
     }
 };
 
-export const { getCalendarInfo } = calendarSlide.actions;
+export const { getCalendarInfo } = calendarSlice.actions;
 export const showCalendarInfo = (state) => state.calendarInfo.data;
-export default calendarSlide.reducer;
+export default calendarSlice.reducer;

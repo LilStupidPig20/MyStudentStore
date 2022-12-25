@@ -11,7 +11,7 @@ export const useRoutes = () => {
     const authData = useSelector(showUser);
     console.log(window.location.pathname);
 
-    if(authData.token !== null) {
+    if(authData.token !== null && authData.token !== undefined && Object.keys(authData).length !== 0 && authData.constructor === Object) {
         if (authData.role === 'Admin') {
             return (
                 <AdminLayout>

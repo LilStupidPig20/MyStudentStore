@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const API_URL = '/api/userBalance/getCurrentUserBalance';
 
-export const userBalanceSlide = createSlice({
+export const userBalanceSlice = createSlice({
     name: 'userBalance',
     initialState: {
         data: 0
@@ -29,6 +29,6 @@ export const getUserBalanceAsync = (token) => async (dispatch) => {
     }
 };
 
-export const { getUserBalance } = userBalanceSlide.actions;
+export const { getUserBalance } = userBalanceSlice.actions;
 export const showUserBalance = (state) => state.userBalance.data;
-export default userBalanceSlide.reducer;
+export default userBalanceSlice.reducer;
