@@ -1,15 +1,14 @@
-import {useAuthContext} from "../../../context/AuthContext";
 import './adminLayout.scss';
-import {useCurrentPageContext} from "../../../context/CurrentPageContext";
 import React from "react";
 import logo from "../../../images/main/logo.png";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../../features/authSlice";
+import {deletePageName, showPageName} from "../../../features/pageNameSlice";
 
 export const AdminLayout = ({children}) => {
-    const profileData = useAuthContext();
-    console.log(profileData);
-    const pageName = useCurrentPageContext().name;
-    const navigate = useNavigate();
+    const pageName = useSelector(showPageName);
+    const dispatch = useDispatch();
 
     return (
         <div className='admin-layout'>
@@ -32,7 +31,7 @@ export const AdminLayout = ({children}) => {
                     <Link to='/orders/history' className={pageName === 'rules' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>История заказов</Link>
                     <Link to='/rules' className={pageName === 'rules' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>Правила начисления баллов</Link>
                 </div>
-                <div className='admin-layout__exit' onClick={() => {profileData.logout(); navigate(0);}}>Выйти</div>
+                <div className='admin-layout__exit' onClick={() => {dispatch(logout); dispatch(deletePageName)}}>Выйти</div>
             </aside>
             <div style={{gridColumn: '2 / 3', minWidth: '-webkit-fill-available'}}>{children}</div>
         </div>

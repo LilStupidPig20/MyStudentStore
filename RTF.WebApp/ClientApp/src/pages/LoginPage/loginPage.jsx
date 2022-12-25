@@ -3,37 +3,20 @@ import './loginPage.scss';
 import login_picture from '../../images/login/login-picture.jpg';
 import wave from '../../images/main/wave.svg';
 import { memo } from 'react';
-import { useAuthContext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import {setUserAsync} from "../../features/authSlice";
 
-export const LoginPage = memo((redirect) => {
-    const auth = useAuthContext();
+export const LoginPage = memo(() => {
     const [form, setForm] = useState({email: '', password: ''});
     const [fail, setFail] = useState(false);
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
     
     const changeHandler = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
     
     const loginHandler = async () => {
-        const response = await fetch("api/account/login", {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json' 
-            },
-            body: JSON.stringify(form)
-        }).then((res) => {
-            if(res.status !== 200) {
-                return setFail(true);
-            } else {
-                return res.json()
-            }
-        })
-
-        auth.login(response.firstName, response.lastName, response.group, response.userName, response.token, response.role);
-        navigate('/profile');
-        navigate(0);
+        dispatch(setUserAsync(form));
     };
 
     let wrongStyle = fail ? { border: '2px solid #FF5D5D' } : {};

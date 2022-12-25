@@ -1,25 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './userLayout.scss';
 import logo from '../../../images/main/logo.png'
-import {Link, useNavigate} from "react-router-dom";
-import { useAuthContext } from '../../../context/AuthContext';
-import { useCurrentPageContext } from '../../../context/CurrentPageContext';
+import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {getUserBalanceAsync, showUserBalance} from "../../../features/userBalanceSlice";
+import {logout, showUser} from "../../../features/authSlice";
+import {deletePageName, showPageName} from "../../../features/pageNameSlice";
 
 export const UserLayout = ({children}) => {
-    const profileData = useAuthContext();
-    const pageName = useCurrentPageContext().name;
-    const [userBalance, setUserBalance] = useState(null)
-    const navigate = useNavigate();
+    const pageName = useSelector(showPageName);
+    console.log(pageName);
+    const dispatch = useDispatch();
+    const balance = useSelector(showUserBalance);
+    const userData = useSelector(showUser);
     useEffect(() => {
-        fetch('/api/userBalance/getCurrentUserBalance', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${profileData.token}`
-            }
-        }).then(res => res.json())
-            .then(items => setUserBalance(items))
-    },[userBalance])
+        dispatch(getUserBalanceAsync(userData.token));
+    },[dispatch, userData.token])
     return (
         <div className='user-layout'>
             <aside className='user-layout__side-menu'>
@@ -31,12 +27,12 @@ export const UserLayout = ({children}) => {
                         <span className='user-layout__shop-name'>My<br/>Student Store</span>
                     </div>
                     <div className='user-layout__user'>
-                        <div className='user-layout__user-logo'>{String(profileData.firstName).slice(0,1)}</div>
-                        <span className='user-layout__user-name'>{profileData.firstName}<br/>{profileData.lastName}</span>
+                        <div className='user-layout__user-logo'>{String(userData.firstName).slice(0,1)}</div>
+                        <span className='user-layout__user-name'>{userData.firstName}<br/>{userData.lastName}</span>
                     </div>
                     <div className='user-layout__balance'>
                         <div className='user-layout__balance-name'>Баланс</div>
-                        <div className='user-layout__balance-count'>{userBalance !== null ? userBalance : ''} баллов</div>
+                        <div className='user-layout__balance-count'>{balance} баллов</div>
                     </div>
                 </div>
                 <div className='user-layout__links'>
@@ -46,7 +42,7 @@ export const UserLayout = ({children}) => {
                     <Link to='/orders' className={pageName === 'orders' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Мои заказы</Link>
                     <Link to='/rules' className={pageName === 'rules' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Правила начисления баллов</Link>
                 </div>
-                <div className='user-layout__exit' onClick={() => {profileData.logout(); navigate('/login'); navigate(0);}}>Выйти</div>
+                <div className='user-layout__exit' onClick={() => {dispatch(logout(userData)); dispatch(deletePageName)}}>Выйти</div>
             </aside>
             <div style={{gridColumn: '2 / 3', minWidth: '-webkit-fill-available'}}>{children}</div>
         </div>

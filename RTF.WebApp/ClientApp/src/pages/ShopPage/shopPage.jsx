@@ -4,13 +4,14 @@ import { ProductItem } from '../../components/ProductItem/productItem';
 import './shopPage.scss';
 import pen from '../../images/shop/pen.jpg';
 import right_back from '../../images/shop/back-img.png'
-import { useCurrentPageContext } from '../../context/CurrentPageContext';
+import {useDispatch} from "react-redux";
+import {setPageName} from "../../features/pageNameSlice";
 
 export const ShopPage = memo(() => {
-    const pageContext = useCurrentPageContext();
-    useEffect(() => {
-        pageContext.setName('shop')
-    },[pageContext])
+    const dispatch = useDispatch();
+    useEffect(()=> {
+        dispatch(setPageName('shop'));
+    },[dispatch])
     return (
         <div className='shopPage'>
             <img className='shopPage__back-img' src={right_back} alt='' />

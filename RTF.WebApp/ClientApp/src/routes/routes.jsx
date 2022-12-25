@@ -4,12 +4,15 @@ import {Route, Routes} from 'react-router-dom';
 import { authRoutesBook, nonAuthRoutesBook, adminRoutesBook } from './book';
 import { UserLayout } from '../components/Layouts/UserLayout/userLayout';
 import { AdminLayout } from "../components/Layouts/AdminLayout/adminLayout";
+import {useSelector} from "react-redux";
+import {showUser} from "../features/authSlice";
 
-export const useRoutes = (isAuthenticated, role) => {
-    const data = JSON.parse(localStorage.getItem('data'));
+export const useRoutes = () => {
+    const authData = useSelector(showUser);
     console.log(window.location.pathname);
-    if (data === null ? isAuthenticated : !!data.token) {
-        if ((data === null ? role : data.role) === 'Admin') {
+
+    if(authData.token !== null) {
+        if (authData.role === 'Admin') {
             return (
                 <AdminLayout>
                     <Routes>

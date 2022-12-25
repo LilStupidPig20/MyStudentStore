@@ -4,33 +4,29 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './datepicker.css';
 import right_back from '../../images/shop/back-img.png'
 import DatePicker, { registerLocale } from "react-datepicker";
-import { useCurrentPageContext } from '../../context/CurrentPageContext';
 import ru from "date-fns/locale/ru";
-import {useAuthContext} from "../../context/AuthContext";
 import {CalendarItem} from "../../components/CalendarItem/CalendarItem";
+import {useDispatch, useSelector} from "react-redux";
+import {getCalendarInfoAsync, showCalendarInfo} from "../../features/calendarSlice";
+import {showUser} from "../../features/authSlice";
+import {setPageName} from "../../features/pageNameSlice";
 registerLocale("ru", ru);
 
+
 export const CalendarPage = memo(() => {
-    const pageContext = useCurrentPageContext();
-    const authData = useAuthContext();
-    const [calendarInfo, setCalendarInfo] = useState({});
-    useEffect(() => {
-        pageContext.setName('calendar');
-    },[pageContext])
-    const today = new Date().getMonth() + 1;
-    
+    const authData = useSelector(showUser);
+    const calendarInfo = useSelector(showCalendarInfo);
+    const dispatch = useDispatch();
+    useEffect(()=> {
+        dispatch(setPageName('calendar'));
+    },[dispatch])
+    const [month, setMonth] = useState(new Date().getMonth() + 1);
+
     useEffect(() => {
         if(authData.role === 'Student') {
-            fetch(`/api/events/getCalendarInfo/${today}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authData.token}`
-                }
-            }).then(res => res.json())
-                .then(items => setCalendarInfo(items))
+            dispatch(getCalendarInfoAsync(month, authData.token));
         }
-    }, [authData.role, authData.token, today])
+    }, [authData.role, authData.token, dispatch, month])
     const months = [
         "январь",
         "февраль",
@@ -60,17 +56,16 @@ export const CalendarPage = memo(() => {
                 {
                     Object.keys(calendarInfo).length !== 0 ?
                         <div className='calendarPage__date-small-events'>
-                            {infoObj[day]?.map((elem) => {
+                            {infoObj[day]?.map((elem, index) => {
                                 if(elem === 0) {
                                     return (
-                                        <div className='calendarPage__date-small-event-green'></div>
+                                        <div className='calendarPage__date-small-event-green' key={index}></div>
                                     )
                                 } else {
                                     return (
-                                        <div className='calendarPage__date-small-event-purple'></div>
+                                        <div className='calendarPage__date-small-event-purple' key={index}></div>
                                     )
                                 }
-
                                 })
                             }
                         </div>
@@ -92,26 +87,23 @@ export const CalendarPage = memo(() => {
                         id='datepicker'
                         dateFormat="dd.MM.yy"
                         locale={"ru"}
+                        onMonthChange={(data) => {setMonth(data.getMonth() + 1)}}
                         renderCustomHeader={({
                                  date,
-                                 changeYear,
-                                 changeMonth,
                                  decreaseMonth,
                                  increaseMonth,
-                                 prevMonthButtonDisabled,
-                                 nextMonthButtonDisabled,
                              }) => (
                             <div style={{
                                     display: "flex",
                                     justifyContent: "center"
                                 }}
                             >
-                                <button className="react-datepicker__navigation react-datepicker__navigation--prev" onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+                                <button className="react-datepicker__navigation react-datepicker__navigation--prev" onClick={() => {decreaseMonth(); dispatch(getCalendarInfoAsync(month, authData.token))}}>
                                     <span className="react-datepicker__navigation-icon react-datepicker__navigation-icon--previous">Previous Month</span>
                                 </button>
                                 <p className="react-datepicker__current-month">{months[date.getMonth()]}, {date.getFullYear()}</p>
 
-                                <button className="react-datepicker__navigation react-datepicker__navigation--next" onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+                                <button className="react-datepicker__navigation react-datepicker__navigation--next" onClick={() => {increaseMonth(); dispatch(getCalendarInfoAsync(month, authData.token))}}>
                                     <span className="react-datepicker__navigation-icon react-datepicker__navigation-icon--next">Next Month</span>
                                 </button>
                             </div>

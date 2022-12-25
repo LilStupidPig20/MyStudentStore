@@ -1,27 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './profilePage.scss';
 import profile_top from '../../images/profile/profile-top.svg';
 import { memo } from 'react';
-import { useAuthContext } from '../../context/AuthContext';
-import { useCurrentPageContext } from '../../context/CurrentPageContext';
+import {useDispatch, useSelector} from "react-redux";
+import {showUser} from "../../features/authSlice";
+import {setPageName} from "../../features/pageNameSlice";
+import {showUserBalance} from "../../features/userBalanceSlice";
 
 export const ProfilePage = memo(() => {
-    const profileData = useAuthContext();
-    const pageContext = useCurrentPageContext();
-    useEffect(() => {
-        pageContext.setName('profile')
-    },[pageContext])
-    const [userBalance, setUserBalance] = useState(null)
-    useEffect(() => {
-        fetch('/api/userBalance/getCurrentUserBalance', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${profileData.token}`
-            }
-        }).then(res => res.json())
-            .then(items => setUserBalance(items))
-    },[userBalance])
+    const profileData = useSelector(showUser);
+    const userBalance = useSelector(showUserBalance);
+    const dispatch = useDispatch();
+    useEffect(()=> {
+        dispatch(setPageName('profile'));
+    },[dispatch])
     let typeOfEvent;
     const eventClasses = {
         green: 'profile__attended-meetings__table-body-green', 
@@ -43,7 +35,7 @@ export const ProfilePage = memo(() => {
                     <div className='profile__user-balance'>
                         Твой баланс:
                         <div className='profile__user-balance-count'>
-                            {userBalance !== null ? userBalance : ''} баллов
+                            {userBalance} баллов
                         </div>
                     </div>
                     <div className='profile__user-qr'>
