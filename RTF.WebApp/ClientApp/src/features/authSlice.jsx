@@ -19,7 +19,6 @@ export const authSlice = createSlice({
     },
     reducers: {
         setUser: (state, action) => {
-            console.log(action);
             state.data.firstName = action.payload.firstName;
             state.data.lastName = action.payload.lastName;
             state.data.group = action.payload.group;
@@ -45,7 +44,6 @@ export const authSlice = createSlice({
             window.localStorage.removeItem('auth');
         },
         setError: (state, action) => {
-            console.log(action);
             state.data.isFail = action.payload;
         }
     }

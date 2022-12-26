@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {logout} from "./authSlice";
 
 const API_URL = '/api/userBalance/getCurrentUserBalance';
 
@@ -25,6 +26,7 @@ export const getUserBalanceAsync = (token) => async (dispatch) => {
         }).then(items => items.json())
         dispatch(getUserBalance(response));
     } catch (err) {
+        dispatch(logout());
         throw new Error(err);
     }
 };

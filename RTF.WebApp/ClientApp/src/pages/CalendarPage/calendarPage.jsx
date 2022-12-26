@@ -47,6 +47,9 @@ export const CalendarPage = memo(() => {
     const options = { month: 'long', day: 'numeric' };
     const firstDefaultDay = new Date();
     const lastDefaultDay = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) ;
+    let dateWidth = '';
+    if (startDate !== null && endDate !== null) dateWidth = '1100px';
+
 
     const renderDayContents = (day) => {
         let infoObj = calendarInfo?.dayToEventsList;
@@ -76,7 +79,7 @@ export const CalendarPage = memo(() => {
     return (
         <div className='calendarPage'>
             <img className='calendarPage__back-img' src={right_back} alt='' />
-            <div className='calendarPage__date-block'>
+            <div className='calendarPage__date-block' style={{width: dateWidth}}>
                 <div className='calendarPage__date'>
                     <label htmlFor='datepicker'>Выберите дату
                         <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style={{'marginLeft':'30px'}} xmlns="http://www.w3.org/2000/svg">
@@ -134,6 +137,13 @@ export const CalendarPage = memo(() => {
                                     <line x1="1" y1="-1" x2="20" y2="-1" transform="matrix(-0.707107 0.707107 0.657201 0.753715 15.8496 2.0752)" stroke="#4C2C82" strokeWidth="2" strokeLinecap="round"/>
                                 </svg>
                             </div>
+                        </div>
+                        : ''
+                }
+                {
+                    authData.role === "Admin" ?
+                        <div className='calendarPage__date-create-event'>
+                            Создать мероприятие
                         </div>
                         : ''
                 }

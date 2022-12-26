@@ -50,6 +50,8 @@
             margin-top: 59px;
             margin-left: 143px;
             margin-bottom: 19px;
+            width: 800px;
+            justify-content: space-between;
         }
 
         &-filter {
@@ -71,6 +73,18 @@
                 padding-right: 17px;
                 cursor: pointer;
             }
+        }
+        &-create-event {
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 33px;
+            color: #4C2C82;
+            padding: 8px 27px 11px;
+            border: 2px solid #4C2C82;
+            border-radius: 31px;
+            cursor: pointer;
         }
 
         &-selected {

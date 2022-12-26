@@ -9,7 +9,6 @@ import {setUserAsync, showUser} from "../../features/authSlice";
 export const LoginPage = memo(() => {
     const [form, setForm] = useState({email: '', password: ''});
     const isFail = useSelector(showUser).isFail;
-    console.log(isFail);
     const dispatch = useDispatch();
     
     const changeHandler = (event) => {
