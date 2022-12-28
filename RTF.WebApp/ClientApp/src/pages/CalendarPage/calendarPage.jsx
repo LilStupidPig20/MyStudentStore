@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCalendarInfoAsync, showCalendarInfo} from "../../features/calendarSlice";
 import {showUser} from "../../features/authSlice";
 import {setPageName} from "../../features/pageNameSlice";
+import {CreateEvent} from "../../components/CreateEvent/createEvent";
 registerLocale("ru", ru);
 
 
@@ -17,6 +18,7 @@ export const CalendarPage = memo(() => {
     const authData = useSelector(showUser);
     const calendarInfo = useSelector(showCalendarInfo);
     const dispatch = useDispatch();
+    const [createEvent, setCreateEvent] = useState(false);
     useEffect(()=> {
         dispatch(setPageName('calendar'));
     },[dispatch])
@@ -48,7 +50,9 @@ export const CalendarPage = memo(() => {
     const firstDefaultDay = new Date();
     const lastDefaultDay = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) ;
     let dateWidth = '';
-    if (startDate !== null && endDate !== null) dateWidth = '1100px';
+    if (startDate !== null && endDate !== null)
+        dateWidth = '1150px'
+    else dateWidth = '800px';
 
 
     const renderDayContents = (day) => {
@@ -142,9 +146,15 @@ export const CalendarPage = memo(() => {
                 }
                 {
                     authData.role === "Admin" ?
-                        <div className='calendarPage__date-create-event'>
-                            Создать мероприятие
-                        </div>
+                        <>
+                            <div className='calendarPage__date-create-event' onClick={() => setCreateEvent(true)}>
+                                Создать мероприятие
+                            </div>
+                            {createEvent ?
+                                <CreateEvent/>
+                            : ''}
+                        </>
+
                         : ''
                 }
             </div>

@@ -9,7 +9,6 @@ import {deletePageName, showPageName} from "../../../features/pageNameSlice";
 
 export const UserLayout = ({children}) => {
     const pageName = useSelector(showPageName);
-    console.log(pageName);
     const dispatch = useDispatch();
     const balance = useSelector(showUserBalance);
     const userData = useSelector(showUser);

@@ -1,0 +1,106 @@
+.create-event {
+  &__portal {
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    z-index: 2147483647;
+    right: 0;
+    width: calc(100vw - 511px);
+    background: rgba(76, 44, 130, 0.3);
+  }
+
+  &__body {
+    background: #FFFFFF;
+    border-radius: 21px;
+    padding: 60px;
+    &-title {
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 41px;
+      color: #6B6868;
+      margin-bottom: 40px;
+    }
+
+    &-input {
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 25px;
+      width: 606px;
+      color: #666666;
+      border: 2px solid #C7C7C7;
+      border-radius: 9px;
+      padding-left: 12px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+
+      &::placeholder {
+        color: #A6A6A6;
+      }
+
+      &-date {
+        display: flex;
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 25px;
+        width: 100%;
+        color: #666666;
+        border: 2px solid #C7C7C7;
+        border-radius: 9px;
+        padding: 9px 12px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      &-time {
+        width: 48px;
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 40px;
+        color: #A6A6A6;
+        border: 2px solid #C7C7C7;
+        border-radius: 9px;
+        padding-left: 12px;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        &-cont {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+      }
+
+      &-cont {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 20px;
+        flex-grow: 1;
+
+        & label {
+          font-family: 'Manrope';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 22px;
+          color: #666666;
+        }
+      }
+    }
+  }
+}
