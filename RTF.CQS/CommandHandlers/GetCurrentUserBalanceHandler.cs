@@ -1,26 +1,24 @@
-﻿using Microsoft.AspNetCore.Identity;
-using RFT.Services.ServiceInterfaces;
-using RTF.Core.Models.IdentityModels;
+﻿using RFT.Services.ServiceInterfaces;
 using RTF.CQS.Abstractions;
+using RTF.CQS.ApplicationServices;
 using RTF.CQS.Commands;
 
 namespace RTF.CQS.CommandHandlers;
 
-public class GetCurrentUserBalanceHandler : CommandHandler<GetCurrentUserBalance, double>
+public class GetCurrentUserBalanceHandler : CommandHandler<GetCurrentUserBalanceCommand, double>
 {
-    private readonly UserManager<User> _userManager;
+    private readonly ICurrentUserProvider _currentUserProvider;
     private readonly IStudentBalanceService _balanceService;
 
-    public GetCurrentUserBalanceHandler(UserManager<User> userManager, IStudentBalanceService balanceService)
+    public GetCurrentUserBalanceHandler(ICurrentUserProvider currentUserProvider, IStudentBalanceService balanceService)
     {
-        _userManager = userManager;
+        _currentUserProvider = currentUserProvider;
         _balanceService = balanceService;
     }
 
-    public override async Task<double> HandleWithResult(GetCurrentUserBalance request, CancellationToken ct)
+    public override async Task<double> HandleWithResult(GetCurrentUserBalanceCommand request, CancellationToken ct)
     {
-        //TODO вынести в какой-нибудь UserProvider.GetCurrent?
-        var currentUserId = (await _userManager.GetUserAsync(request.CurrentUserClaims)).Id;
+        var currentUserId = (await _currentUserProvider.GetCurrentUserAsync()).Id;
         var currentBalance = await _balanceService.GetUserBalance(Guid.Parse(currentUserId));
         return currentBalance;
     }

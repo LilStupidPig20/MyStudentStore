@@ -26,4 +26,9 @@
       <ProjectReference Include="..\RTF.Infrastructure\RTF.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="AdminControllers" />
+      <Folder Include="MobileControllers" />
+    </ItemGroup>
+
 </Project>

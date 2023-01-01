@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css';
 import { AuthContextProvider } from './context/AuthContext';
+import { CurrentPageContextProvider } from './context/CurrentPageContext';
 import { useAuth } from './hooks/auth.hook';
 import { useRoutes } from './routes/routes';
 
@@ -10,7 +11,9 @@ function App() {
 
   return (
     <AuthContextProvider>
-      { useRoutes(!!token) }
+      <CurrentPageContextProvider>
+        { useRoutes(!!token) }
+      </CurrentPageContextProvider>
     </AuthContextProvider>
   )
 }

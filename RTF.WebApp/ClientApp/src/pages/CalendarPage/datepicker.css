@@ -1,0 +1,75 @@
+.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), 
+.react-datepicker__month-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), 
+.react-datepicker__quarter-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range), 
+.react-datepicker__year-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range) {
+    background: rgba(143, 88, 235, 0.2);
+    border-radius: 50px;
+}
+.react-datepicker__portal {
+    right: 0;
+    left: unset;
+    width: calc(100vw - 511px);
+    background: rgba(76, 44, 130, 0.3);
+}
+
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000;
+}
+
+.react-datepicker__portal .react-datepicker__current-month, .react-datepicker__portal .react-datepicker-time__header {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    color: #4C2C82;
+}
+
+.react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover {
+    background: rgba(143, 88, 235, 0.2);
+    border-radius: 50px;
+}
+
+
+.react-datepicker__day--selected,
+.react-datepicker__day--selecting-range-start,
+.react-datepicker__day--in-range,
+.react-datepicker__day--keyboard-selected {
+    background: rgba(143, 88, 235, 0.2);
+    border-radius: 50px;
+}
+
+.react-datepicker__day:focus-visible {
+    outline: 0;
+}
+
+.react-datepicker__input-container {
+    display: none;
+}
+
+.react-datepicker__header {
+    background: none;
+    border-bottom: 0;
+}
+
+.react-datepicker {
+    padding: 8px 51px;
+    border: none;
+    outline: none;
+    border-radius: 21px;
+}
+
+.react-datepicker__navigation-icon--previous {
+    background: url('../../images/calendar/left-arrow.svg') no-repeat center;
+    width: 33px;
+    height: 33px;
+}
+
+.react-datepicker__navigation-icon--previous:before {
+    content: none;
+}

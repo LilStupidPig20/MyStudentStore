@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Identity;
+using RFT.Services.DtoModels;
 using RFT.Services.ServiceInterfaces;
 using RTF.Core.Models.IdentityModels;
 using RTF.CQS.Abstractions;
@@ -11,12 +12,12 @@ namespace RTF.CQS.QueryHandlers;
 public class RegistrationQueryHandler : QueryHandler<RegistrationQuery, bool>
 {
     private readonly UserManager<User> _userManager;
-    private readonly IStudentBalanceService _balanceService;
+    private readonly IUserInfoService _userInfoService;
 
-    public RegistrationQueryHandler(UserManager<User> userManager, IStudentBalanceService balanceService)
+    public RegistrationQueryHandler(UserManager<User> userManager, IUserInfoService userInfoService)
     {
         _userManager = userManager;
-        _balanceService = balanceService;
+        _userInfoService = userInfoService;
     }
 
     public override async Task<bool> Handle(RegistrationQuery request, CancellationToken ct)
@@ -45,12 +46,20 @@ public class RegistrationQueryHandler : QueryHandler<RegistrationQuery, bool>
         //TODO разобраться с подтверждением почты
         // var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
         //
-        // var message = new Message(new List<(string name, string address)>{ (user.Email, user.Email) }, "Confirmation email link", confirmationLink);
+        // var message = new Message(new List<(string name, string address)>{ (user.Email, user.Email) },
+        //     "Confirmation email link", confirmationLink);
         // await _emailService.SendEmailAsync(message);
     
         await _userManager.AddToRoleAsync(user, "student");
 
-        await _balanceService.AddNewRecord(Guid.Parse(user.Id));
+        await _userInfoService.CreateUserInfoAsync(new UserInfoDto
+        {
+            Id = Guid.Parse(user.Id),
+            Email = user.Email,
+            Group = user.Group,
+            FirstName = user.FirstName,
+            LastName = user.LastName
+        }, ct);
 
         return true;
     }
