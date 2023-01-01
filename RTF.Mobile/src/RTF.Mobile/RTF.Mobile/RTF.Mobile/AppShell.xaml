@@ -3,6 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:login="clr-namespace:RTF.Mobile.Views.Login"
        xmlns:register="clr-namespace:RTF.Mobile.Views.Register"
+       xmlns:profile="clr-namespace:RTF.Mobile.Views.Profile"
        Title="RTF.Mobile"
        x:Class="RTF.Mobile.AppShell">
 
@@ -38,7 +39,7 @@
             <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
         </Tab>
         <Tab Title="Мой профиль" Icon="profile.png">
-            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate profile:ProfilePage}"/>
         </Tab>
         <Tab Title="Мои заказы" Icon="orders.png">
             <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>

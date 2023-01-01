@@ -28,7 +28,7 @@ namespace RTF.Mobile.Droid.Resources.Renderers
             if (Control != null)
             {
                 var drawable = new GradientDrawable();
-                drawable.Thickness = 2;
+                //drawable.Thickness = 2;
                 drawable.SetColor(ColorStateList.ValueOf(Color.White));
                 drawable.SetCornerRadius(15);
                 drawable.SetStroke(2, ColorStateList.ValueOf(Color.Cyan));

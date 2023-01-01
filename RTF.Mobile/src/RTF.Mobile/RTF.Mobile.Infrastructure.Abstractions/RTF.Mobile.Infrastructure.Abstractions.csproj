@@ -105,6 +105,7 @@
     <Compile Include="Models\LoginResponseDto.cs" />
     <Compile Include="Models\ProblemsDto.cs" />
     <Compile Include="Models\RegisterDto.cs" />
+    <Compile Include="Models\ShopItemDto.cs" />
     <Compile Include="Models\UserSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

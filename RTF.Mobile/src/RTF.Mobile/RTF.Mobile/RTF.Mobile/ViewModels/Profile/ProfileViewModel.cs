@@ -20,6 +20,7 @@ namespace RTF.Mobile.ViewModels.Profile
         {
             this.apiService = apiService;
             this.userStorage = userStorage;
+            UpdateInformationCommandExecute();
         }
 
         public async void UpdateInformationCommandExecute()
