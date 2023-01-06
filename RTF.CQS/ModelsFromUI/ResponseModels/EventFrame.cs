@@ -4,7 +4,7 @@ namespace RTF.CQS.ModelsFromUI.ResponseModels;
 
 public class EventFrame
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
     
     public string Name { get; set; }
     

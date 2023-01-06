@@ -7,5 +7,5 @@ public abstract record DataModel
 {
     [Column("Id")]
     [Key]
-    public long Id { get; set; }
+    public Guid Id { get; set; }
 }

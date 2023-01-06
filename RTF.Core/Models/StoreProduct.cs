@@ -9,7 +9,7 @@ public record StoreProduct : DataModel
     public string Name { get; set; }
     
     [Column("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
     
     [Column("Price")]
     public double Price { get; set; }
@@ -18,5 +18,5 @@ public record StoreProduct : DataModel
     public int TotalQuantity { get; set; }
     
     [Column("Image")]
-    public string Image { get; set; }
+    public string? Image { get; set; }
 }

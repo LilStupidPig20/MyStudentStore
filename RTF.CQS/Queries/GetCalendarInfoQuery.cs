@@ -1,9 +1,9 @@
 ﻿using RTF.CQS.Abstractions;
 using RTF.CQS.ModelsFromUI.ResponseModels;
 
-namespace RTF.CQS.Commands;
+namespace RTF.CQS.Queries;
 
-public class GetCalendarInfoCommand : Command<EventCalendarFrame>
+public class GetCalendarInfoQuery : Query<EventCalendarFrame>
 {
     public int MonthNumber { get; set; }
 }

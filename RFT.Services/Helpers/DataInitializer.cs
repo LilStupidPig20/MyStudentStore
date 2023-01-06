@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Identity;
-using RFT.Services.DtoModels;
 using RFT.Services.ServiceInterfaces;
 using RTF.AdminServices.DtoModels;
 using RTF.AdminServices.Interfaces;
@@ -66,7 +65,12 @@ public class DataInitializer : IDataInitializer
             Group = user.Group,
             FirstName = user.FirstName,
             LastName = user.LastName,
-            Balance = 1.5
+            Balance = 100,
+            Basket = new Basket
+            {
+                TotalPrice = 0,
+                OrderProducts = new List<OrderProduct>()
+            }
         });
 
         return Guid.Parse(user.Id);
@@ -168,12 +172,12 @@ public class DataInitializer : IDataInitializer
             }
         };
 
-        // await repo.AddAsync(product1);
-        // _unitOfWork.SaveChanges();
-        // await repo.AddAsync(product2);
-        // _unitOfWork.SaveChanges();
-        // await repo.AddAsync(product3);
-        // _unitOfWork.SaveChanges();
+        await repo.AddAsync(product1);
+        _unitOfWork.SaveChanges();
+        await repo.AddAsync(product2);
+        _unitOfWork.SaveChanges();
+        await repo.AddAsync(product3);
+        _unitOfWork.SaveChanges();
         await repo.AddAsync(product4);
     }
 }

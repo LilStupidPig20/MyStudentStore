@@ -16,15 +16,21 @@ public class UserInfoService : IUserInfoService
 
     public async Task CreateUserInfoAsync(UserInfoDto userInfoDto, CancellationToken cancellationToken)
     {
-        var repo = _unitOfWork.GetRepository<UserInfo>();
-        await repo.AddAsync(new UserInfo
+        var userInfoRepo = _unitOfWork.GetRepository<UserInfo>();
+
+        await userInfoRepo.AddAsync(new UserInfo
         {
             Id = userInfoDto.Id,
             Email = userInfoDto.Email,
             Group = userInfoDto.Group,
             FirstName = userInfoDto.FirstName,
             LastName = userInfoDto.LastName,
-            Balance = 0
+            Balance = 0,
+            Basket = new Basket
+            {
+                TotalPrice = 0,
+                OrderProducts = new List<OrderProduct>()
+            }
         });
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }

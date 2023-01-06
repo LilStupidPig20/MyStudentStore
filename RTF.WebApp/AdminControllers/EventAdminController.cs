@@ -21,9 +21,9 @@ public class EventAdminController : Controller
     
     [HttpPost]
     [Route("createEvent")]
-    public async Task<IActionResult> CreateEvent(CreateEventQuery query)
+    public async Task<IActionResult> CreateEvent(CreateEventCommand command)
     {
-        await _mediator.Send(query);
+        await _mediator.Send(command);
         return new OkResult();
     }
 
@@ -31,7 +31,7 @@ public class EventAdminController : Controller
     [Route("getOrganizers")]
     public async Task<ActionResult<IReadOnlyList<OrganizerFrame>>> GetAllOrganizers()
     {
-        var result = await _mediator.Send(new GetAllOrganizersCommand());
+        var result = await _mediator.Send(new GetAllOrganizersQuery());
         return Ok(result);
     }
 }

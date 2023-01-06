@@ -7,5 +7,5 @@ namespace RTF.Core.Models;
 public record ClothesProduct : StoreProduct
 {
     [Column("ClothesInfo")]
-    public List<ClothesInfo> ClothesInfos { get; set; }
+    public ICollection<ClothesInfo> ClothesInfos { get; set; }
 }

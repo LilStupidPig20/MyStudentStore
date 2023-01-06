@@ -2,9 +2,9 @@
 using RTF.CQS.Abstractions;
 using RTF.CQS.ModelsFromUI.ResponseModels;
 
-namespace RTF.CQS.Queries;
+namespace RTF.CQS.Commands;
 
-public class LoginQuery : Query<LoginResponse>
+public class LoginCommand : Command<LoginResponse>
 {
     [Required]
     [EmailAddress]

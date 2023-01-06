@@ -2,27 +2,27 @@
 using Microsoft.AspNetCore.Identity;
 using RTF.Core.Models.IdentityModels;
 using RTF.CQS.Abstractions;
+using RTF.CQS.Commands;
 using RTF.CQS.Exceptions;
 using RTF.CQS.ModelsFromUI.ResponseModels;
-using RTF.CQS.Queries;
 using RTF.Infrastructure.Helpers;
 
-namespace RTF.CQS.QueryHandlers;
+namespace RTF.CQS.CommandHandlers;
 
-public class LoginQueryHandler : QueryHandler<LoginQuery, LoginResponse>
+public class LoginCommandHandler : CommandHandler<LoginCommand, LoginResponse>
 {
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
     private readonly ITokenGenerator _tokenGenerator;
 
-    public LoginQueryHandler(UserManager<User> userManager, SignInManager<User> signInManager, ITokenGenerator tokenGenerator)
+    public LoginCommandHandler(UserManager<User> userManager, SignInManager<User> signInManager, ITokenGenerator tokenGenerator)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _tokenGenerator = tokenGenerator;
     }
 
-    public override async Task<LoginResponse> Handle(LoginQuery request, CancellationToken ct)
+    public override async Task<LoginResponse> HandleWithResult(LoginCommand request, CancellationToken ct)
     {
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user == null)

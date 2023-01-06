@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using RTF.CQS.ApplicationServices;
 using RTF.CQS.Converters;
-using RTF.CQS.QueryHandlers;
 
 namespace RTF.CQS.Extensions;
 

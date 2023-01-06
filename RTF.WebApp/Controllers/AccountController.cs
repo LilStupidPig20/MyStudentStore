@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RTF.Core.Models.IdentityModels;
+using RTF.CQS.Commands;
 using RTF.CQS.ModelsFromUI.ResponseModels;
-using RTF.CQS.Queries;
 
 namespace RTF.WebApp.Controllers;
 
@@ -23,14 +23,14 @@ public class AccountController : Controller
     [HttpPost]
     [AllowAnonymous]
     [Route("register")]
-    public async Task<IActionResult> Register(RegistrationQuery query)
+    public async Task<IActionResult> Register(RegistrationCommand command)
     {
         if (!ModelState.IsValid)
         {
-            return new BadRequestObjectResult(query);
+            return new BadRequestObjectResult(command);
         }
 
-        await _mediator.Send(query);
+        await _mediator.Send(command);
         return new OkResult();
     }
 
@@ -62,9 +62,9 @@ public class AccountController : Controller
     [HttpPost]
     [AllowAnonymous]
     [Route("login")]
-    public async Task<ActionResult<LoginResponse>> Login(LoginQuery query)
+    public async Task<ActionResult<LoginResponse>> Login(LoginCommand command)
     {
-        var result = await _mediator.Send(query);
+        var result = await _mediator.Send(command);
         return result;
     }
 

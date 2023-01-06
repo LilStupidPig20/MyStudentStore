@@ -4,16 +4,17 @@ using RTF.CQS.Abstractions;
 using RTF.CQS.ApplicationServices;
 using RTF.CQS.Commands;
 using RTF.CQS.ModelsFromUI.ResponseModels;
+using RTF.CQS.Queries;
 
-namespace RTF.CQS.CommandHandlers;
+namespace RTF.CQS.QueryHandlers;
 
-public class GetVisitedEventsCommandHandler : CommandHandler<GetVisitedEventsCommand, IReadOnlyList<EventFrame>>
+public class GetVisitedEventsQueryHandler : QueryHandler<GetVisitedEventsQuery, IReadOnlyList<EventFrame>>
 {
     private readonly IEventService _eventService;
     private readonly ICurrentUserProvider _currentUserProvider;
     private readonly IMapper _mapper;
 
-    public GetVisitedEventsCommandHandler(IEventService eventService,
+    public GetVisitedEventsQueryHandler(IEventService eventService,
         ICurrentUserProvider currentUserProvider,
         IMapper mapper)
     {
@@ -22,7 +23,7 @@ public class GetVisitedEventsCommandHandler : CommandHandler<GetVisitedEventsCom
         _mapper = mapper;
     }
 
-    public override async Task<IReadOnlyList<EventFrame>> HandleWithResult(GetVisitedEventsCommand request, CancellationToken ct)
+    public override async Task<IReadOnlyList<EventFrame>> Handle(GetVisitedEventsQuery request, CancellationToken ct)
     {
         var currentUser = await _currentUserProvider.GetCurrentUserAsync();
         var visitedEvents = await _eventService.GetVisitedEventsByUserAsync(Guid.Parse(currentUser.Id));

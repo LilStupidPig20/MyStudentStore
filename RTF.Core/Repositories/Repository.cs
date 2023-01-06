@@ -22,7 +22,7 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         return entities;
     }
 
-    public async Task<TEntity> GetAsync(long id)
+    public async Task<TEntity> GetAsync(Guid id)
     {
         var entity = await Table.FirstOrDefaultAsync(x => x.Id == id);
         if (entity == null)
@@ -33,7 +33,7 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         return entity;
     }
 
-    public async Task DeleteAsync(long id)
+    public async Task DeleteAsync(Guid id)
     {
         var entity = await Table.FirstOrDefaultAsync(x => x.Id == id);
         if (entity == null)
@@ -46,25 +46,11 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
 
     public async Task<TEntity> AddAsync(TEntity entity)
     {
-        if (entity.Id != 0)
+        if (entity.Id == Guid.Empty)
         {
-            var existRecord = await Table.FirstOrDefaultAsync(x => x.Id == entity.Id);
-            if (existRecord != null)
-            {
-                throw new Exception(
-                    $"Запись с идентификатором {existRecord.Id} уже существует в таблице {typeof(TEntity)}");
-            }
+            entity.Id = Guid.NewGuid();
         }
 
-        if (!await Table.AnyAsync())
-        {
-            entity.Id = 1;
-        }
-        else
-        {
-            entity.Id = await GetLastId() + 1;
-        }
-        
         var addedRecord = (await Table.AddAsync(entity)).Entity;
         return addedRecord;
     }
@@ -98,11 +84,5 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
     {
         if (!await Table.AnyAsync())
             throw new Exception($"Таблица {typeof(TEntity)} пуста, или не существует");
-    }
-
-    protected async Task<long> GetLastId()
-    {
-        var lastRecord = await Table.OrderBy(x => x.Id).LastAsync();
-        return lastRecord.Id;
     }
 }

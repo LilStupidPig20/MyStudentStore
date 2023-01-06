@@ -1,9 +1,9 @@
 ﻿using RTF.CQS.Abstractions;
 using RTF.CQS.ModelsFromUI.ResponseModels;
 
-namespace RTF.CQS.Commands;
+namespace RTF.CQS.Queries;
 
-public class GetEventsByDateIntervalCommand : Command<IReadOnlyList<EventFrame>>
+public class GetEventsByDateIntervalQuery : Query<IReadOnlyList<EventFrame>>
 {
     public DateTime StartDateTime { get; set; }
     

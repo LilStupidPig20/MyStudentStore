@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using RTF.CQS.Abstractions;
 
-namespace RTF.CQS.Queries;
+namespace RTF.CQS.Commands;
 
-public class RegistrationQuery : Query<bool>
+public class RegistrationCommand : Command<bool>
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }

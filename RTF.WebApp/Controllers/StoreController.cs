@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RTF.CQS.Commands;
 using RTF.CQS.ModelsFromUI.ResponseModels;
+using RTF.CQS.Queries;
 
 namespace RTF.WebApp.Controllers;
 
@@ -22,7 +23,7 @@ public class StoreController : Controller
     [Route("getAllProducts")]
     public async Task<ActionResult<IReadOnlyList<ProductFrame>>> GetAllProducts()
     {
-        var result = await _mediator.Send(new GetAllProductsCommand());
+        var result = await _mediator.Send(new GetAllProductsQuery());
         return Ok(result);
     }
 }
