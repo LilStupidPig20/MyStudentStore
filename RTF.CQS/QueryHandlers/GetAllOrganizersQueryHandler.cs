@@ -2,20 +2,20 @@ using RTF.AdminServices.Interfaces;
 using RTF.CQS.Abstractions;
 using RTF.CQS.Commands;
 using RTF.CQS.ModelsFromUI.ResponseModels;
+using RTF.CQS.Queries;
 
-namespace RTF.CQS.CommandHandlers;
+namespace RTF.CQS.QueryHandlers;
 
-public class GetAllOrganizersCommandHandler : CommandHandler<GetAllOrganizersCommand, IReadOnlyList<OrganizerFrame>>
+public class GetAllOrganizersQueryHandler : QueryHandler<GetAllOrganizersQuery, IReadOnlyList<OrganizerFrame>>
 {
     private readonly IAdminInfoService _adminInfoService;
 
-    public GetAllOrganizersCommandHandler(IAdminInfoService adminInfoService)
+    public GetAllOrganizersQueryHandler(IAdminInfoService adminInfoService)
     {
         _adminInfoService = adminInfoService;
     }
 
-    public override async Task<IReadOnlyList<OrganizerFrame>> HandleWithResult(GetAllOrganizersCommand request,
-        CancellationToken ct)
+    public override async Task<IReadOnlyList<OrganizerFrame>> Handle(GetAllOrganizersQuery request, CancellationToken ct)
     {
         var adminsDto = await _adminInfoService.GetAllAdminsAsync(ct);
         var result = adminsDto.Select(x => new OrganizerFrame

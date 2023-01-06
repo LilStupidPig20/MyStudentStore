@@ -6,5 +6,5 @@ public interface IStoreService
 {
     Task<IReadOnlyList<StoreProduct>> GetAllProductsAsync();
 
-    Task<StoreProduct> GetProduct(long id);
+    Task<StoreProduct> GetProduct(Guid id);
 }

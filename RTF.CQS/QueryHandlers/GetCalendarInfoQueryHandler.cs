@@ -1,23 +1,23 @@
 ﻿using System.Globalization;
-using AutoMapper;
 using RFT.Services.ServiceInterfaces;
 using RTF.Core.Models.Enums;
 using RTF.CQS.Abstractions;
 using RTF.CQS.Commands;
 using RTF.CQS.ModelsFromUI.ResponseModels;
+using RTF.CQS.Queries;
 
-namespace RTF.CQS.CommandHandlers;
+namespace RTF.CQS.QueryHandlers;
 
-public class GetCalendarInfoCommandHandler : CommandHandler<GetCalendarInfoCommand, EventCalendarFrame>
+public class GetCalendarInfoQueryHandler : QueryHandler<GetCalendarInfoQuery, EventCalendarFrame>
 {
     private readonly IEventService _eventService;
 
-    public GetCalendarInfoCommandHandler(IEventService eventService)
+    public GetCalendarInfoQueryHandler(IEventService eventService)
     {
         _eventService = eventService;
     }
 
-    public override async Task<EventCalendarFrame> HandleWithResult(GetCalendarInfoCommand request, CancellationToken ct)
+    public override async Task<EventCalendarFrame> Handle(GetCalendarInfoQuery request, CancellationToken ct)
     {
         var eventsResult = await _eventService.GetEventsByMonth(request.MonthNumber);
         

@@ -6,11 +6,6 @@ namespace RTF.Core.Models;
 [Table("UserInfo")]
 public record UserInfo : DataModel
 {
-    [Column("Id")]
-    [Required]
-    [Key]
-    public new Guid Id { get; set; }
-
     [Column("FirstName")]
     [Required]
     public string FirstName { get; set; }
@@ -27,4 +22,7 @@ public record UserInfo : DataModel
     
     [Column("UserBalance")]
     public double Balance { get; set; }
+    
+    [Column("Basket")]
+    public Basket Basket { get; set; }
 }

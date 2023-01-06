@@ -26,4 +26,8 @@
       <ProjectReference Include="..\RTF.Infrastructure\RTF.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="ClientApp\src\images\shop\Products" />
+    </ItemGroup>
+
 </Project>

@@ -4,23 +4,22 @@ using RFT.Services.ServiceInterfaces;
 using RTF.CQS.Abstractions;
 using RTF.CQS.Commands;
 using RTF.CQS.ModelsFromUI.ResponseModels;
+using RTF.CQS.Queries;
 
-namespace RTF.CQS.CommandHandlers;
+namespace RTF.CQS.QueryHandlers;
 
-public class GetExtendedEventInformationCommandHandler
-    : CommandHandler<GetExtendedEventInformationCommand, ExtendedEventInfoFrame>
+public class GetExtendedEventInformationQueryHandler : QueryHandler<GetExtendedEventInformationQuery, ExtendedEventInfoFrame>
 {
     private readonly IEventService _eventService;
     private readonly IMapper _mapper;
 
-    public GetExtendedEventInformationCommandHandler(IEventService eventService, IMapper mapper)
+    public GetExtendedEventInformationQueryHandler(IEventService eventService, IMapper mapper)
     {
         _eventService = eventService;
         _mapper = mapper;
     }
 
-    public override async Task<ExtendedEventInfoFrame> HandleWithResult(GetExtendedEventInformationCommand request,
-        CancellationToken ct)
+    public override async Task<ExtendedEventInfoFrame> Handle(GetExtendedEventInformationQuery request, CancellationToken ct)
     {
         if (request.EventId == null)
         {

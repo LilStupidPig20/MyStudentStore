@@ -1,8 +1,8 @@
 using RTF.CQS.Abstractions;
 
-namespace RTF.CQS.Queries;
+namespace RTF.CQS.Commands;
 
-public class CreateEventQuery : Query<bool>
+public class CreateEventCommand : Command<bool> 
 {
     public string Name { get; set; }
     

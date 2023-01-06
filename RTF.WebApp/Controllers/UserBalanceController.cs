@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RTF.CQS.Commands;
+using RTF.CQS.Queries;
 
 namespace RTF.WebApp.Controllers;
 
@@ -21,7 +22,7 @@ public class UserBalanceController : Controller
     [Authorize(Roles = "Student")]
     public async Task<IActionResult> GetCurrentUserBalance()
     {
-        var result = await _mediator.Send(new GetCurrentUserBalanceCommand());
+        var result = await _mediator.Send(new GetCurrentUserBalanceQuery());
 
         return Ok(result);
     }

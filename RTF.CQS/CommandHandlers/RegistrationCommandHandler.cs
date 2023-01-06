@@ -4,23 +4,23 @@ using RFT.Services.DtoModels;
 using RFT.Services.ServiceInterfaces;
 using RTF.Core.Models.IdentityModels;
 using RTF.CQS.Abstractions;
+using RTF.CQS.Commands;
 using RTF.CQS.Exceptions;
-using RTF.CQS.Queries;
 
-namespace RTF.CQS.QueryHandlers;
+namespace RTF.CQS.CommandHandlers;
 
-public class RegistrationQueryHandler : QueryHandler<RegistrationQuery, bool>
+public class RegistrationCommandHandler : CommandHandler<RegistrationCommand, bool>
 {
     private readonly UserManager<User> _userManager;
     private readonly IUserInfoService _userInfoService;
 
-    public RegistrationQueryHandler(UserManager<User> userManager, IUserInfoService userInfoService)
+    public RegistrationCommandHandler(UserManager<User> userManager, IUserInfoService userInfoService)
     {
         _userManager = userManager;
         _userInfoService = userInfoService;
     }
 
-    public override async Task<bool> Handle(RegistrationQuery request, CancellationToken ct)
+    public override async Task<bool> HandleWithResult(RegistrationCommand request, CancellationToken ct)
     {
         if (request.Email.Split('@').Last() != "urfu.me")
         {

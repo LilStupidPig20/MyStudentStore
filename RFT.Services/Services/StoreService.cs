@@ -20,7 +20,7 @@ public class StoreService : IStoreService
         return products;
     }
 
-    public async Task<StoreProduct> GetProduct(long id)
+    public async Task<StoreProduct> GetProduct(Guid id)
     {
         var repo = _unitOfWork.GetRepository<StoreProduct>();
         var products = await repo.GetAsync(id);

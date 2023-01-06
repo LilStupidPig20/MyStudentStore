@@ -12,7 +12,7 @@ public record Event : DataModel
     public string Name { get; set; }
     
     [Column("Description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }    
     
     [Column("StartDateTime")]
     public DateTime StartDateTime { get; set; }

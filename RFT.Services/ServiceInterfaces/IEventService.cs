@@ -6,7 +6,7 @@ public interface IEventService
 {
     Task<IReadOnlyList<Event>> GetVisitedEventsByUserAsync(Guid userId);
 
-    Task<Event?> GetEventById(long eventId);
+    Task<Event?> GetEventById(Guid eventId);
     
     Task<IReadOnlyList<Event>> GetEventsByMonth(int month);
     

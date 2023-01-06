@@ -1,23 +1,22 @@
-using AutoMapper;
 using RTF.AdminServices.DtoModels;
 using RTF.AdminServices.Interfaces;
 using RTF.CQS.Abstractions;
-using RTF.CQS.Queries;
+using RTF.CQS.Commands;
 
-namespace RTF.CQS.QueryHandlers;
+namespace RTF.CQS.CommandHandlers;
 
-public class CreateEventQueryHandler : QueryHandler<CreateEventQuery, bool>
+public class CreateEventCommandHandler : CommandHandler<CreateEventCommand, bool>
 {
     private readonly IAdminInfoService _adminInfoService;
     private readonly IEventAdminService _eventAdminService;
 
-    public CreateEventQueryHandler(IAdminInfoService adminInfoService, IEventAdminService eventAdminService)
+    public CreateEventCommandHandler(IAdminInfoService adminInfoService, IEventAdminService eventAdminService)
     {
         _adminInfoService = adminInfoService;
         _eventAdminService = eventAdminService;
     }
 
-    public override async Task<bool> Handle(CreateEventQuery request, CancellationToken ct)
+    public override async Task<bool> HandleWithResult(CreateEventCommand request, CancellationToken ct)
     {
         var adminsDto = request.Organizers
             .Select(async x => await _adminInfoService.GetAdminByIdAsync(x))

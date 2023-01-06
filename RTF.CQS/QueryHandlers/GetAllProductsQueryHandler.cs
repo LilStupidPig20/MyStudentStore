@@ -3,22 +3,22 @@ using RFT.Services.ServiceInterfaces;
 using RTF.CQS.Abstractions;
 using RTF.CQS.Commands;
 using RTF.CQS.ModelsFromUI.ResponseModels;
+using RTF.CQS.Queries;
 
-namespace RTF.CQS.CommandHandlers;
+namespace RTF.CQS.QueryHandlers;
 
-public class GetAllProductsCommandHandler : CommandHandler<GetAllProductsCommand, IReadOnlyList<ProductFrame>>
+public class GetAllProductsQueryHandler : QueryHandler<GetAllProductsQuery, IReadOnlyList<ProductFrame>>
 {
     private readonly IStoreService _storeService;
     private readonly IMapper _mapper;
 
-    public GetAllProductsCommandHandler(IStoreService storeService, IMapper mapper)
+    public GetAllProductsQueryHandler(IStoreService storeService, IMapper mapper)
     {
         _storeService = storeService;
         _mapper = mapper;
     }
 
-    public override async Task<IReadOnlyList<ProductFrame>> HandleWithResult(GetAllProductsCommand request,
-        CancellationToken ct)
+    public override async Task<IReadOnlyList<ProductFrame>> Handle(GetAllProductsQuery request, CancellationToken ct)
     {
         var products = await _storeService.GetAllProductsAsync();
         var result = products.Select(x => _mapper.Map<ProductFrame>(x));

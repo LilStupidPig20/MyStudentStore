@@ -22,7 +22,7 @@ public class EventService : IEventService
         return visitedEvents;
     }
 
-    public async Task<Event?> GetEventById(long eventId)
+    public async Task<Event?> GetEventById(Guid eventId)
     {
         var repo = _unitOfWork.GetRepository<Event>();
         var eventResult = await repo.FindOneBy(x => x.Id == eventId);
