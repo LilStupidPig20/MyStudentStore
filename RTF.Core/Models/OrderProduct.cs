@@ -7,17 +7,17 @@ namespace RTF.Core.Models;
 public record OrderProduct : DataModel
 {
     [Column("Product")]
-    public StoreProduct Product { get; set; }
-
-    [Column("Count")]
-    public int Count { get; set; }
-
+    public virtual StoreProduct Product { get; set; }
+    
     [Column("Size")]
     public Size? Size { get; set; }
     
+    [Column("Count")]
+    public int Count { get; set; }
+    
     /// <summary>
-    /// Нужна отдельная от StoreProduct цена, т.к. в OrderProduct есть свойство Count, а данная стоимость
-    /// Product * N нужна для отображения на UI
+    /// Подумал, что лучше в случае с заказами хранить в базе прайс на элемент заказа (цена продукта * его количество)
+    /// потому что в случае с заказом этот объект неизменяемый, а в корзине он бы постоянно менялся, соотв-но там этого поля нет
     /// </summary>
     [Column("Price")]
     public double Price { get; set; }
