@@ -12,6 +12,25 @@
     background: rgba(76, 44, 130, 0.3);
   }
 
+  &__submit {
+    &-cont {
+      margin-top: 40px;
+    }
+
+    &-button {
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 27px;
+      color: #FFFFFF;
+      padding: 10px 34px;
+      background: #4C2C82;
+      border-radius: 15px;
+      border: none;
+    }
+  }
+
   &__body {
     background: #FFFFFF;
     border-radius: 21px;
@@ -31,7 +50,7 @@
       font-style: normal;
       font-weight: 500;
       font-size: 18px;
-      line-height: 25px;
+      line-height: 21px;
       width: 606px;
       color: #666666;
       border: 2px solid #C7C7C7;
@@ -85,6 +104,29 @@
         }
       }
 
+      &-coins {
+        border: 2px solid #C7C7C7;
+        border-radius: 9px;
+        padding: 9px 12px;
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 20px;
+        color: #A6A6A6;
+        width: 103px;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        &-cont {
+
+        }
+      }
+
       &-cont {
         display: flex;
         flex-direction: column;
@@ -103,4 +145,13 @@
       }
     }
   }
+}
+
+#react-select-3-placeholder {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  color: #A6A6A6;
 }

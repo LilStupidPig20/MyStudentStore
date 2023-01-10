@@ -1,23 +1,64 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import './createEvent.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../pages/CalendarPage/datepicker.css';
 import DatePicker, {registerLocale} from "react-datepicker";
 import ru from "date-fns/locale/ru";
+import {useSelector} from "react-redux";
+import {showUser} from "../../features/authSlice";
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 registerLocale("ru", ru);
 
 export const CreateEvent = () => {
     const [form, setForm] = useState({name: '', startDateTime: '', description: '', organizers: [], coins: 0});
+    const [ids, setIds] = useState([]);
+    const authData = useSelector(showUser);
     const [startDate, setStartDate] = useState(new Date());
-    const [timeForm, setTimeForm] = useState({eventHour: 0, eventMin: 0, date: startDate})
+    const [timeForm, setTimeForm] = useState({eventHour: '', eventMin: '', date: startDate})
+    const [adminsList, setAdminsList] = useState([]);
+
+    const animatedComponents = makeAnimated();
+
+    useEffect(() => {
+        if(authData.role === 'Admin') {
+            fetch('/api/adminEvent/getOrganizers', {
+                headers: {
+                    'Authorization': `Bearer ${authData.token}`
+                }
+            }).then(res => res.json())
+                .then((items) => {
+                    console.log(items);
+                    for(let i = 0; i < items.length; i++) {
+                        setAdminsList([...adminsList,{
+                            label: items[i].fullName,
+                            value: items[i].id
+                        }]
+                        )
+                    }
+                })
+        }
+    },[authData.role, authData.token])
 
     const changeHandler = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
+    const sendRequest = (form) => {
+
+    }
+
     console.log(timeForm)
+
     const changeTimeHandler = (event) => {
+        if(parseInt(event.target.value) > parseInt(event.target.max) || event.target.value.length > 2) {
+            event.target.value = event.target.max;
+        }
+        if(parseInt(event.target.value) < parseInt(event.target.min) || event.target.value.length > 2) {
+            event.target.value = event.target.min;
+        }
         setTimeForm({...timeForm, [event.target.name]: event.target.value});
+        // timeForm.date.setHours(timeForm.eventHour, timeForm.eventMin, 0o0)
     }
 
     return (
@@ -31,6 +72,7 @@ export const CreateEvent = () => {
                         type='text'
                         onInput={changeHandler}
                         placeholder='Введите название'
+                        required
                         className='create-event__body-input'/>
                 </div>
                 <div style={{display:'flex', gap: '78px'}}>
@@ -54,23 +96,81 @@ export const CreateEvent = () => {
                         <div className='create-event__body-input-time-cont'>
                             <input
                                 name='eventHour'
-                                type="text"
+                                type='number'
                                 pattern="[0-9]*"
-                                className='create-event__body-input-time'
                                 onInput={changeTimeHandler}
-                                maxLength={2}
+                                required
+                                className='create-event__body-input-time'
+                                min='00'
+                                max='23'
                             />
                             <span>:</span>
                             <input
                                 name='eventMin'
-                                type="text"
+                                type='number'
                                 pattern="[0-9]*"
-                                className='create-event__body-input-time'
                                 onInput={changeTimeHandler}
-                                maxLength={2}
+                                required
+                                className='create-event__body-input-time'
+                                min='00'
+                                max='59'
                             />
                         </div>
                     </div>
+
+                </div>
+                <div className='create-event__body-input-cont'>
+                    <label>Описание:</label>
+                    <textarea
+                        name='description'
+                        type='text'
+                        onInput={changeHandler}
+                        placeholder='Введите текст'
+                        rows={4}
+                        required
+                        className='create-event__body-input'
+                        style={{resize: 'none'}}
+                    />
+                </div>
+                <div className='create-event__body-input-cont'>
+                    <label>Организаторы:</label>
+                    <Select
+                        options={adminsList}
+                        closeMenuOnSelect={false}
+                        components={animatedComponents}
+                        isMulti
+                        isSearchable
+                        noOptionsMessage={()=>'Нет опций'}
+                        placeholder={'Выберите организаторов'}
+                        styles={{
+                            control: (baseStyles, state) => ({
+                                ...baseStyles,
+                                border: state.isFocused ? '2px solid #000000' : '2px solid #C7C7C7',
+                                borderRadius: '9px',
+                                boxShadow: 'none',
+                                "&:hover": {
+                                    border: state.isFocused ? '2px solid #000000' : '2px solid #C7C7C7',
+
+                                },
+                            }),
+                        }}
+                    />
+                </div>
+                <div className='create-event__body-input-cont'>
+                    <label htmlFor='event-datepicker'>Баллы:</label>
+                    <div className='create-event__body-input-coins-cont'>
+                        <input
+                            name='coins'
+                            type='number'
+                            pattern="[0-9]*"
+                            onInput={changeHandler}
+                            required
+                            className='create-event__body-input-coins'
+                        />
+                    </div>
+                </div>
+                <div className='create-event__submit-cont'>
+                    <button className='create-event__submit-button' onClick={sendRequest(form)}>Создать</button>
                 </div>
 
             </div>

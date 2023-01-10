@@ -25,9 +25,7 @@ export const CalendarPage = memo(() => {
     const [month, setMonth] = useState(new Date().getMonth() + 1);
 
     useEffect(() => {
-        if(authData.role === 'Student') {
-            dispatch(getCalendarInfoAsync(month, authData.token));
-        }
+        dispatch(getCalendarInfoAsync(month, authData.token));
     }, [authData.role, authData.token, dispatch, month])
     const months = [
         "январь",
