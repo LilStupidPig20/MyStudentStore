@@ -26,7 +26,7 @@ public class GetExtendedEventInformationQueryHandler : QueryHandler<GetExtendedE
             throw new ArgumentNullException("Передача недопустимый null параметра");
         }
 
-        var resultEvent = await _eventService.GetEventById(request.EventId.Value);
+        var resultEvent = await _eventService.GetEventById(request.EventId.Value, ct);
         if (resultEvent == null)
         {
             throw new ObjectNotFoundException($"Объект с переданным идентификатором {request.EventId} не существует");

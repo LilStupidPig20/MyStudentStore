@@ -28,8 +28,7 @@ public class UserInfoService : IUserInfoService
             Balance = 0,
             Basket = new Basket
             {
-                TotalPrice = 0,
-                OrderProducts = new List<OrderProduct>()
+                BasketProducts = new List<BasketProduct>()
             }
         });
         await _unitOfWork.SaveChangesAsync(cancellationToken);

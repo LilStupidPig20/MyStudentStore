@@ -22,7 +22,7 @@ public record UserInfo : DataModel
     
     [Column("UserBalance")]
     public double Balance { get; set; }
-    
+
     [Column("Basket")]
-    public Basket Basket { get; set; }
+    public virtual Basket Basket { get; set; }
 }

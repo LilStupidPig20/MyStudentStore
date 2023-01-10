@@ -16,5 +16,6 @@ public static class ServiceCollectionExtension
         services.AddScoped<IEventService, EventService>();
         services.AddScoped<IStoreService, StoreService>();
         services.AddScoped<IBasketService, BasketService>();
+        services.AddScoped<IOrdersService, OrdersService>();
     }
 }

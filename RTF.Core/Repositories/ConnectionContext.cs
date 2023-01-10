@@ -14,6 +14,8 @@ public sealed class ConnectionContext : DbContext
     private DbSet<StoreProduct> Products { get; set; }  
     private DbSet<ClothesProduct> Clothes { get; set; }
     private DbSet<AdminInfo> AdminsInfo { get; set; }
+    private DbSet<Basket> Baskets { get; set; }
+    private DbSet<Order> Orders { get; set; }
 
     public ConnectionContext(DbContextOptions<ConnectionContext> options, IDbProvider dbProvider)
         : base(options)
@@ -25,11 +27,23 @@ public sealed class ConnectionContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseNpgsql(_dbProvider.GetDbConnectionString());
+            optionsBuilder
+                //.UseLazyLoadingProxies()
+                .UseNpgsql(_dbProvider.GetDbConnectionString());
         }
     }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // modelBuilder.Entity<Basket>()
+        //     .HasMany(e => e.BasketProducts)
+        //     .WithOne()
+        //     .HasForeignKey(e => e.BasketId)
+        //     .IsRequired();
+        // modelBuilder.Entity<ClothesProduct>()
+        //     .HasMany(e => e.ClothesInfos)
+        //     .WithOne(x => x.ClothesProduct)
+        //     .HasForeignKey("ClothesProductId")
+        //     .IsRequired();
     }
 }

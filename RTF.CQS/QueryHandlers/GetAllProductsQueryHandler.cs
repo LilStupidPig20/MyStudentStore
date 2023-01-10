@@ -1,7 +1,6 @@
 using AutoMapper;
 using RFT.Services.ServiceInterfaces;
 using RTF.CQS.Abstractions;
-using RTF.CQS.Commands;
 using RTF.CQS.ModelsFromUI.ResponseModels;
 using RTF.CQS.Queries;
 
@@ -20,7 +19,7 @@ public class GetAllProductsQueryHandler : QueryHandler<GetAllProductsQuery, IRea
 
     public override async Task<IReadOnlyList<ProductFrame>> Handle(GetAllProductsQuery request, CancellationToken ct)
     {
-        var products = await _storeService.GetAllProductsAsync();
+        var products = await _storeService.GetAllProductsAsync(ct);
         var result = products.Select(x => _mapper.Map<ProductFrame>(x));
         return result.ToList();
     }

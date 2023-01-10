@@ -35,9 +35,9 @@ public class DataInitializer : IDataInitializer
     public async Task InitDataAsync()
     {
         var userId = await InitDefaultUserAsync();
-        await InitDefaultAdminAsync();
+        var adminId = await InitDefaultAdminAsync();
         await _unitOfWork.SaveChangesAsync(CancellationToken.None);
-        await InitEvents(userId);
+        await InitEvents(userId, adminId);
         await InitProducts();
         _unitOfWork.SaveChanges();
     }
@@ -68,15 +68,14 @@ public class DataInitializer : IDataInitializer
             Balance = 100,
             Basket = new Basket
             {
-                TotalPrice = 0,
-                OrderProducts = new List<OrderProduct>()
+                BasketProducts = new List<BasketProduct>()
             }
         });
 
         return Guid.Parse(user.Id);
     }
     
-    private async Task InitDefaultAdminAsync()
+    private async Task<Guid> InitDefaultAdminAsync()
     {
         var admin = new User
         {
@@ -100,13 +99,19 @@ public class DataInitializer : IDataInitializer
             LastName = admin.LastName
         }, CancellationToken.None);
         await _unitOfWork.SaveChangesAsync(CancellationToken.None);
+        
+        return Guid.Parse(admin.Id);
     }
 
-    private async Task InitEvents(Guid userId)
+    private async Task InitEvents(Guid userId, Guid adminId)
     {
         var repo = _unitOfWork.GetRepository<Event>();
         var userRepo = _unitOfWork.GetRepository<UserInfo>();
         var users = await userRepo.FindBy(x => x.Id == userId);
+
+        var adminsRepo = _unitOfWork.GetRepository<AdminInfo>();
+        var admins = await adminsRepo.FindBy(x => x.Id == adminId);
+
         var defaultEvent = new Event
         {
             Coins = 1.5,
@@ -114,9 +119,10 @@ public class DataInitializer : IDataInitializer
             Name = "Тестовое мероприятие",
             EventType = EventType.Entertainment,
             IsFinished = true,
-            StartDateTime = new DateTime(2022, 12, 1, 12, 0, 0, DateTimeKind.Utc),
+            StartDateTime = new DateTime(2022, 12, 1, 12, 0, 0, DateTimeKind.Local),
             DurationInMinutes = 60,
             Users = (ICollection<UserInfo>)users,
+            Organizers = (ICollection<AdminInfo>)admins
         };
         await repo.AddAsync(defaultEvent);
     }

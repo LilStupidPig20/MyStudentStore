@@ -14,5 +14,7 @@ public class ExtendedEventInfoFrame
 
     public EventType EventType { get; set; }
     
-    private double Coins { get; set; }
+    public double Coins { get; set; }
+    
+    public List<string> OrganizersNames { get; set; }
 }

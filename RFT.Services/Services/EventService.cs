@@ -16,16 +16,15 @@ public class EventService : IEventService
     public async Task<IReadOnlyList<Event>> GetVisitedEventsByUserAsync(Guid userId)
     {
         var repo = _unitOfWork.GetRepository<Event>();
-        var a = await repo.GetAllAsync();
         var visitedEvents = await repo
             .FindBy(e => e.Users.Any(x => x.Id == userId) && e.IsFinished);
         return visitedEvents;
     }
 
-    public async Task<Event?> GetEventById(Guid eventId)
+    public async Task<Event?> GetEventById(Guid eventId, CancellationToken ct)
     {
-        var repo = _unitOfWork.GetRepository<Event>();
-        var eventResult = await repo.FindOneBy(x => x.Id == eventId);
+        var repo = (EventRepository)_unitOfWork.GetRepository<Event>();
+        var eventResult = await repo.GetEventIncludedOrganizers(eventId, ct);
         return eventResult;
     }
 

@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RTF.Core.Models;
@@ -6,13 +5,10 @@ namespace RTF.Core.Models;
 [Table("Basket")]
 public record Basket : DataModel
 {
-    [Column("OrderProduct")]
-    public ICollection<OrderProduct>? OrderProducts { get; set; }
+    [Column("BasketProduct")]
+    public virtual ICollection<BasketProduct> BasketProducts { get; set; } = new List<BasketProduct>();
+
+    public virtual UserInfo UserInfo { get; set; }
     
-    [Column("TotalPrice")]
-    public double TotalPrice { get; set; }
-    
-    [Column("User")]
-    [ForeignKey("UserInfo")]
-    public virtual UserInfo User { get; set; }
-}
+    public Guid UserInfoId { get; set; }
+}   
