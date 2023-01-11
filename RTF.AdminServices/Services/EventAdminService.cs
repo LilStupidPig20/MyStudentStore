@@ -19,7 +19,11 @@ public class EventAdminService : IEventAdminService
 
     public async Task CreateEventAsync(EventAdminDto eventAdminDto, CancellationToken cancellationToken)
     {
+        var adminInfoRepo = _unitOfWork.GetRepository<AdminInfo>();
+        var selectedAdmins = await
+            adminInfoRepo.FindBy(x => eventAdminDto.Organizers.Contains(x.Id));
         var @event = _mapper.Map<Event>(eventAdminDto);
+        @event.Organizers = (ICollection<AdminInfo>)selectedAdmins;
         var repo = _unitOfWork.GetRepository<Event>();
         await repo.AddAsync(@event);
         await _unitOfWork.SaveChangesAsync(cancellationToken);

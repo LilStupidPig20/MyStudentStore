@@ -10,7 +10,7 @@ public class EventAdminDto
     
     public string Description { get; set; }
     
-    public List<AdminInfoDto> Organizers { get; set; }
+    public List<Guid> Organizers { get; set; }
     
     public double Coins { get; set; }
 }
