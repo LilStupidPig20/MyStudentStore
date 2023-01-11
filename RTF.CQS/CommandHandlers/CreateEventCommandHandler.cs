@@ -18,16 +18,12 @@ public class CreateEventCommandHandler : CommandHandler<CreateEventCommand, bool
 
     public override async Task<bool> HandleWithResult(CreateEventCommand request, CancellationToken ct)
     {
-        var adminsDto = request.Organizers
-            .Select(async x => await _adminInfoService.GetAdminByIdAsync(x))
-            .Select(x => x.Result)
-            .ToList();
         var eventDto = new EventAdminDto
         {
             Name = request.Name,
             Description = request.Description,
             Coins = request.Coins,
-            Organizers = adminsDto,
+            Organizers = request.Organizers,
             StartDateTime = request.StartDateTime
         };
 

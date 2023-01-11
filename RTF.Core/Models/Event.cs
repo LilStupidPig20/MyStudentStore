@@ -24,10 +24,10 @@ public record Event : DataModel
     public bool IsFinished { get; set; }
     
     [Column("Users")]
-    public ICollection<UserInfo> Users { get; set; }
+    public virtual ICollection<UserInfo> Users { get; set; } = new List<UserInfo>();
     
     [Column("Organizers")]
-    public ICollection<AdminInfo> Organizers { get; set; }
+    public virtual ICollection<AdminInfo> Organizers { get; set; } = new List<AdminInfo>();
     
     [Column("EventType")]
     [EnumDataType(typeof(EventType))]

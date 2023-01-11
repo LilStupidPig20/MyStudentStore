@@ -1,3 +1,5 @@
+using RTF.Core.Models.Enums;
+
 namespace RTF.CQS.ModelsFromUI.ResponseModels;
 
 public class OrderProductFrame
@@ -6,11 +8,9 @@ public class OrderProductFrame
     
     public string Name { get; set; }
     
-    public string? Description { get; set; }
-    
-    public double ProductPrice { get; set; }
-    
     public int Count { get; set; }
     
-    public string? ImageUrl { get; set; }
+    public double Price { get; set; }
+    
+    public Size? Size { get; set; }
 }

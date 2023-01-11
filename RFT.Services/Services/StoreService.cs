@@ -13,10 +13,10 @@ public class StoreService : IStoreService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<IReadOnlyList<StoreProduct>> GetAllProductsAsync()
+    public async Task<IReadOnlyList<StoreProduct>> GetAllProductsAsync(CancellationToken ct)
     {
-        var repo = _unitOfWork.GetRepository<StoreProduct>();
-        var products = await repo.GetAllAsync();
+        var repo = (ProductRepository)_unitOfWork.GetRepository<StoreProduct>();
+        var products = await repo.LoadAllProductsIncludedClothes(ct);
         return products;
     }
 

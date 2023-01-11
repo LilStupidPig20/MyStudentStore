@@ -21,26 +21,27 @@ public class GetUserBasketQueryHandler : QueryHandler<GetUserBasketQuery, Basket
     public override async Task<BasketFrame> Handle(GetUserBasketQuery request, CancellationToken ct)
     {
         var currentUserId = (await _currentUserProvider.GetCurrentUserAsync()).Id;
-        var basket = await _basketService.GetStudentBasket(Guid.Parse(currentUserId));
+        var basket = await _basketService.GetStudentBasket(Guid.Parse(currentUserId), ct);
         return ConvertToFrame(basket);
     }
 
     private BasketFrame ConvertToFrame(Basket dataBasket)
     {
-        var products = dataBasket.OrderProducts?.Select(product => new OrderProductFrame
+        var products = dataBasket.BasketProducts.Select(basketProduct => new BasketProductFrame
         {
-            ProductId = product.Id,
-            Count = product.Count,
-            Description = product.Product.Description,
-            Name = product.Product.Name,
-            ImageUrl = product.Product.Image,
-            ProductPrice = product.Product.Price
+            BasketProductId = basketProduct.Id,
+            StoreProductId = basketProduct.Product.Id,
+            Count = basketProduct.Count,
+            Description = basketProduct.Product.Description,
+            Name = basketProduct.Product.Name,
+            ImageUrl = basketProduct.Product.Image,
+            ProductPrice = basketProduct.Product.Price
         })
         .ToList();
         return new BasketFrame
         {
-            TotalPrice = dataBasket.TotalPrice,
-            Products = products ?? new List<OrderProductFrame>()
+            TotalPrice = dataBasket.BasketProducts.Select(x => x.Product.Price * x.Count).Sum(),
+            BasketProducts = products
         };
     }
 }

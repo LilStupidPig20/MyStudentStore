@@ -6,8 +6,9 @@ namespace RTF.Core.Repositories;
 
 public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : DataModel
 {
+    public abstract DbSet<TEntity> Table { get; set; }
+
     protected readonly ConnectionContext Context;
-    public readonly DbSet<TEntity> Table;
 
     protected Repository(ConnectionContext context)
     {
@@ -79,6 +80,8 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         var result = Table.Where(predicate);
         return Task.FromResult<IReadOnlyList<TEntity>>(result.ToList());
     }
+    
+    
 
     protected async Task CheckTableExist()
     {

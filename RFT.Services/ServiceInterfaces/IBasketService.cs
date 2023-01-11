@@ -5,7 +5,7 @@ namespace RFT.Services.ServiceInterfaces;
 
 public interface IBasketService
 {
-    Task<Basket> GetStudentBasket(Guid studentId);
+    Task<Basket> GetStudentBasket(Guid studentId, CancellationToken ct);
 
     Task AddProductToBasket(OrderProductDto orderProductDto, Guid studentId, CancellationToken ct);
 

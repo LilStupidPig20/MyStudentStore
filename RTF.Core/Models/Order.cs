@@ -7,10 +7,10 @@ namespace RTF.Core.Models;
 public record Order : DataModel
 {
     [Column("Student")]
-    public UserInfo Student { get; set; }
+    public virtual UserInfo Student { get; set; }
     
     [Column("OrderProduct")]
-    public List<OrderProduct> OrderProducts { get; set; }
+    public virtual ICollection<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
     
     [Column("TotalPrice")]
     public double TotalPrice { get; set; } 

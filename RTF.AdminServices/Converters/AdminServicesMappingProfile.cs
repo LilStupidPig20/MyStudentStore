@@ -9,6 +9,7 @@ public class AdminServicesMappingProfile : Profile
     public AdminServicesMappingProfile()
     {			
         CreateMap<AdminInfoDto, AdminInfo>().ReverseMap();
-        CreateMap<EventAdminDto, Event>();
+        CreateMap<EventAdminDto, Event>().ForMember(x => x.Organizers, x =>
+            x.MapFrom(y => new List<AdminInfo>()));;
     }
 }

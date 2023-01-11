@@ -106,6 +106,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 ServiceLocator.SetProvider(() => app.Services);
 
 var identityContext = new IdentityContext(new NpgsqlProvider(app.Configuration));
