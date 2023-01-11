@@ -40,12 +40,14 @@ export const CreateEvent = ({eventHandler}) => {
         }
     },[authData.role, authData.token])
 
+    useEffect(() => {
+        timeForm.date.setHours(timeForm.eventHour, timeForm.eventMin, 0o0);
+        console.log(timeForm.date)
+        form.startDateTime = String(timeForm.date.toISOString());
+    },[form, timeForm])
+
     const changeHandler = (event) => {
-        if (event.target.name === 'coins') {
-            setForm({ ...form, [event.target.name]: parseInt(event.target.value) });
-        } else {
             setForm({ ...form, [event.target.name]: event.target.value });
-        }
 
     };
 
@@ -81,6 +83,7 @@ export const CreateEvent = ({eventHandler}) => {
         if(parseInt(event.target.value) < parseInt(event.target.min) || event.target.value.length > 2) {
             event.target.value = event.target.min;
         }
+        timeForm.date = startDate;
         setTimeForm({...timeForm, [event.target.name]: event.target.value});
     }
 

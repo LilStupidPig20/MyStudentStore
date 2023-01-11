@@ -67,7 +67,7 @@ const adminRoutesBook = [
     },
     {
         path: '*',
-        element: <Navigate to="/calendar" replace={true} />
+        element: <Navigate to="/admin/calendar" replace={true} />
     }
 ]
 

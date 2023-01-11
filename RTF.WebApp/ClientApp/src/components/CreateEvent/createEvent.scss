@@ -34,6 +34,7 @@
   &__body {
     background: #FFFFFF;
     border-radius: 21px;
+    width: 66%;
     padding: 60px;
     &-title {
       font-family: 'Manrope';
@@ -51,7 +52,7 @@
       font-weight: 500;
       font-size: 18px;
       line-height: 21px;
-      width: 606px;
+      width: 100%;
       color: #666666;
       border: 2px solid #C7C7C7;
       border-radius: 9px;

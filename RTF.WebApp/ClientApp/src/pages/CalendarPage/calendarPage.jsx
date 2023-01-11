@@ -52,7 +52,22 @@ export const CalendarPage = memo(() => {
         dateWidth = '1150px'
     else dateWidth = '800px';
 
-
+    async function getEvents() {
+        await fetch('/api/events/getEventsByDateInterval',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "startDateTime" : dateRange[0],
+                "endDateTime" : dateRange[1]
+            })
+        })
+    }
+    useEffect(() => {
+        if(dateRange[0] !== null && dateRange[1] !== null)
+        getEvents();
+    },[dateRange])
     const renderDayContents = (day) => {
         let infoObj = calendarInfo?.dayToEventsList;
         return (
