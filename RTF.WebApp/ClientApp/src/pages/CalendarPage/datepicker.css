@@ -20,6 +20,11 @@
     line-height: 33px;
     color: #000000;
     margin: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .react-datepicker__day--outside-month {
@@ -109,7 +114,7 @@
 }
 
 .react-datepicker__portal .react-datepicker__day {
-    height: 3rem;
+    height: 48px;
     display: table-cell;
 }
 

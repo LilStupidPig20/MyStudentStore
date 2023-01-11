@@ -31,38 +31,38 @@ const nonAuthRoutesBook = [
 
 const authRoutesBook = [
     {
-        path: '/profile',
+        path: '/user/profile',
         element: <ProfilePage />,
     },
     {
-        path: '/shop',
+        path: '/user/shop',
         element: <ShopPage />
     },
     {
-        path: '/calendar',
+        path: '/user/calendar',
         element: <CalendarPage />
     },
     {
-        path: '/orders',
+        path: '/user/orders',
         element: <OrderPage />
     },
     {
         path: '*',
-        element: <Navigate to="/profile" replace={true} />
+        element: <Navigate to="/user/profile" replace={true} />
     }
 ]
 
 const adminRoutesBook = [
     {
-        path: '/calendar',
+        path: '/admin/calendar',
         element: <CalendarPage />
     },
     {
-        path: '/shop',
+        path: '/admin/shop',
         element: <ShopPage />
     },
     {
-        path: '/orders',
+        path: '/admin/orders',
         element: <OrderPage />
     },
     {

@@ -10,9 +10,9 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 registerLocale("ru", ru);
 
-export const CreateEvent = () => {
-    const [form, setForm] = useState({name: '', startDateTime: '', description: '', organizers: [], coins: 0});
+export const CreateEvent = ({eventHandler}) => {
     const [ids, setIds] = useState([]);
+    const [form, setForm] = useState({name: '', startDateTime: '', description: '', organizers: [], coins: 0});
     const authData = useSelector(showUser);
     const [startDate, setStartDate] = useState(new Date());
     const [timeForm, setTimeForm] = useState({eventHour: '', eventMin: '', date: startDate})
@@ -30,7 +30,7 @@ export const CreateEvent = () => {
                 .then((items) => {
                     console.log(items);
                     for(let i = 0; i < items.length; i++) {
-                        setAdminsList([...adminsList,{
+                        setAdminsList(a =>[...a,{
                             label: items[i].fullName,
                             value: items[i].id
                         }]
@@ -41,14 +41,38 @@ export const CreateEvent = () => {
     },[authData.role, authData.token])
 
     const changeHandler = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.value });
+        if (event.target.name === 'coins') {
+            setForm({ ...form, [event.target.name]: parseInt(event.target.value) });
+        } else {
+            setForm({ ...form, [event.target.name]: event.target.value });
+        }
+
     };
 
-    const sendRequest = (form) => {
+    const setAdmins = (event) => {
+        let arr = []
+        for(let i = 0; i < event.length; i++) {
+            arr.push(event[i].value);
+        }
+        setForm({ ...form, 'organizers' : arr});
+        setIds(arr);
+    }
 
+    const sendRequest = async () => {
+        console.log(timeForm);
+        console.log(form);
+        await fetch('/api/adminEvent/createEvent', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(form)
+        })
     }
 
     console.log(timeForm)
+    console.log(form);
+    console.log(ids);
 
     const changeTimeHandler = (event) => {
         if(parseInt(event.target.value) > parseInt(event.target.max) || event.target.value.length > 2) {
@@ -58,12 +82,11 @@ export const CreateEvent = () => {
             event.target.value = event.target.min;
         }
         setTimeForm({...timeForm, [event.target.name]: event.target.value});
-        // timeForm.date.setHours(timeForm.eventHour, timeForm.eventMin, 0o0)
     }
 
     return (
-        <div className='create-event__portal'>
-            <div className='create-event__body'>
+        <div className='create-event__portal' onClick={()=>eventHandler(false)}>
+            <div className='create-event__body' onClick={(e)=>e.stopPropagation()}>
                 <div className='create-event__body-title'>Новое мероприятие</div>
                 <div className='create-event__body-input-cont'>
                     <label>Название:</label>
@@ -136,12 +159,14 @@ export const CreateEvent = () => {
                     <label>Организаторы:</label>
                     <Select
                         options={adminsList}
+                        name='organizers'
                         closeMenuOnSelect={false}
                         components={animatedComponents}
                         isMulti
                         isSearchable
                         noOptionsMessage={()=>'Нет опций'}
                         placeholder={'Выберите организаторов'}
+                        onChange={setAdmins}
                         styles={{
                             control: (baseStyles, state) => ({
                                 ...baseStyles,
@@ -170,7 +195,7 @@ export const CreateEvent = () => {
                     </div>
                 </div>
                 <div className='create-event__submit-cont'>
-                    <button className='create-event__submit-button' onClick={sendRequest(form)}>Создать</button>
+                    <button className='create-event__submit-button' onClick={()=> sendRequest()}>Создать</button>
                 </div>
 
             </div>

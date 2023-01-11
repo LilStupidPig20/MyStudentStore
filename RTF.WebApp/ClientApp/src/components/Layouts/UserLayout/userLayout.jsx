@@ -35,11 +35,11 @@ export const UserLayout = ({children}) => {
                     </div>
                 </div>
                 <div className='user-layout__links'>
-                    <Link to='/profile' className={pageName === 'profile' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Мой профиль</Link>
-                    <Link to='/shop' className={pageName === 'shop' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Магазин</Link>
-                    <Link to='/calendar' className={pageName === 'calendar' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Календарь мероприятий</Link>
-                    <Link to='/orders' className={pageName === 'orders' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Мои заказы</Link>
-                    <Link to='/rules' className={pageName === 'rules' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Правила начисления баллов</Link>
+                    <Link to='/user/profile' className={pageName === 'profile' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Мой профиль</Link>
+                    <Link to='/user/shop' className={pageName === 'shop' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Магазин</Link>
+                    <Link to='/user/calendar' className={pageName === 'calendar' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Календарь мероприятий</Link>
+                    <Link to='/user/orders' className={pageName === 'orders' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Мои заказы</Link>
+                    <Link to='/user/rules' className={pageName === 'rules' ? 'user-layout__links-link active' : 'user-layout__links-link'}>Правила начисления баллов</Link>
                 </div>
                 <div className='user-layout__exit' onClick={() => {dispatch(logout(userData)); dispatch(deletePageName)}}>Выйти</div>
             </aside>

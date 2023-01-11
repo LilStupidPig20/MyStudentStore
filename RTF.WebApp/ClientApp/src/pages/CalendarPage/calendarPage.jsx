@@ -47,7 +47,7 @@ export const CalendarPage = memo(() => {
     const options = { month: 'long', day: 'numeric' };
     const firstDefaultDay = new Date();
     const lastDefaultDay = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) ;
-    let dateWidth = '';
+    let dateWidth;
     if (startDate !== null && endDate !== null)
         dateWidth = '1150px'
     else dateWidth = '800px';
@@ -149,7 +149,7 @@ export const CalendarPage = memo(() => {
                                 Создать мероприятие
                             </div>
                             {createEvent ?
-                                <CreateEvent/>
+                                <CreateEvent eventHandler={setCreateEvent}/>
                             : ''}
                         </>
 
