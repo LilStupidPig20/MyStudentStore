@@ -1,13 +1,13 @@
 import React from 'react'
 import './calendarItem.scss'
 
-export const CalendarItem = ({name, time, disabled}) => {
+export const CalendarItem = ({name, id, time, disabled}) => {
     let calendarClass;
     disabled ?
         calendarClass = 'calendarItem calendarItemDisabled' :
         calendarClass = 'calendarItem'
     return (
-        <div className={calendarClass}>
+        <div className={calendarClass} id={id}>
             <div>
                 <div className='calendarItem__name'>{name}</div>
                 <div className='calendarItem__time'>{time}</div>

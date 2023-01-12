@@ -5,18 +5,20 @@ import './datepicker.css';
 import right_back from '../../images/shop/back-img.png'
 import DatePicker, { registerLocale } from "react-datepicker";
 import ru from "date-fns/locale/ru";
-import {CalendarItem} from "../../components/CalendarItem/CalendarItem";
 import {useDispatch, useSelector} from "react-redux";
 import {getCalendarInfoAsync, showCalendarInfo} from "../../features/calendarSlice";
 import {showUser} from "../../features/authSlice";
 import {setPageName} from "../../features/pageNameSlice";
 import {CreateEvent} from "../../components/CreateEvent/createEvent";
+import {getEventsAsync, showEventsInfo} from "../../features/eventsSlice";
+import {CalendarItemWrapper} from "../../components/CalendarItemWrapper/CalendarItemWrapper";
 registerLocale("ru", ru);
 
 
 export const CalendarPage = memo(() => {
     const authData = useSelector(showUser);
     const calendarInfo = useSelector(showCalendarInfo);
+    const eventsInfo = useSelector(showEventsInfo);
     const dispatch = useDispatch();
     const [createEvent, setCreateEvent] = useState(false);
     useEffect(()=> {
@@ -27,6 +29,8 @@ export const CalendarPage = memo(() => {
     useEffect(() => {
         dispatch(getCalendarInfoAsync(month, authData.token));
     }, [authData.role, authData.token, dispatch, month])
+    
+    
     const months = [
         "январь",
         "февраль",
@@ -52,22 +56,15 @@ export const CalendarPage = memo(() => {
         dateWidth = '1150px'
     else dateWidth = '800px';
 
-    async function getEvents() {
-        await fetch('/api/events/getEventsByDateInterval',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "startDateTime" : dateRange[0],
-                "endDateTime" : dateRange[1]
-            })
-        })
-    }
     useEffect(() => {
         if(dateRange[0] !== null && dateRange[1] !== null)
-        getEvents();
-    },[dateRange])
+        dispatch(getEventsAsync(dateRange[0], dateRange[1]));
+    },[dateRange, dispatch])
+
+    useEffect(() => {
+        dispatch(getEventsAsync(firstDefaultDay, lastDefaultDay))
+    }, [])
+    
     const renderDayContents = (day) => {
         let infoObj = calendarInfo?.dayToEventsList;
         return (
@@ -176,23 +173,16 @@ export const CalendarPage = memo(() => {
                 &nbsp;-&nbsp;
                 {lastDefaultDay?.toLocaleDateString('ru-RU', options)}
             </div>
-            <div className='calendarPage__events'>
-                <div className='calendarPage__events-day'>
-                    <div className='calendarPage__events-day-name'>
-                        вт
-                    </div>
-                    <div className='calendarPage__events-day-num'>
-                        27
-                    </div>
-                </div>
-                <div className='calendarPage__events-event'>
-                    <CalendarItem
-                        name='Литературный вечер'
-                        time='17:40 - 18:10'
-                        disabled={false}
-                    />
-                </div>
-            </div>
+            {eventsInfo.map(x => {
+                return <CalendarItemWrapper
+                    currentDay={firstDefaultDay}
+                    duration={x.durationInMinutes}
+                    eventType={x.eventType}
+                    eventId={x.id}
+                    eventName={x.name}
+                    startDateTime={x.startDateTime}
+                />
+            })}
         </div>
     )
 })

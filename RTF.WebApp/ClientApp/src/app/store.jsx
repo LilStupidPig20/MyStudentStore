@@ -3,6 +3,7 @@ import calendarSlice from "../features/calendarSlice";
 import userBalanceSlice from "../features/userBalanceSlice";
 import authSlice from "../features/authSlice";
 import pageNameSlice from "../features/pageNameSlice";
+import eventsSlice from "../features/eventsSlice";
 
 export const store = configureStore({
     reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
         calendarInfo : calendarSlice,
         userBalance : userBalanceSlice,
         pageName : pageNameSlice,
+        eventsInfo : eventsSlice,
     },
 });

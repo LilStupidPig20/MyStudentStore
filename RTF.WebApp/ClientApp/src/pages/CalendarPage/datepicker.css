@@ -86,13 +86,13 @@
 }
 
 .react-datepicker__navigation-icon--previous {
-    background: url('../../images/calendar/left-arrow.svg') no-repeat center;
+    background: url(../../images/calendar/left-arrow.svg) no-repeat center;
     width: 33px;
     height: 33px;
 }
 
 .react-datepicker__navigation-icon--next {
-    background: url('../../images/calendar/left-arrow.svg') no-repeat center;
+    background: url(../../images/calendar/left-arrow.svg) no-repeat center;
     transform: rotate(180deg);
     width: 33px;
     height: 33px;

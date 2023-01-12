@@ -1,0 +1,33 @@
+.calendarItemWrapper {
+  &__events {
+    display: flex;
+    gap: 45px;
+
+    &-day {
+      display: flex;
+      flex-direction: column;
+      margin-left: 55px;
+      &-name {
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 38px;
+        color: #000000;
+      }
+
+      &-num {
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 40px;
+        line-height: 55px;
+        color: #000000;
+      }
+    }
+
+    &-event {
+
+    }
+  }
+}
