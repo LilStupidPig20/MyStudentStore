@@ -25,7 +25,8 @@ public class CreateEventCommandHandler : CommandHandler<CreateEventCommand, bool
             Coins = request.Coins,
             Organizers = request.Organizers,
             StartDateTime = request.StartDateTime,
-            EndDateTime = request.EndDateTime
+            EndDateTime = request.EndDateTime,
+            EventType = request.EventType
         };
 
         await _eventAdminService.CreateEventAsync(eventDto, ct);
