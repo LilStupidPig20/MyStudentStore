@@ -40,7 +40,7 @@ public class EventService : IEventService
     {
         var repo = _unitOfWork.GetRepository<Event>();
         var visitedEvents = await repo
-            .FindBy(x => x.StartDateTime.Date > startDate.Date && x.StartDateTime.Date < endTime.Date);
+            .FindBy(x => x.StartDateTime.Date >= startDate.Date && x.StartDateTime.Date <= endTime.Date);
         return visitedEvents;
     }
 }

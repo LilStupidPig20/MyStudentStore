@@ -10,7 +10,7 @@ public class EventFrame
     
     public DateTime StartDateTime { get; set; }
     
-    public int DurationInMinutes { get; set; }
+    public DateTime EndDateTime { get; set; }
     
     public EventType EventType { get; set; }
 }

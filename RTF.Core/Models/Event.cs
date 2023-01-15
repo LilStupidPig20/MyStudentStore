@@ -17,8 +17,8 @@ public record Event : DataModel
     [Column("StartDateTime")]
     public DateTime StartDateTime { get; set; }
     
-    [Column("DurationInMinutes")]
-    public int DurationInMinutes { get; set; }
+    [Column("EndDateTime")]
+    public DateTime EndDateTime { get; set; }
     
     [Column("IsFinished")]
     public bool IsFinished { get; set; }
