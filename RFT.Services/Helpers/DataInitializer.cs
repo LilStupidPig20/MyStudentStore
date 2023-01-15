@@ -120,7 +120,7 @@ public class DataInitializer : IDataInitializer
             EventType = EventType.Entertainment,
             IsFinished = true,
             StartDateTime = new DateTime(2022, 12, 1, 12, 0, 0, DateTimeKind.Local),
-            DurationInMinutes = 60,
+            EndDateTime = new DateTime(2022, 12, 1, 14, 0, 0, DateTimeKind.Local),
             Users = (ICollection<UserInfo>)users,
             Organizers = (ICollection<AdminInfo>)admins
         };
