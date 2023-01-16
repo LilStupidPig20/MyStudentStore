@@ -49,7 +49,7 @@ export const CalendarPage = memo(() => {
     const [dateRange, setDateRange] = useState([null, null]);
     const [startDate, endDate] = dateRange;
     const options = { month: 'long', day: 'numeric' };
-    const firstDefaultDay = new Date();
+    const firstDefaultDay = new Date(Date.now());
     const lastDefaultDay = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) ;
     let dateWidth;
     if (startDate !== null && endDate !== null)
@@ -57,8 +57,15 @@ export const CalendarPage = memo(() => {
     else dateWidth = '800px';
 
     useEffect(() => {
-        if(dateRange[0] !== null && dateRange[1] !== null)
-        dispatch(getEventsAsync(dateRange[0], dateRange[1]));
+        const addDay = function(str) {
+            let myDate = new Date(str);
+            myDate.setDate(myDate.getDate() + 1);
+            return myDate;
+        }
+        if(dateRange[0] !== null && dateRange[1] !== null) {
+            dispatch(getEventsAsync(addDay(dateRange[0]), addDay(dateRange[1])));
+        }
+
     },[dateRange, dispatch])
 
     useEffect(() => {
@@ -173,14 +180,14 @@ export const CalendarPage = memo(() => {
                 &nbsp;-&nbsp;
                 {lastDefaultDay?.toLocaleDateString('ru-RU', options)}
             </div>
-            {eventsInfo.map(x => {
+            {eventsInfo.map((x, index) => {
                 return <CalendarItemWrapper
-                    currentDay={firstDefaultDay}
-                    duration={x.durationInMinutes}
+                    key={index}
                     eventType={x.eventType}
                     eventId={x.id}
                     eventName={x.name}
                     startDateTime={x.startDateTime}
+                    endDateTime={x.endDateTime}
                 />
             })}
         </div>

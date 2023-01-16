@@ -22,8 +22,8 @@ export const getEventsAsync = (firstDay, lastDay) => async (dispatch) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "startDateTime" : firstDay,
-                "endDateTime" : lastDay
+                "startDateTime" : String(firstDay.toISOString()).slice(0,-13).concat('00:00:00'),
+                "endDateTime" : String(lastDay.toISOString()).slice(0,-13).concat('23:59:59')
             })
         }).then(items => items.json())
         dispatch(getEvents(response));

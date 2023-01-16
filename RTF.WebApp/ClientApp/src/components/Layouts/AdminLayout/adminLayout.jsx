@@ -27,7 +27,7 @@ export const AdminLayout = ({children}) => {
                 </div>
                 <div className='admin-layout__links'>
                     <Link to='/admin/calendar' className={pageName === 'calendar' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>Календарь мероприятий</Link>
-                    <Link to='/admin/shop' className={pageName === 'shop' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>Магазин (склад)</Link>
+                    <Link to='/shop' className={pageName === 'shop' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>Магазин (склад)</Link>
                     <Link to='/admin/orders' className={pageName === 'orders' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>Заказы</Link>
                     <Link to='/admin/orders/history' className={pageName === 'rules' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>История заказов</Link>
                     <Link to='/admin/rules' className={pageName === 'rules' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>Правила начисления баллов</Link>

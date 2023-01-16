@@ -1,17 +1,23 @@
-import React, { memo, useEffect } from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { ProductItem } from '../../components/ProductItem/productItem';
 import './shopPage.scss';
-import pen from '../../images/shop/pen.jpg';
 import right_back from '../../images/shop/back-img.png'
 import {useDispatch} from "react-redux";
 import {setPageName} from "../../features/pageNameSlice";
 
 export const ShopPage = memo(() => {
     const dispatch = useDispatch();
+    const [shopItems, setShopItems] = useState([]);
     useEffect(()=> {
         dispatch(setPageName('shop'));
     },[dispatch])
+
+    useEffect(() => {
+        fetch('/api/store/getAllProducts')
+            .then(res => res.json())
+            .then(items => setShopItems(items))
+    }, [])
     return (
         <div className='shopPage'>
             <img className='shopPage__back-img' src={right_back} alt='' />
@@ -52,46 +58,18 @@ export const ShopPage = memo(() => {
                 </svg>
             </div>
                 <div className='shopPage__products'>
-                    <ProductItem
-                        key={1}
-                        title='Подушка'
-                        price='200 Р'
-                        imgSrc={pen}
-                        id={1}
-                        quantity={1} 
-                    />
-                    <ProductItem
-                        key={2}
-                        title='Стул'
-                        price='300 Р'
-                        imgSrc={pen}
-                        id={2}
-                        quantity={3} 
-                    />
-                    <ProductItem
-                        key={3}
-                        title='Столaaaa'
-                        price='400 Р'
-                        imgSrc={pen}
-                        id={3}
-                        quantity={4} 
-                    />
-                    <ProductItem
-                        key={4}
-                        title='Столfffff'
-                        price='400 Р'
-                        imgSrc={pen}
-                        id={4}
-                        quantity={4} 
-                    />
-                    <ProductItem
-                        key={5}
-                        title='Столccccc'
-                        price='400 Р'
-                        imgSrc={pen}
-                        id={5}
-                        quantity={4} 
-                    />
+                    {shopItems?.map((item, index) => {
+                        return (
+                            <ProductItem
+                                key={index}
+                                id={item.id}
+                                title={item.name}
+                                imgSrc={item.image}
+                                price={item.price}
+                                availability={item.notAvailable}
+                            />
+                        )
+                    })}
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import './productItem.scss';
 
 export const ProductItem = ({
     imgSrc,
-    quantity,
+    availability,
     title,
     price,
     id
@@ -12,9 +12,9 @@ export const ProductItem = ({
     return (
         <>
             {
-                quantity > 0
+                ! availability
                     ?
-                    <Link to={`/store/${id}`} style={{ textDecoration: 'none' }}>
+                    <Link to={`/shop/${id}`} style={{ textDecoration: 'none' }}>
                         <div className='productItem'>
                             <img src={imgSrc} alt="" className='productItem__image' />
                             <div className='productItem__title'>{title}</div>

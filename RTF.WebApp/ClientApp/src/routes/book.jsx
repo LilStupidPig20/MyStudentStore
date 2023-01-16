@@ -4,7 +4,8 @@ import { LoginPage } from "../pages/LoginPage/loginPage";
 import { ProfilePage } from "../pages/ProfilePage/profilePage";
 import { RegisterPage } from "../pages/RegisterPage/registerPage";
 import { ShopPage } from "../pages/ShopPage/shopPage";
-import {OrderPage} from "../pages/OrdersPage/orderPage";
+import { OrderPage } from "../pages/OrdersPage/orderPage";
+import {ShopItemPage} from "../pages/ShopItemPage/shopItemPage";
 
 const nonAuthRoutesBook = [
     {
@@ -35,8 +36,12 @@ const authRoutesBook = [
         element: <ProfilePage />,
     },
     {
-        path: '/user/shop',
+        path: '/shop',
         element: <ShopPage />
+    },
+    {
+        path: '/shop/:itemId',
+        element: <ShopItemPage />
     },
     {
         path: '/user/calendar',
@@ -58,7 +63,7 @@ const adminRoutesBook = [
         element: <CalendarPage />
     },
     {
-        path: '/admin/shop',
+        path: '/shop',
         element: <ShopPage />
     },
     {

@@ -16,7 +16,15 @@ export const CreateEvent = ({eventHandler}) => {
     const authData = useSelector(showUser);
     const [startDate, setStartDate] = useState(new Date());
     const [timeForm, setTimeForm] = useState({eventHour: '', eventMin: '', date: startDate})
-    const [adminsList, setAdminsList] = useState([]);
+    const [adminsList, setAdminsList] = useState(new Set());
+    const eventOptions = [
+        {
+            label: 'Учебное',
+            value: 0
+        },{
+            label : 'Внеучебное',
+            value: 1
+        }]
 
     const animatedComponents = makeAnimated();
 
@@ -28,9 +36,8 @@ export const CreateEvent = ({eventHandler}) => {
                 }
             }).then(res => res.json())
                 .then((items) => {
-                    console.log(items);
                     for(let i = 0; i < items.length; i++) {
-                        setAdminsList(a =>[...a,{
+                        setAdminsList([{
                             label: items[i].fullName,
                             value: items[i].id
                         }]
@@ -47,8 +54,7 @@ export const CreateEvent = ({eventHandler}) => {
     },[form, timeForm])
 
     const changeHandler = (event) => {
-            setForm({ ...form, [event.target.name]: event.target.value });
-
+        setForm({ ...form, [event.target.name]: event.target.value });
     };
 
     const setAdmins = (event) => {
@@ -83,13 +89,16 @@ export const CreateEvent = ({eventHandler}) => {
         if(parseInt(event.target.value) < parseInt(event.target.min) || event.target.value.length > 2) {
             event.target.value = event.target.min;
         }
+        if(event.target.name === 'eventHourEnd' && parseInt(event.target.value) < timeForm.eventHour) {
+            event.target.value = timeForm.eventHour;
+        }
         timeForm.date = startDate;
         setTimeForm({...timeForm, [event.target.name]: event.target.value});
     }
 
     return (
-        <div className='create-event__portal' onClick={()=>eventHandler(false)}>
-            <div className='create-event__body' onClick={(e)=>e.stopPropagation()}>
+        <div className='create-event__portal' onClick={() => eventHandler(false)}>
+            <div className='create-event__body' onClick={(e) => e.stopPropagation()}>
                 <div className='create-event__body-title'>Новое мероприятие</div>
                 <div className='create-event__body-input-cont'>
                     <label>Название:</label>
@@ -119,29 +128,56 @@ export const CreateEvent = ({eventHandler}) => {
                     </div>
                     <div className='create-event__body-input-cont'>
                         <label htmlFor='event-datepicker'>Время:</label>
-                        <div className='create-event__body-input-time-cont'>
-                            <input
-                                name='eventHour'
-                                type='number'
-                                pattern="[0-9]*"
-                                onInput={changeTimeHandler}
-                                required
-                                className='create-event__body-input-time'
-                                min='00'
-                                max='23'
-                            />
-                            <span>:</span>
-                            <input
-                                name='eventMin'
-                                type='number'
-                                pattern="[0-9]*"
-                                onInput={changeTimeHandler}
-                                required
-                                className='create-event__body-input-time'
-                                min='00'
-                                max='59'
-                            />
+                        <div className='create-event__body-input-time__wrapper'>
+                            <div className='create-event__body-input-time-cont'>
+                                <input
+                                    name='eventHour'
+                                    type='number'
+                                    pattern="[0-9]*"
+                                    onInput={changeTimeHandler}
+                                    required
+                                    className='create-event__body-input-time'
+                                    min='00'
+                                    max='23'
+                                />
+                                <span>:</span>
+                                <input
+                                    name='eventMin'
+                                    type='number'
+                                    pattern="[0-9]*"
+                                    onInput={changeTimeHandler}
+                                    required
+                                    className='create-event__body-input-time'
+                                    min='00'
+                                    max='59'
+                                />
+                            </div>
+                            -
+                            <div className='create-event__body-input-time-cont'>
+                                <input
+                                    name='eventHourEnd'
+                                    type='number'
+                                    pattern="[0-9]*"
+                                    onInput={changeTimeHandler}
+                                    required
+                                    className='create-event__body-input-time'
+                                    min='00'
+                                    max='23'
+                                />
+                                <span>:</span>
+                                <input
+                                    name='eventMinEnd'
+                                    type='number'
+                                    pattern="[0-9]*"
+                                    onInput={changeTimeHandler}
+                                    required
+                                    className='create-event__body-input-time'
+                                    min='00'
+                                    max='59'
+                                />
+                            </div>
                         </div>
+
                     </div>
 
                 </div>
@@ -149,7 +185,6 @@ export const CreateEvent = ({eventHandler}) => {
                     <label>Описание:</label>
                     <textarea
                         name='description'
-                        type='text'
                         onInput={changeHandler}
                         placeholder='Введите текст'
                         rows={4}
