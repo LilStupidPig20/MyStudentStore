@@ -26,7 +26,7 @@ public class GetVisitedEventsQueryHandler : QueryHandler<GetVisitedEventsQuery, 
     public override async Task<IReadOnlyList<EventFrame>> Handle(GetVisitedEventsQuery request, CancellationToken ct)
     {
         var currentUser = await _currentUserProvider.GetCurrentUserAsync();
-        var visitedEvents = await _eventService.GetVisitedEventsByUserAsync(Guid.Parse(currentUser.Id));
+        var visitedEvents = await _eventService.GetVisitedEventsByUserAsync(Guid.Parse(currentUser.Id), ct);
         return visitedEvents.Select(x => _mapper.Map<EventFrame>(x)).ToList();
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using RFT.Services.Extensions;
+using RFT.Services.Helpers;
 using RTF.AdminServices.Converters;
 using RTF.AdminServices.Extensions;
 using RTF.Core.Extensions;
@@ -89,6 +90,7 @@ builder.Services.ConfigureCoreDependencies();
 builder.Services.ConfigureServicesDependencies();
 builder.Services.AddInfrastructureServicedDependencies();
 builder.Services.ConfigureAdminServicesDependencies();
+builder.Services.AddScoped<IDataInitializer, DataInitializer>();
 
 var app = builder.Build();
 

@@ -7,6 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\RFT.Services\RFT.Services.csproj" />
+      <ProjectReference Include="..\RTF.AdminServices\RTF.AdminServices.csproj" />
       <ProjectReference Include="..\RTF.Core\RTF.Core.csproj" />
     </ItemGroup>
 

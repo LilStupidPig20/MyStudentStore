@@ -16,5 +16,11 @@ public class EventRepository : Repository<Event>
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken: ct);
     }
 
+    public async Task<Event?> GetEventIncludedVisitors(Guid id, CancellationToken ct)
+    {
+        return await Table.Include(x => x.Users)
+            .FirstOrDefaultAsync(x => x.Id == id, ct);
+    }
+
     public override DbSet<Event> Table { get; set; }
 }

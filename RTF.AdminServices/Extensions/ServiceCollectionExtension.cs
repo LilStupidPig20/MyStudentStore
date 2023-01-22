@@ -10,5 +10,6 @@ public static class ServiceCollectionExtension
     {
         services.AddScoped<IAdminInfoService, AdminInfoService>();
         services.AddScoped<IEventAdminService, EventAdminService>();
+        services.AddScoped<IAdminOrdersService, AdminOrdersService>();
     }
 }

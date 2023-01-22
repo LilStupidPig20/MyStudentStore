@@ -28,6 +28,19 @@ public class StoreController : Controller
     }
     
     [HttpGet]
+    [Route("getProductFullInfo/{id}")]
+    [AllowAnonymous]
+    public async Task<ActionResult<ExtendedProductInfoFrame>> GetProductFullInfo(Guid id)
+    {
+        var result = await _mediator.Send(new GetProductFullInfoQuery
+        {
+            ProductId = id
+        });
+        return Ok(result);
+    }
+
+    
+    [HttpGet]
     [Route("getOrders")]
     [Authorize(Roles = "Student")]
     public async Task<ActionResult<IReadOnlyList<OrderFrame>>> GetOrders()

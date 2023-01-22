@@ -29,8 +29,16 @@ public class UserInfoService : IUserInfoService
             Basket = new Basket
             {
                 BasketProducts = new List<BasketProduct>()
-            }
+            },
+            QrCodeId = Guid.NewGuid()
         });
         await _unitOfWork.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<Guid> GetStudentQrGuid(Guid studentId)
+    {
+        var userInfoRepo = _unitOfWork.GetRepository<UserInfo>();
+        var userInfo = await userInfoRepo.GetAsync(studentId);
+        return userInfo.QrCodeId;
     }
 }

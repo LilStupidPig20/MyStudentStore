@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RFT.Services.Helpers;
 using RFT.Services.ServiceInterfaces;
 using RFT.Services.Services;
 
@@ -9,7 +8,6 @@ public static class ServiceCollectionExtension
 {
     public static void ConfigureServicesDependencies(this IServiceCollection services)
     {
-        services.AddScoped<IDataInitializer, DataInitializer>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IStudentBalanceService, StudentBalanceService>();
         services.AddScoped<IUserInfoService, UserInfoService>();
