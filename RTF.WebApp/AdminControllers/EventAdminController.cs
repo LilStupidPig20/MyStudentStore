@@ -34,4 +34,15 @@ public class EventAdminController : Controller
         var result = await _mediator.Send(new GetAllOrganizersQuery());
         return Ok(result);
     }
+    
+    [HttpGet]
+    [Route("getEventVisitors/{id}")]
+    public async Task<ActionResult<IReadOnlyList<VisitorFrame>>> GetEventVisitors(Guid id)
+    {
+        var result = await _mediator.Send(new GetEventVisitorsQuery
+        {
+            EventId = id
+        });
+        return Ok(result);
+    }
 }

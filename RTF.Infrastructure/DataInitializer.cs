@@ -69,7 +69,8 @@ public class DataInitializer : IDataInitializer
             Basket = new Basket
             {
                 BasketProducts = new List<BasketProduct>()
-            }
+            },
+            QrCodeId = Guid.NewGuid()
         });
 
         return Guid.Parse(user.Id);

@@ -24,4 +24,7 @@ public record AdminInfo : DataModel
     
     [Column("Email")]
     public string Email { get; set; }
+    
+    [Column("EventsParticipated")]
+    public ICollection<Event> EventsParticipated { get; set; }
 }

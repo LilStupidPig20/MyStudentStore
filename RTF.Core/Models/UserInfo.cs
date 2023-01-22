@@ -25,4 +25,10 @@ public record UserInfo : DataModel
 
     [Column("Basket")]
     public virtual Basket Basket { get; set; }
+    
+    [Column("QrCodeGuid")]
+    public virtual Guid QrCodeId { get; set; }
+    
+    [Column("VisitedEvents")]
+    public virtual ICollection<Event> VisitedEvents { get; set; }
 }

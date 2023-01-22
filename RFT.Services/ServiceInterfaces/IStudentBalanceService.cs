@@ -1,4 +1,6 @@
-﻿namespace RFT.Services.ServiceInterfaces;
+﻿using RTF.Core.Models;
+
+namespace RFT.Services.ServiceInterfaces;
 
 public interface IStudentBalanceService
 {
@@ -10,10 +12,9 @@ public interface IStudentBalanceService
     Task<double> GetUserBalance(Guid userId);
 
     /// <summary>
-    /// Добавить пользователю коины
+    /// Добавить пользователю коины. Сохранения в базу не происходит
     /// </summary>
-    /// <param name="userId"></param>
+    /// <param name="userQr"></param>
     /// <param name="coins"></param>
-    /// <returns>Кол-во коинов юзера с учетом добавленных</returns>
-    Task<double> IncreaseUserBalance(long userId, double coins); 
+    Task<UserInfo> FindUserByQrAndIncreaseBalance(Guid userQr, double coins); 
 }

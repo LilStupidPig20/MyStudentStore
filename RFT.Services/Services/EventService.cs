@@ -13,12 +13,16 @@ public class EventService : IEventService
         _unitOfWork = unitOfWork;
     }
     
-    public async Task<IReadOnlyList<Event>> GetVisitedEventsByUserAsync(Guid userId)
+    public async Task<IReadOnlyList<Event>> GetVisitedEventsByUserAsync(Guid userId, CancellationToken ct)
     {
-        var repo = _unitOfWork.GetRepository<Event>();
-        var visitedEvents = await repo
-            .FindBy(e => e.Users.Any(x => x.Id == userId) && e.IsFinished);
-        return visitedEvents;
+        var repo = (UserInfoRepository)_unitOfWork.GetRepository<UserInfo>();
+        var user = await repo.GetUserIncludedVisitedEvents(userId, ct);
+        if (user == null)
+        {
+            throw new ArgumentException("Пользователь не найден");
+        }
+
+        return user.VisitedEvents.ToList();
     }
 
     public async Task<Event?> GetEventById(Guid eventId, CancellationToken ct)

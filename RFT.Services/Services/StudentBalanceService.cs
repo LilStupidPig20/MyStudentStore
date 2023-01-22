@@ -1,5 +1,4 @@
 ﻿using RFT.Services.ServiceInterfaces;
-using RTF.Core.Infrastructure;
 using RTF.Core.Models;
 using RTF.Core.Repositories;
 
@@ -26,8 +25,17 @@ public class StudentBalanceService : IStudentBalanceService
         return userInfo.Balance;
     }
 
-    public Task<double> IncreaseUserBalance(long userId, double coins)
+    public async Task<UserInfo> FindUserByQrAndIncreaseBalance(Guid userQr, double coins)
     {
-        throw new NotImplementedException();
+        var userRepo = _unitOfWork.GetRepository<UserInfo>();
+        var user = await userRepo.FindOneBy(x => x.QrCodeId == userQr);
+        if (user == null)
+        {
+            throw new ArgumentException("Пользователь не найден");
+        }
+
+        user.Balance += coins;
+        await userRepo.UpdateAsync(user);
+        return user;
     }
 }

@@ -20,10 +20,16 @@ public class StoreService : IStoreService
         return products;
     }
 
-    public async Task<StoreProduct> GetProduct(Guid id)
+    public async Task<StoreProduct> GetProduct(Guid id, CancellationToken ct)
     {
-        var repo = _unitOfWork.GetRepository<StoreProduct>();
-        var products = await repo.GetAsync(id);
-        return products;
+        var repo = (ProductRepository)_unitOfWork.GetRepository<StoreProduct>();
+        var products = await repo.LoadAllProductsIncludedClothes(ct);
+        var product = products.FirstOrDefault(x => x.Id == id);
+        if (product == null)
+        {
+            throw new ArgumentException("Продукт не найден");
+        }
+
+        return product;
     }
 }
