@@ -134,7 +134,7 @@
         }
       }
 
-      &-cont {
+      &-cont, &-cont-event {
         display: flex;
         flex-direction: column;
         gap: 5px;
@@ -149,6 +149,10 @@
           line-height: 22px;
           color: #666666;
         }
+      }
+
+      &-cont-event {
+
       }
     }
   }

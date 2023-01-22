@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const API_URL = '/api/events/getCalendarInfo/';
+const API_URL = '/api/events/getCalendarInfo';
 
 export const calendarSlice = createSlice({
     name: 'calendarInfo',

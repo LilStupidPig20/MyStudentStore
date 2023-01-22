@@ -1,12 +1,19 @@
 .calendarItemWrapper {
-  &__events {
+  &__event {
     display: flex;
     gap: 45px;
+    margin-bottom: 25px;
+
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+    }
 
     &-day {
       display: flex;
       flex-direction: column;
       margin-left: 55px;
+      min-width: 50px;
       &-name {
         font-family: 'Manrope';
         font-style: normal;

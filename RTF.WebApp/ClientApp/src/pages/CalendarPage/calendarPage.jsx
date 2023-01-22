@@ -152,7 +152,7 @@ export const CalendarPage = memo(() => {
                             <div>
                                 {dateRange[0].toLocaleDateString('ru-RU') + ' - ' + dateRange[1].toLocaleDateString('ru-RU')}
                             </div>
-                            <div onClick={() => setDateRange([null, null])}>
+                            <div onClick={() => { setDateRange([null, null]); dispatch(getEventsAsync(firstDefaultDay, lastDefaultDay)) }}>
                                 <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <line x1="1" y1="-1" x2="20" y2="-1" transform="matrix(0.707107 0.707107 -0.657201 0.753715 0 2.0752)" stroke="#4C2C82" strokeWidth="2" strokeLinecap="round"/>
                                     <line x1="1" y1="-1" x2="20" y2="-1" transform="matrix(-0.707107 0.707107 0.657201 0.753715 15.8496 2.0752)" stroke="#4C2C82" strokeWidth="2" strokeLinecap="round"/>
@@ -180,16 +180,9 @@ export const CalendarPage = memo(() => {
                 &nbsp;-&nbsp;
                 {lastDefaultDay?.toLocaleDateString('ru-RU', options)}
             </div>
-            {eventsInfo.map((x, index) => {
-                return <CalendarItemWrapper
-                    key={index}
-                    eventType={x.eventType}
-                    eventId={x.id}
-                    eventName={x.name}
-                    startDateTime={x.startDateTime}
-                    endDateTime={x.endDateTime}
-                />
-            })}
+            <CalendarItemWrapper
+                eventsInfo={eventsInfo}
+            />
         </div>
     )
 })
