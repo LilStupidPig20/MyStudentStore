@@ -25,7 +25,7 @@ export const ShopPage = memo(() => {
             <div className='shopPage__navbar'>
                 <div className='shopPage__navbar__logo'>Магазин</div>
                 <div className='shopPage__navbar__right-cont'>
-                    <Link to="/cart" style={{ textDecoration: 'none' }}>
+                    <Link to="/shop/cart" style={{ textDecoration: 'none' }}>
                         <div className='shopPage__navbar__cart'>
                             <svg className='shopPage__navbar__cart-img' width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.75 6.25H21.9875C22.3368 6.25001 22.6822 6.32321 23.0014 6.46488C23.3207 6.60655 23.6067 6.81354 23.8411 7.07252C24.0754 7.33149 24.2529 7.6367 24.3621 7.96847C24.4713 8.30024 24.5098 8.65121 24.475 8.99875L23.725 16.4988C23.6633 17.1156 23.3746 17.6876 22.915 18.1036C22.4553 18.5196 21.8575 18.75 21.2375 18.75H9.3C8.72184 18.7502 8.16147 18.5501 7.71431 18.1836C7.26714 17.8171 6.96082 17.3069 6.8475 16.74L4.75 6.25Z" stroke="black" strokeWidth="2" strokeLinejoin="round"/>

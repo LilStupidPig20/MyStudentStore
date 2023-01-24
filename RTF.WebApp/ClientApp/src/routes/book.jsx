@@ -6,6 +6,7 @@ import { RegisterPage } from "../pages/RegisterPage/registerPage";
 import { ShopPage } from "../pages/ShopPage/shopPage";
 import { OrderPage } from "../pages/OrdersPage/orderPage";
 import {ShopItemPage} from "../pages/ShopItemPage/shopItemPage";
+import CartPage from "../pages/CartPage/cartPage";
 
 const nonAuthRoutesBook = [
     {
@@ -42,6 +43,10 @@ const authRoutesBook = [
     {
         path: '/shop/:itemId',
         element: <ShopItemPage />
+    },
+    {
+        path: '/shop/cart',
+        element: <CartPage />
     },
     {
         path: '/user/calendar',
