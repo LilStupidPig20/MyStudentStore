@@ -25,11 +25,57 @@ public class OrdersService : IOrdersService
             .Select(x => x.Product.Price * x.Count)
             .Sum();
 
+        if (userWithBasket.Balance < totalPrice)
+        {
+            throw new ArgumentException("Недостаточно средств");
+        }
+
         await AddNewOrder(userWithBasket, basketPositionsToOrder, totalPrice);
 
         ReduceProductsCountInStore(userWithBasket, basketPositionsToOrder);
 
         userWithBasket.Balance -= totalPrice;
+        await _unitOfWork.SaveChangesAsync(ct);
+    }
+
+    public async Task CreateOrder(Guid storeProductId, Guid userId, int count, Size? size, CancellationToken ct)
+    {
+        var userRepo = _unitOfWork.GetRepository<UserInfo>();
+        var user = await userRepo.GetAsync(userId);
+
+        var productsRepo = _unitOfWork.GetRepository<StoreProduct>();
+        var product = await productsRepo.GetAsync(storeProductId);
+        if (product.TotalQuantity < count)
+        {
+            throw new ArgumentException("Недостаточно товара на складе");
+        }
+
+        var totalPrice = product.Price * count;
+        if (totalPrice > user.Balance)
+        {
+            throw new ArgumentException("Недостаточно средств для оплаты заказа");
+        }
+
+        var ordersRepo = _unitOfWork.GetRepository<Order>();
+        await ordersRepo.AddAsync(new Order
+        {
+            Status = OrderStatus.Accepted,
+            Student = user,
+            PurchaseTime = DateTime.Now,
+            OrderProducts = new List<OrderProduct>
+            {
+                new()
+                {
+                    Count = count,
+                    Price = totalPrice,
+                    Product = product,
+                    Size = size
+                }
+            },
+            TotalPrice = totalPrice
+        });
+
+        user.Balance -= totalPrice;
         await _unitOfWork.SaveChangesAsync(ct);
     }
 
