@@ -25,6 +25,11 @@ public class OrdersService : IOrdersService
             .Select(x => x.Product.Price * x.Count)
             .Sum();
 
+        if (userWithBasket.Balance < totalPrice)
+        {
+            throw new ArgumentException("Недостаточно средств");
+        }
+
         await AddNewOrder(userWithBasket, basketPositionsToOrder, totalPrice);
 
         ReduceProductsCountInStore(userWithBasket, basketPositionsToOrder);

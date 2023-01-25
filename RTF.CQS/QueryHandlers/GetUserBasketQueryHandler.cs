@@ -35,7 +35,8 @@ public class GetUserBasketQueryHandler : QueryHandler<GetUserBasketQuery, Basket
             Description = basketProduct.Product.Description,
             Name = basketProduct.Product.Name,
             ImageUrl = basketProduct.Product.Image,
-            ProductPrice = basketProduct.Product.Price
+            ProductPrice = basketProduct.Product.Price,
+            Size = basketProduct.Size
         })
         .ToList();
         return new BasketFrame
