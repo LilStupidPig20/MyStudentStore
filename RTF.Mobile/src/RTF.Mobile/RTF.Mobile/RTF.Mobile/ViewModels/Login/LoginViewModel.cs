@@ -1,8 +1,10 @@
-﻿using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
+﻿using RTF.Mobile.Infrastructure.Abstractions.Implementations;
+using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
 using RTF.Mobile.Infrastructure.Abstractions.Models;
 using RTF.Mobile.Utils.Models;
 using RTF.Mobile.Views.Profile;
 using RTF.Mobile.Views.Register;
+using RTF.Mobile.Views.Shop;
 using Xamarin.Forms;
 
 namespace RTF.Mobile.ViewModels.Login
@@ -15,18 +17,18 @@ namespace RTF.Mobile.ViewModels.Login
 
         public Command GoToRegistrationCommand { get; }
 
-        public LoginModel Model { get; }
+        public LoginModel Model { get; } = new LoginModel();
 
-        public LoginViewModel(IApiService apiService)
+        public LoginViewModel()
         {
-            this.apiService = apiService;
-            Model = new LoginModel();
+            this.apiService = DependencyService.Get<IApiService>();
             GoToRegistrationCommand = new Command(GoToRegistrationCommandExecute);
             LoginCommand = new Command(LoginCommandExecute);
         }
 
         private async void GoToRegistrationCommandExecute()
         {
+            Application.Current.MainPage = new AppShell();
             await Shell.Current.GoToAsync(nameof(RegisterPage), true);
         }
 
@@ -36,7 +38,8 @@ namespace RTF.Mobile.ViewModels.Login
             var response = await apiService.LoginAsync(loginDto);
             if (response.Token != string.Empty)
             {
-                await Shell.Current.GoToAsync(nameof(ProfilePage), true);
+                Application.Current.MainPage = new AppShell();
+                await Shell.Current.GoToAsync(nameof(ShopPage), true);
             }
         }
     }

@@ -3,8 +3,6 @@ using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
 using RTF.Mobile.Infrastructure.Abstractions.Models;
 using System;
 using System.IO;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,6 +12,8 @@ namespace RTF.Mobile.Infrastructure.Abstractions.Implementations
     public class UserStorage : IUserStorage
     {
         private string settingsPath;
+        
+        private static UserSettings savedUserSettings = new UserSettings();
 
         public UserStorage()
         {
@@ -23,26 +23,28 @@ namespace RTF.Mobile.Infrastructure.Abstractions.Implementations
 
         public async Task<UserSettings> GetSettingsAsync(CancellationToken cancellationToken = default)
         {
-            if (File.Exists(settingsPath))
-            {
-                using (var fileStream = FileHelper.GetFileStream(settingsPath))
-                {
-                    return await JsonSerializer.DeserializeAsync<UserSettings>(fileStream, JsonSerializerOptions.Default, cancellationToken);
-                }
-            }
-            return new UserSettings();
+            return savedUserSettings;
+            //if (File.Exists(settingsPath))
+            //{
+            //    using (var fileStream = FileHelper.GetFileStream(settingsPath))
+            //    {
+            //        return await JsonSerializer.DeserializeAsync<UserSettings>(fileStream, JsonSerializerOptions.Default, cancellationToken);
+            //    }
+            //}
+            //return new UserSettings();
         }
 
         public void SaveSettings(UserSettings userSettings)
         {
-            var jsonDocument = JsonSerializer.SerializeToDocument(userSettings, typeof(UserSettings));
-            using (var stream = FileHelper.GetFileStream(settingsPath, FileMode.Create))
-            {
-                using (var jsonStreamWriter = new Utf8JsonWriter(stream))
-                {
-                    jsonDocument.WriteTo(jsonStreamWriter);
-                }
-            }
+            savedUserSettings = userSettings;
+            //var jsonDocument = JsonSerializer.SerializeToDocument(userSettings, typeof(UserSettings));
+            //using (var stream = FileHelper.GetFileStream(settingsPath, FileMode.OpenOrCreate))
+            //{
+            //    using (var jsonStreamWriter = new Utf8JsonWriter(stream))
+            //    {
+            //        jsonDocument.WriteTo(jsonStreamWriter);
+            //    }
+            //}
         }
     }
 }

@@ -1,24 +1,22 @@
-﻿using AutoMapper;
-using RestSharp;
+﻿using RestSharp;
 using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
 using RTF.Mobile.Infrastructure.Abstractions.Models;
+using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace RTF.Mobile.Infrastructure.Abstractions.Implementations
 {
     public class ApiService : IApiService
     {
-        private readonly IMapper mapper;
         private readonly IUserStorage userStorage;
         private RestClient client;
 
-        public ApiService(IUserStorage userStorage, IMapper mapper)
+        public ApiService()
         {
-            this.userStorage = userStorage;
-            this.mapper = mapper;
+            this.userStorage = DependencyService.Get<IUserStorage>();
             UpdateRestClientAsync();
         }
 
@@ -29,18 +27,31 @@ namespace RTF.Mobile.Infrastructure.Abstractions.Implementations
 
         public async Task<LoginResponseDto> LoginAsync(LoginDto dto, CancellationToken cancellationToken = default)
         {
-            var request = new RestRequest("login", Method.Post);
+            var request = new RestRequest("account/login", Method.Post);
             request.AddJsonBody(dto);
             var response = await ExecuteRequest<LoginResponseDto>(request, cancellationToken);
-            userStorage.SaveSettings(mapper.Map<UserSettings>(response));
-            return await ExecuteRequest<LoginResponseDto>(request, cancellationToken);
+            var userSettings = new UserSettings(response.FirstName, response.LastName, response.Group, dto.Email, response.Token, response.Role);
+            userStorage.SaveSettings(userSettings);
+            return response;
+        }
+
+        public async Task GetVisited(CancellationToken cancellationToken)
+        {
+            var request = new RestRequest("events/getVisited/");
+            await ExecuteRequest(request, cancellationToken);
         }
 
         public async Task RegisterAsync(RegisterDto dto, CancellationToken cancellationToken = default)
         {
-            var request = new RestRequest("register", Method.Post);
+            var request = new RestRequest("account/register", Method.Post);
             request.AddJsonBody(dto);
             await ExecuteRequest(request, cancellationToken);
+        }
+
+        public async Task<IEnumerable<ShopItemDto>> GetShopItems(CancellationToken cancellationToken)
+        {
+            var request = new RestRequest("store/getAllProducts");
+            return await ExecuteRequest<List<ShopItemDto>>(request, cancellationToken);
         }
 
         private async Task<TResponse> ExecuteRequest<TResponse>(RestRequest request, CancellationToken cancellationToken)
@@ -79,14 +90,72 @@ namespace RTF.Mobile.Infrastructure.Abstractions.Implementations
             return response;
         }
 
-        private async Task UpdateRestClientAsync()
+        private async Task UpdateRestClientAsync(bool getInfoFromSettings = false)
         {
-            var settings = await userStorage.GetSettingsAsync(default);
-            client = new RestClient();
-            if (settings != null)
+            client = new RestClient((string)Application.Current.Properties["ApiUrl"]);
+            if (getInfoFromSettings)
             {
-                client.AddDefaultHeader("Authorization", $"Bearer {settings.Token}");
+                var settings = await userStorage.GetSettingsAsync(default);
+                if (settings != null)
+                {
+                    client.AddDefaultHeader("Authorization", $"Bearer {settings.Token}");
+                }
             }
+        }
+
+        public Task<Guid> GetUserQrIdAsync(CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<BasketDto> GetBasketAsync(CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AddItemToBasketAsync(NewBasketItemDto newBasketItemDto, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveItemFromBasketAsync(NewBasketItemDto basketItemDto, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task IncrementProductCountAsync(NewBasketItemDto basketItemDto, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DecrementProductCountAsync(NewBasketItemDto basketItemDto, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<FullShopItemInfoDto> GetShopItemInfoDto(Guid id, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> GetCurrentUserBalanceAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task MakeOrder(IEnumerable<Guid> basketIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<OrderDto>> GetOrdersAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task CancelOrderAsync(Guid orderId)
+        {
+            throw new NotImplementedException();
         }
 
         //private async Task RefreshToken(CancellationToken cancellationToken)

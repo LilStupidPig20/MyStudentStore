@@ -13,11 +13,7 @@ namespace RTF.Mobile.Views.Profile
         {
             InitializeComponent();
 
-            var userStorage = new UserStorage();
-            var apiService = new MockApiService(userStorage);
-            //var apiService = DependencyService.Get<IApiService>();
-            //var userStorage = DependencyService.Get<IUserStorage>();
-            BindingContext = new ProfileViewModel(apiService, userStorage);
+            BindingContext = new ProfileViewModel();
         }
     }
 }

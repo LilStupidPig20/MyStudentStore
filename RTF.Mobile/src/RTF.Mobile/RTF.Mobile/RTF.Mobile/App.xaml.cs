@@ -4,6 +4,7 @@ using System;
 using Xamarin.Forms;
 using RTF.Mobile.Infrastructure.Abstractions.Implementations;
 using RTF.Mobile.Utils.MockServices;
+using RTF.Mobile.Views.Login;
 
 namespace RTF.Mobile
 {
@@ -13,11 +14,10 @@ namespace RTF.Mobile
         public App()
         {
             InitializeComponent();
-            DependencyService.Register<IUserStorage, UserStorage>();
+            Current.Properties["ApiUrl"] = "https://10.0.2.2:7140/api/";
+            DependencyService.RegisterSingleton<IUserStorage>(new UserStorage());
             DependencyService.Register<IApiService, MockApiService>();
-            DependencyService.Register<MockDataStore>();
-            this.BindingContext = new MockDataStore();
-            MainPage = new AppShell();
+            MainPage = new LoginPage();
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         }
 

@@ -1,6 +1,8 @@
-﻿namespace RTF.Mobile.ViewModels.Profile
+﻿using RTF.Mobile.Utils.Models;
+
+namespace RTF.Mobile.ViewModels.Profile
 {
-    public class ProfileInformationModel
+    public class ProfileInformationModel : EditableModel
     {
         public string FirstName { get; }
 
@@ -10,7 +12,17 @@
 
         public string Group { get; }
 
-        public int Points { get; }
+        private int points;
+
+        public int Points
+        {
+            get => points;
+            set
+            {
+                points = value;
+                OnPropertyChanged(nameof(Points));
+            }
+        }
 
         public ProfileInformationModel(string firstName, string lastName, string group, int points)
         {

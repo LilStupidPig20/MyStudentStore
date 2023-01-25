@@ -1,4 +1,5 @@
 ﻿
+using RTF.Mobile.Infrastructure.Abstractions.Implementations;
 using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
 using RTF.Mobile.Infrastructure.Abstractions.Models;
 using RTF.Mobile.Utils.Models;
@@ -12,11 +13,18 @@ namespace RTF.Mobile.ViewModels.Register
     {
         private readonly IApiService apiService;
 
-        public RegisterModel Model { get; }
+        public RegisterModel Model { get; } = new RegisterModel();
 
         public Command ComeBackCommand { get; }
 
         public Command RegisterCommand { get; }
+
+        public RegisterViewModel()
+        {
+            this.apiService = DependencyService.Get<IApiService>();
+            RegisterCommand = new Command(RegisterCommandExecute);
+            ComeBackCommand = new Command(GoBackCommandExecute);
+        }
 
         public RegisterViewModel(IApiService apiService)
         {

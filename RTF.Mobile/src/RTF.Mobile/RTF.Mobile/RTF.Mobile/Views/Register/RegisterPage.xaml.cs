@@ -13,10 +13,8 @@ namespace RTF.Mobile.Views.Register
         public RegisterPage()
         {
             InitializeComponent();
-            var userStorage = new UserStorage();
-            var apiService = new MockApiService(userStorage);
             //var apiService = DependencyService.Get<IApiService>();
-            this.BindingContext = new RegisterViewModel(apiService);
+            this.BindingContext = new RegisterViewModel();
         }
     }
 }

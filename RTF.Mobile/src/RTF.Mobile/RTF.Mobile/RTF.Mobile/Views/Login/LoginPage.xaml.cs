@@ -13,10 +13,10 @@ namespace RTF.Mobile.Views.Login
         public LoginPage()
         {
             InitializeComponent();
-            var userStorage = new UserStorage();
-            var apiService = new MockApiService(userStorage);
-            //var apiService = DependencyService.Get<IApiService>();
-            this.BindingContext = new LoginViewModel(apiService);
+            //var userStorage = new UserStorage();
+            //var apiService = new MockApiService(userStorage);
+            ////var apiService = DependencyService.Get<IApiService>();
+            this.BindingContext = new LoginViewModel();
         }
     }
 }

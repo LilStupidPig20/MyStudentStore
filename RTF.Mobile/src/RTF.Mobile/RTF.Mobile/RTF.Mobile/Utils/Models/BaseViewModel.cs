@@ -4,12 +4,31 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace RTF.Mobile.Utils.Models
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        public Guid Id { get; set; }
+
+        public BaseViewModel() 
+        {
+            LoadAsync();
+        }
+
+        public BaseViewModel(Guid id)
+        {
+            Id = id;
+        }
+
+        public virtual Task LoadAsync()
+        {
+            return Task.CompletedTask;
+        }
+
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         bool isBusy = false;

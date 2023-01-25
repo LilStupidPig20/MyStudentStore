@@ -2,27 +2,30 @@
 {
     public class UserSettings
     {
-        public string FirstName { get; }
+        public string FirstName { get; internal set; }
 
-        public string LastName { get; }
+        public string LastName { get; internal set; }
 
-        public string Group { get; }
+        public string Group { get; internal set; }
 
-        public string Email { get; }
+        public string Email { get; internal set; }
 
-        public string Token { get; }
+        public string Token { get; internal set; }
+
+        public string Role { get; internal set; }
 
         public UserSettings()
         {
         }
 
-        public UserSettings(string firtsName, string lastName, string group, string email, string token)
+        public UserSettings(string firstName, string lastName, string group, string email, string token, string role)
         {
-            FirstName = firtsName;
+            FirstName = firstName;
             LastName = lastName;
             Group = group;
             Email = email;
             Token = token;
+            Role = role;
         }
     }
 }

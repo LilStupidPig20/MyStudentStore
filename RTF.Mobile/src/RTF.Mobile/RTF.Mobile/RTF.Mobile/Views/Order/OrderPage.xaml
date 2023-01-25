@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RTF.Mobile.Views.Order.OrderPage"
+             xmlns:converters="clr-namespace:RTF.Mobile.Utils.Converters"
+             xmlns:viewModel="clr-namespace:RTF.Mobile.ViewModels.Order">
+    <ContentPage.BindingContext>
+        <viewModel:OrderViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Fill">
+            <StackLayout
+                VerticalOptions="Start"
+                HeightRequest="40"
+                Orientation="Horizontal" 
+                Background="#DCF4FC">
+                <Label Text="Мои заказы"
+                       Margin="20,0,0,0"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="StartAndExpand"
+                       FontSize="22"
+                       WidthRequest="150"/>
+            </StackLayout>
+            <ScrollView Margin="10">
+                <ListView
+                        HeightRequest="800"
+                        RowHeight="150"
+                        HasUnevenRows="True"
+                        VerticalScrollBarVisibility="Never"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        SelectionMode="None"
+                        ItemsSource="{Binding Model.Orders}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BorderColor="Transparent"
+                                       Padding="0">
+                                    <StackLayout Orientation="Horizontal">
+                                        <ListView ItemsSource="{Binding Items}"
+                                                  HorizontalOptions="Start"
+                                                  RowHeight="150">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <StackLayout Margin="20" Orientation="Horizontal">
+                                                            <Image HorizontalOptions="Start"
+                                                               WidthRequest="70"
+                                                               Source="{Binding ImageSource}" />
+                                                            <StackLayout HorizontalOptions="Start"
+                                                                     WidthRequest="150">
+                                                                <Label Text="{Binding Name}"
+                                                                   FontSize="12"/>
+                                                                <Label Text="{Binding Description}"
+                                                                   Style="{StaticResource AssistLabel}"
+                                                                   FontSize="10"/>
+                                                                <Label
+                                                                FontAttributes="Bold"
+                                                                Text="{Binding ProductPrice, Converter={converters:PointsConverter}}"/>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                        <StackLayout HorizontalOptions="End">
+                                            <Label Text="{Binding TotalCount, Converter={converters:GoodsConverter}}"/>
+                                            <Label
+                                                FontAttributes="Bold"
+                                                Text="{Binding TotalPrice, Converter={converters:PointsConverter}}"/>
+                                            <Label
+                                                TextColor="{StaticResource PrimaryBackground}"
+                                                Text="{Binding Status, Converter={converters:OrderStatusConverter}}"/>
+                                            <Button Text="Отменить заказ"
+                                                    Command="{Binding Path=BindingContext.CancelOrderCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                                    CommandParameter="{Binding Id}"
+                                                    TextColor="{StaticResource SecondaryBorder}"
+                                                    BackgroundColor="Transparent"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
