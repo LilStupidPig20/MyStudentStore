@@ -30,7 +30,6 @@ export const AdminLayout = ({children}) => {
                     <Link to='/shop' className={pageName === 'shop' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>Магазин (склад)</Link>
                     <Link to='/admin/orders' className={pageName === 'orders' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>Заказы</Link>
                     <Link to='/admin/orders/history' className={pageName === 'rules' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>История заказов</Link>
-                    <Link to='/admin/rules' className={pageName === 'rules' ? 'admin-layout__links-link active' : 'admin-layout__links-link'}>Правила начисления баллов</Link>
                 </div>
                 <div className='admin-layout__exit' onClick={() => {dispatch(logout(userData)); dispatch(deletePageName)}}>Выйти</div>
             </aside>

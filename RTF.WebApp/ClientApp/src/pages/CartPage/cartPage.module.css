@@ -16,19 +16,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    font-family: 'Hero';
+    font-family: 'Manrope';
+    padding-left: 125px;
 }
 
 .title{
     margin-top: 20%;
-    font-size: 30px;
-    font-weight: 700;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 44px;
+    color: #302E2E;
 }
 
 .subTitle{
+    font-family: 'Manrope';
+    font-style: normal;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 24px;
+    line-height: 33px;
 }
 
 .cartItems {
@@ -121,7 +128,7 @@
 
 .link{
     text-decoration: underline;
-    color: #00D29D;
+    color: #15B6E9;
 }
 
 .popup {

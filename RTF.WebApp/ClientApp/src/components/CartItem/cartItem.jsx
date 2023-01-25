@@ -44,7 +44,7 @@ export default function CartItem({
             },
             body: JSON.stringify({productId: storeId})
         })
-        navigate(0)
+        navigate(0);
     }
 
     const incrementCount = () => {
