@@ -59,6 +59,15 @@ public class StoreController : Controller
     }
 
     [HttpPost]
+    [Route("makeOrderRightNow")]
+    [Authorize(Roles = "Student")]
+    public async Task<IActionResult> MakeOrderRightNow(MakeOrderRightNowCommand command)
+    {
+        await _mediator.Send(command);
+        return new OkResult();
+    }
+
+    [HttpPost]
     [Route("CancelOrder")]
     [Authorize(Roles = "Student")]
     public async Task<ActionResult<IReadOnlyList<ProductFrame>>> CancelOrder(CancelOrderCommand command)
