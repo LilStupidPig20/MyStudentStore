@@ -9,7 +9,7 @@ namespace RTF.WebApp.AdminControllers;
 
 [ApiController]
 [Authorize(Roles = "Admin")]
-[Route("admin/orders")]
+[Route("api/admin/orders")]
 public class OrdersAdminController : Controller
 {
     private readonly IMediator _mediator;
