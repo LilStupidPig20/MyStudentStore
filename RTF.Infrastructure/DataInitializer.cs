@@ -48,8 +48,8 @@ public class DataInitializer : IDataInitializer
         {
             Email = "testuser@urfu.me",
             Group = "РИ-490003",
-            FirstName = "Тест",
-            LastName = "Тестовый",
+            FirstName = "Иван",
+            LastName = "Иванов",
             PasswordHash = "P@ssw0rd",
             UserName = "testuser@urfu.me"
         };
@@ -82,8 +82,8 @@ public class DataInitializer : IDataInitializer
         {
             Email = "testAdmin@urfu.me",
             Group = "admins",
-            FirstName = "Админ",
-            LastName = "ЭтойКачалки",
+            FirstName = "Корякин",
+            LastName = "Борис",
             PasswordHash = "Admin000!",
             UserName = "testAdmin@urfu.me"
         };
@@ -113,19 +113,50 @@ public class DataInitializer : IDataInitializer
         var adminsRepo = _unitOfWork.GetRepository<AdminInfo>();
         var admins = await adminsRepo.FindBy(x => x.Id == adminId);
 
-        var defaultEvent = new Event
+        var event1 = new Event
         {
-            Coins = 1.5,
-            Description = "аовАвоаловпапорыдпр воылаоплды 2323 апырпраылопрлы",
-            Name = "Тестовое мероприятие",
-            EventType = EventType.Entertainment,
+            Coins = 10,
+            Description = "Разработческий командный хакатон, организованный УЦСБ",
+            Name = "Хакатон",
+            EventType = EventType.Academic,
             IsFinished = true,
-            StartDateTime = new DateTime(2022, 12, 1, 12, 0, 0, DateTimeKind.Local),
-            EndDateTime = new DateTime(2022, 12, 1, 14, 0, 0, DateTimeKind.Local),
+            StartDateTime = new DateTime(2023, 01, 12, 12, 0, 0, DateTimeKind.Local),
+            EndDateTime = new DateTime(2023, 01, 12, 20, 0, 0, DateTimeKind.Local),
             Users = (ICollection<UserInfo>)users,
             Organizers = (ICollection<AdminInfo>)admins
         };
-        await repo.AddAsync(defaultEvent);
+        await repo.AddAsync(event1);
+        _unitOfWork.SaveChanges();
+        
+        var event2 = new Event
+        {
+            Coins = 4.5,
+            Description = "Первое мероприятие в учебном году. Позволяет новоприбывшим втянуться в студенческую жизнь и познакомиться с наставниками",
+            Name = "Неделя первокурсника",
+            EventType = EventType.Entertainment,
+            IsFinished = true,
+            StartDateTime = new DateTime(2022, 09, 01, 12, 0, 0, DateTimeKind.Local),
+            EndDateTime = new DateTime(2022, 09, 01, 14, 0, 0, DateTimeKind.Local),
+            Users = (ICollection<UserInfo>)users,
+            Organizers = (ICollection<AdminInfo>)admins
+        };
+        await repo.AddAsync(event2);
+        _unitOfWork.SaveChanges();
+        
+        var event3 = new Event
+        {
+            Coins = 6,
+            Description = "Мероприятие, где ты можешь послушать стихотворения либо сам прочитать перед публикой",
+            Name = "Литературный вечер",
+            EventType = EventType.Entertainment,
+            IsFinished = true,
+            StartDateTime = new DateTime(2023, 01, 25, 19, 0, 0, DateTimeKind.Local),
+            EndDateTime = new DateTime(2023, 01, 25, 21, 0, 0, DateTimeKind.Local),
+            Users = (ICollection<UserInfo>)users,
+            Organizers = (ICollection<AdminInfo>)admins
+        };
+        await repo.AddAsync(event3);
+        _unitOfWork.SaveChanges();
     }
     
     private async Task InitProducts()
@@ -134,31 +165,34 @@ public class DataInitializer : IDataInitializer
         var product1 = new StoreProduct
         {
             Name = "Кружка",
-            Description = "Ну кружка и кружка, чо бухтеть то",
+            Description = "Черная кружка 200мл",
             Price = 5,
-            TotalQuantity = 100
+            TotalQuantity = 100,
+            Image = "/productImages/rtfCup.jpg"
         };
         var product2 = new StoreProduct
         {
             Name = "Павербанк",
-            Description = "На 10 зарядок айфона должно хватить",
+            Description = "Черный повербанк на 10000 мАч",
             Price = 15,
-            TotalQuantity = 56
+            TotalQuantity = 56,
+            Image = "/productImages/rtfPower.jpeg"
         };
         var product3 = new StoreProduct
         {
-            Name = "Стикерпак",
-            Description = "Стикерпак хуй пойми с чем",
+            Name = "Ручка",
+            Description = "Оранжевая ручка Naumen",
             Price = 2,
-            TotalQuantity = 404
+            TotalQuantity = 404,
+            Image = "/productImages/rtfPen.png"
         };
         var product4 = new ClothesProduct
         {
-            Name = "Толстовка",
-            Description = "Ртф чемпион хули",
-            Price = 40,
+            Name = "Худи",
+            Description = "Черное худи с капюшоном РТФ Чемпион",
+            Price = 30,
             TotalQuantity = 33,
-            Image = "qwe/wqeqer/tyy.png",
+            Image = "/productImages/rtfHoodi.jpg",
             ClothesInfos = new List<ClothesInfo>
             {
                 new()
@@ -178,6 +212,22 @@ public class DataInitializer : IDataInitializer
                 }
             }
         };
+        var product5 = new StoreProduct
+        {
+            Name = "Рюкзак",
+            Description = "Серый рюкзак Xiaomi",
+            Price = 50,
+            TotalQuantity = 10,
+            Image = "/productImages/rtfBackpack.jpg"
+        };
+        var product6 = new StoreProduct
+        {
+            Name = "Ежедневник",
+            Description = "Черный ежедневник UDV",
+            Price = 5,
+            TotalQuantity = 54,
+            Image = "/productImages/rtfDiary.jpg"
+        };
 
         await repo.AddAsync(product1);
         _unitOfWork.SaveChanges();
@@ -186,5 +236,10 @@ public class DataInitializer : IDataInitializer
         await repo.AddAsync(product3);
         _unitOfWork.SaveChanges();
         await repo.AddAsync(product4);
+        _unitOfWork.SaveChanges();
+        await repo.AddAsync(product5);
+        _unitOfWork.SaveChanges();
+        await repo.AddAsync(product6);
+        _unitOfWork.SaveChanges();
     }
 }
