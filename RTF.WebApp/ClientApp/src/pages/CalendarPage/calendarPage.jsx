@@ -53,7 +53,7 @@ export const CalendarPage = memo(() => {
     const lastDefaultDay = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) ;
     let dateWidth;
     if (startDate !== null && endDate !== null)
-        dateWidth = '1150px'
+        dateWidth = '1080px'
     else dateWidth = '800px';
     if(window.location.pathname === '/user/calendar') {
         dateWidth = '800px';

@@ -14,6 +14,7 @@ export const CalendarItemWrapper = ({eventsInfo}) => {
     eventsInfo.sort((a, b) => new Date(a.startDateTime) - new Date(b.startDateTime))
     let prevDate;
     let dividerMargin;
+    let isDisabled;
 
     useEffect(() => {
         if(showDetails) {
@@ -27,9 +28,14 @@ export const CalendarItemWrapper = ({eventsInfo}) => {
         <>
             <div className='calendarItemWrapper__events__wrapper'>
                 {eventsInfo.map((x, index) => {
+                    const temp = new Date();
                     const today = new Date(x.startDateTime);
                     let isEqual = true;
                     let copyIsEqual = isEqual;
+                    isDisabled = false;
+                    if(x.startDateTime < temp.toISOString()) isDisabled = true;
+                    console.log(x.startDateTime)
+                    console.log(today.toISOString())
                     if(prevDate !== undefined) {
                         isEqual = (today.getDate() === prevDate.getDate());
                     } else {
@@ -60,7 +66,7 @@ export const CalendarItemWrapper = ({eventsInfo}) => {
                                         name={x.name}
                                         startDateTime={x.startDateTime}
                                         endDateTime={x.endDateTime}
-                                        disabled={false}
+                                        disabled={isDisabled}
                                     />
                                 </div>
                             </div>)

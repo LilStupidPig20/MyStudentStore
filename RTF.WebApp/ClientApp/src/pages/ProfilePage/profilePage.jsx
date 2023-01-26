@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './profilePage.scss';
 import profile_top from '../../images/profile/profile-top.svg';
 import { memo } from 'react';
@@ -6,19 +6,34 @@ import {useDispatch, useSelector} from "react-redux";
 import {showUser} from "../../features/authSlice";
 import {setPageName} from "../../features/pageNameSlice";
 import {showUserBalance} from "../../features/userBalanceSlice";
+import QRCode from "react-qr-code";
 
 export const ProfilePage = memo(() => {
     const profileData = useSelector(showUser);
     const userBalance = useSelector(showUserBalance);
     const dispatch = useDispatch();
+    const [qrCodeValue, setQrCodeValue] = useState('');
+    const [isClicked, setClicked] = useState(false);
     useEffect(()=> {
         dispatch(setPageName('profile'));
     },[dispatch])
+
+    useEffect(() => {
+        fetch('/api/qrCode/getActualQrCodeId')
+            .then(res => res.json())
+            .then(value => setQrCodeValue(value))
+    }, [])
     let typeOfEvent;
     const eventClasses = {
         green: 'profile__attended-meetings__table-body-green', 
         purple: 'profile__attended-meetings__table-body-purple'
     };
+
+    const QrCont = () => {
+        return( <div>
+            <QRCode value={qrCodeValue} size={182}/>
+        </div>)
+    }
     
     return (
         <div className='profile'>
@@ -39,13 +54,16 @@ export const ProfilePage = memo(() => {
                         </div>
                     </div>
                     <div className='profile__user-qr'>
-                        <div className='profile__user-qr-cont'>
-                            Мой QR-код
-                            <div>
-                                <svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 2L9.5 10L17 2" stroke="black" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
+                        <div className='profile__user-qr-cont' style={isClicked ? {flexDirection: 'column'} : {}}>
+                            <div style={{display: 'flex', gap: '12px',}}>
+                                Мой QR-код
+                                <div>
+                                    <svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={()=>setClicked(!isClicked)}>
+                                        <path d="M2 2L9.5 10L17 2" stroke="black" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
                             </div>
+                            {isClicked ? <QrCont/> : ''}
                         </div>
                         <ul className="profile__user-qr-text">
                             <li>
