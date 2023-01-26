@@ -36,7 +36,8 @@ public class GetOrderFullInfoQueryHandler : QueryHandler<GetOrderFullInfoQuery, 
                     Description = dataProduct.Product.Description,
                     Name = dataProduct.Product.Name,
                     Price = dataProduct.Price,
-                    Size = dataProduct.Size.Value
+                    Size = dataProduct.Size.Value,
+                    ImageUrl = dataProduct.Product.Image
                 });
             }
             else
@@ -47,7 +48,8 @@ public class GetOrderFullInfoQueryHandler : QueryHandler<GetOrderFullInfoQuery, 
                     Count = dataProduct.Count,
                     Description = dataProduct.Product.Description,
                     Name = dataProduct.Product.Name,
-                    Price = dataProduct.Price
+                    Price = dataProduct.Price,
+                    ImageUrl = dataProduct.Product.Image
                 });
             }
         }

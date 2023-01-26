@@ -13,4 +13,6 @@ public class EventFrame
     public DateTime EndDateTime { get; set; }
     
     public EventType EventType { get; set; }
+    
+    public double Coins { get; set; }
 }

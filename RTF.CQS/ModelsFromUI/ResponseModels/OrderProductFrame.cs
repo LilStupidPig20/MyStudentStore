@@ -12,5 +12,7 @@ public class OrderProductFrame
     
     public double Price { get; set; }
     
+    public string? ImageUrl { get; set; }
+    
     public Size? Size { get; set; }
 }

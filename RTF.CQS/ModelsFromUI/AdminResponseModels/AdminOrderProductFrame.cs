@@ -10,6 +10,8 @@ public class AdminOrderProductFrame
     
     public int Count { get; set; }
     
+    public string? ImageUrl { get; set; }
+    
     /// <summary>
     /// Price = Цена продукта из магазина * его кол-во в заказе
     /// </summary>

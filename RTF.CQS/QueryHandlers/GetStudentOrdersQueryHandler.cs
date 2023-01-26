@@ -38,7 +38,8 @@ public class GetStudentOrdersQueryHandler : QueryHandler<GetStudentOrdersQuery, 
                     Count = x.Count,
                     Size = x.Size,
                     Name = x.Product.Name,
-                    Price = x.Price
+                    Price = x.Price,
+                    ImageUrl = x.Product.Image
                 })
                 .ToList()
         };
