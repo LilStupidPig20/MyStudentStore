@@ -19,6 +19,6 @@ public class IncrementProductInBasketCommandHandler : CommandHandler<IncrementPr
     public override async Task Handle(IncrementProductInBasketCommand request, CancellationToken ct)
     {
         var currentUserId = (await _currentUserProvider.GetCurrentUserAsync()).Id;
-        await _basketService.IncrementProductCount(request.ProductId, Guid.Parse(currentUserId), ct);
+        await _basketService.IncrementProductCount(request.BasketProductId, Guid.Parse(currentUserId), ct);
     }
 }

@@ -19,6 +19,6 @@ public class DecrementProductInBasketCommandHandler : CommandHandler<DecrementPr
     public override async Task Handle(DecrementProductInBasketCommand request, CancellationToken ct)
     {
         var currentUserId = (await _currentUserProvider.GetCurrentUserAsync()).Id;
-        await _basketService.DecrementProductCount(request.ProductId, Guid.Parse(currentUserId), ct);
+        await _basketService.DecrementProductCount(request.BasketProductId, Guid.Parse(currentUserId), ct);
     }
 }

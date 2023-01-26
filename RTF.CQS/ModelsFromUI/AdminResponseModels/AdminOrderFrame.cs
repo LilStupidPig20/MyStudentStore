@@ -14,4 +14,6 @@ public class AdminOrderFrame
     public string OrderProducts { get; set; }
     
     public OrderStatus Status { get; set; }
+    
+    public DateTime TimeOfOrder { get; set; }
 }

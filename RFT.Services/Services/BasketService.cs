@@ -91,7 +91,7 @@ public class BasketService : IBasketService
         await _unitOfWork.SaveChangesAsync(ct);
     }
 
-    public async Task IncrementProductCount(Guid productId, Guid studentId, CancellationToken ct)
+    public async Task IncrementProductCount(Guid basketProductId, Guid studentId, CancellationToken ct)
     {
         var userRepo = (UserInfoRepository)_unitOfWork.GetRepository<UserInfo>();
         var userInfo = await userRepo.GetUserIncludeFullBasket(studentId, ct);
@@ -100,7 +100,7 @@ public class BasketService : IBasketService
             throw new Exception("Пользователь не найден"); 
         }
 
-        var orderProduct = userInfo.Basket.BasketProducts.FirstOrDefault(x => x.Product.Id == productId);
+        var orderProduct = userInfo.Basket.BasketProducts.FirstOrDefault(x => x.Id == basketProductId);
         
         if (orderProduct == null)
         {
@@ -117,7 +117,7 @@ public class BasketService : IBasketService
         await _unitOfWork.SaveChangesAsync(ct);
     }
 
-    public async Task DecrementProductCount(Guid productId, Guid studentId, CancellationToken ct)
+    public async Task DecrementProductCount(Guid basketProductId, Guid studentId, CancellationToken ct)
     {
         var userRepo = (UserInfoRepository)_unitOfWork.GetRepository<UserInfo>();
         var userInfo = await userRepo.GetUserIncludeFullBasket(studentId, ct);
@@ -126,7 +126,7 @@ public class BasketService : IBasketService
             throw new Exception("Пользователь не найден"); 
         }
 
-        var orderProduct = userInfo.Basket.BasketProducts.FirstOrDefault(x => x.Product.Id == productId);
+        var orderProduct = userInfo.Basket.BasketProducts.FirstOrDefault(x => x.Id == basketProductId);
         if (orderProduct == null)
         {
             throw new Exception("Товар не найден");

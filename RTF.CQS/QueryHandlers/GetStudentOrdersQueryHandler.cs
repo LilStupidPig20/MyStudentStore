@@ -31,6 +31,7 @@ public class GetStudentOrdersQueryHandler : QueryHandler<GetStudentOrdersQuery, 
         {
             OrderId = dataOrder.Id,
             Status = dataOrder.Status,
+            TimeOfOrder = dataOrder.PurchaseTime,
             OrderProducts = dataOrder.OrderProducts.Select(x => new OrderProductFrame
                 {
                     ProductId = x.Product.Id,
