@@ -37,6 +37,14 @@ namespace RTF.Mobile.Infrastructure.Abstractions.Interfaces
         Task<List<OrderDto>> GetOrdersAsync();
 
         Task CancelOrderAsync(Guid orderId);
+
+        Task<IEnumerable<EventShortInfoDto>> GetEventsByDateIntervalAsync(DateTime start, DateTime end);
+
+        Task<EventDto> GetFullInfoAboutEvent(Guid id);
+
+        Task<UserDto> GetUserInfoAsync(Guid id);
+
+        Task AddUserToEvent(Guid userId, Guid eventId);
     }
 }
     

@@ -6,6 +6,7 @@ using RTF.Mobile.Views.Shop;
 using RTF.Mobile.Views.Rules;
 using RTF.Mobile.Views.Basket;
 using RTF.Mobile.Views.Order;
+using RTF.Mobile.Views.Calendar;
 
 namespace RTF.Mobile
 {
@@ -23,6 +24,8 @@ namespace RTF.Mobile
             Routing.RegisterRoute(nameof(RulesPage), typeof(RulesPage));
             Routing.RegisterRoute(nameof(BasketPage), typeof(BasketPage));
             Routing.RegisterRoute(nameof(OrderPage), typeof(OrderPage));
+            Routing.RegisterRoute(nameof(CalendarPage), typeof(CalendarPage));
+            Routing.RegisterRoute(nameof(CalendarEventPage), typeof(CalendarEventPage));
         }
 
     }

@@ -85,7 +85,26 @@
                                                              Source="plus.png"
                                                              IsEnabled="{Binding Count, Converter={converters:UpDownEnabiltyConverter}}"
                                                              Command="{Binding Path=BindingContext.IncremenentCountCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
-                                                             CommandParameter="{Binding BasketId}"/>
+                                                             CommandParameter="{Binding BasketId}">
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="Scale"
+                                                                            Value="1" />
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+
+                                                            <VisualState x:Name="Pressed">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="Scale"
+                                                                            Value="0.8" />
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                </ImageButton>
                                             </StackLayout>
                                             <ImageButton
                                                 Margin="0,10,0,0"
@@ -93,7 +112,26 @@
                                                 BackgroundColor="Transparent"
                                                 Source="trash.png"
                                                 Command="{Binding Path=BindingContext.RemoveItemCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
-                                                CommandParameter="{Binding BasketId}"/>
+                                                CommandParameter="{Binding BasketId}">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="Scale"
+                                                                        Value="1" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <VisualState x:Name="Pressed">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="Scale"
+                                                                        Value="0.8" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                            </ImageButton>
                                         </StackLayout>
                                     </StackLayout>
                                 </Frame>

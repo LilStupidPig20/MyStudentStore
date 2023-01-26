@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Globalization;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,13 +18,123 @@ namespace RTF.Mobile.Utils.MockServices
     {
         private static Guid UserQrId = Guid.Parse("f6c28050-3b41-4b61-9ec4-18f70e46bfd4");
 
-        private static List<EventDto> events = new List<EventDto>()
+        private static List<EventDto> allEvents = new List<EventDto>()
             {
-                new EventDto(Guid.NewGuid(), "Неделя первокурсника", 6, EventType.Social),
-                new EventDto(Guid.NewGuid(), "Караоке", 2, EventType.Social),
-                new EventDto(Guid.NewGuid(), "Хакатон", 5, EventType.Educational),
-                new EventDto(Guid.NewGuid(), "Литературный вечер", 5, EventType.Social),
-                new EventDto(Guid.NewGuid(), "Хакатон", 5, EventType.Educational),
+                new EventDto()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Неделя первокурсника",
+                    Points = 6,
+                    EndTime = new DateTime(2022, 9, 8, 14, 40, 0),
+                    StartTime = new DateTime(2022, 9, 8, 13, 10, 0),
+                    EventType = EventType.Social,
+                    OrganizersNames = new List<string>()
+                    {
+                        "Корякин Игорь",
+                        "Ковтонюк Полина",
+                    },
+                },
+                new EventDto()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Караоке",
+                    Desciption = "Приходи на караоке со своими друзьями. Будем петь  самые известные хиты. \r\nБудет весело!\r\nРегистрация проходит традиционно по QR-коду, ищи его в своем личном кабинете.",
+                    Points = 2,
+                    EndTime = new DateTime(2022, 9, 11, 18, 40, 0),
+                    StartTime = new DateTime(2022, 9, 11, 16, 40, 0),
+                    EventType = EventType.Social,
+                    OrganizersNames = new List<string>()
+                    {
+                        "Корякин Игорь",
+                        "Ковтонюк Полина",
+                    },
+                },
+                new EventDto()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Хакатон",
+                    Desciption = "Форум для разработчиков, во время которого специалисты из разных областей разработки программного обеспечения (программисты, дизайнеры, менеджеры) сообща решают какую-либо проблему на время.",
+                    Points = 5,
+                    EndTime = new DateTime(2022, 11, 12, 10, 30, 0),
+                    StartTime = new DateTime(2022, 11, 12, 18, 30, 0),
+                    EventType = EventType.Educational,
+                    OrganizersNames = new List<string>()
+                    {
+                        "Корякин Игорь",
+                        "Ковтонюк Полина",
+                    },
+                },
+                new EventDto()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Литературный вечер",
+                    Points = 5,
+                    EndTime = new DateTime(2023, 10, 1, 18, 30, 0),
+                    StartTime = new DateTime(2023, 11, 1, 20, 30, 0),
+                    EventType = EventType.Social,
+                    OrganizersNames = new List<string>()
+                    {
+                        "Корякин Игорь",
+                        "Ковтонюк Полина",
+                    },
+                },
+                new EventDto()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Хакатон",
+                    Points = 5,
+                    EndTime = new DateTime(2023, 1, 15, 10, 30, 0),
+                    StartTime = new DateTime(2023, 1, 15, 18, 30, 0),
+                    EventType = EventType.Educational,
+                    OrganizersNames = new List<string>()
+                    {
+                        "Корякин Игорь",
+                        "Ковтонюк Полина",
+                    },
+                },
+                new EventDto()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Спортивное мероприятие",
+                    Points = 10,
+                    EndTime = new DateTime(2023, 1, 15, 10, 30, 0),
+                    StartTime = new DateTime(2023, 1, 15, 15, 40, 0),
+                    EventType = EventType.Educational,
+                    OrganizersNames = new List<string>()
+                    {
+                        "Корякин Игорь",
+                        "Ковтонюк Полина",
+                    },
+                },
+                new EventDto()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Кино вечер",
+                    Points = 3,
+                    EndTime = new DateTime(2023, 1, 25, 18, 30, 0),
+                    StartTime = new DateTime(2023, 1, 25, 20, 40, 0),
+                    EventType = EventType.Social,
+                    OrganizersNames = new List<string>()
+                    {
+                        "Корякин Игорь",
+                        "Ковтонюк Полина",
+                    },
+                },
+                new EventDto()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Презентация проектов",
+                    Desciption = "Традиционная зимняя презентация проектов!",
+                    Points = 7,
+                    EndTime = new DateTime(2023, 1, 25, 9, 0, 0),
+                    StartTime = new DateTime(2023, 1, 25, 13, 30, 0),
+                    EventType = EventType.Educational,
+                    OrganizersNames = new List<string>()
+                    {
+                        "Корякин Игорь",
+                        "Ковтонюк Полина",
+                    },
+                },
             };
 
         private static List<FullShopItemInfoDto> shopItemsInfo = new List<FullShopItemInfoDto>
@@ -89,9 +200,21 @@ namespace RTF.Mobile.Utils.MockServices
                 ),
         };
 
+        private static List<UserDto> users = new List<UserDto>()
+        {
+            new UserDto()
+            {
+                Id = UserQrId,
+                LastName = "Комиссаров",
+                Name = "Алексей",
+            }
+        };
+
+        private static List<EventDto> userEvents = allEvents.Take(5).ToList();
+
         private static List<BasketProductDto> basketProducts = new List<BasketProductDto>();
 
-        private static int userBalance = events.Sum(ev => ev.Points);
+        private static int userBalance = userEvents.Sum(ev => ev.Points) + 137;
 
         private static List<OrderDto> orders = GetDefaultOrders();
 
@@ -101,6 +224,8 @@ namespace RTF.Mobile.Utils.MockServices
         private IUserStorage userStorage;
 
         public static Guid CurrentlyOpenedItemId { get; set; }
+
+        public static Guid CurrentlyOpenedEventId { get; set; }
 
         public MockApiService()
         {
@@ -119,7 +244,7 @@ namespace RTF.Mobile.Utils.MockServices
 
         public Task<IEnumerable<EventDto>> GetEventsAsync(CancellationToken cancellationToken = default)
         {
-            return Task.FromResult(events as IEnumerable<EventDto>);
+            return Task.FromResult(userEvents.OrderBy(ev => ev.StartTime) as IEnumerable<EventDto>);
         }
 
 
@@ -210,7 +335,7 @@ namespace RTF.Mobile.Utils.MockServices
             var existingBasketProduct = basketProducts.FirstOrDefault(bp => bp.BasketProductId == basketItemDto.ProductId);
             if (existingBasketProduct != null)
             {
-                existingBasketProduct.Count++;
+                existingBasketProduct.Count--;
             }
             return Task.CompletedTask;
         }
@@ -301,6 +426,42 @@ namespace RTF.Mobile.Utils.MockServices
         {
             var order = orders.FirstOrDefault(o => o.Id == orderId);
             order.Status = OrderStatus.Cancelled;
+            userBalance += order.OrderProducts.Sum(bp => bp.Count * bp.ProductPrice);
+            return Task.CompletedTask;
+        }
+
+        public Task<IEnumerable<EventShortInfoDto>> GetEventsByDateIntervalAsync(DateTime start, DateTime end)
+        {
+            return Task.FromResult(allEvents
+                .Where(ev => ev.StartTime > start && ev.EndTime < end)
+                .Select(ev => new EventShortInfoDto()
+                {
+                    Id = ev.Id,
+                    EndTime = ev.EndTime,
+                    StartTime = ev.StartTime,
+                    EventType = ev.EventType,
+                    Name = ev.Name,
+                }));
+        }
+
+        public Task<EventDto> GetFullInfoAboutEvent(Guid id)
+        {
+            return Task.FromResult(allEvents.FirstOrDefault(ev => ev.Id == id));
+        }
+
+        public Task<UserDto> GetUserInfoAsync(Guid id)
+        {
+            return Task.FromResult(users.FirstOrDefault(us => us.Id == id));
+        }
+
+        public Task AddUserToEvent(Guid userId, Guid eventId)
+        {
+            var @event = allEvents.FirstOrDefault(ev => ev.Id == eventId);
+            if (!userEvents.Contains(@event))
+            {
+                userEvents.Add(@event);
+                userBalance += @event.Points;
+            }
             return Task.CompletedTask;
         }
     }

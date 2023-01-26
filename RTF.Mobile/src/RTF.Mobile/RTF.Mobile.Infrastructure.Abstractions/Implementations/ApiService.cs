@@ -158,6 +158,26 @@ namespace RTF.Mobile.Infrastructure.Abstractions.Implementations
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<EventShortInfoDto>> GetEventsByDateIntervalAsync(DateTime start, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<EventDto> GetFullInfoAboutEvent(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<UserDto> GetUserInfoAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AddUserToEvent(Guid userId, Guid eventId)
+        {
+            throw new NotImplementedException();
+        }
+
         //private async Task RefreshToken(CancellationToken cancellationToken)
         //{
         //    var request = new RestRequest("auth", Method.Put);

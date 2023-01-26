@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RTF.Mobile.Views.Calendar.CalendarPage"
+             xmlns:schedule="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
+             xmlns:viewModel="clr-namespace:RTF.Mobile.ViewModels.Calendar" x:DataType="viewModel:CalendarViewModel">
+    <ContentPage.BindingContext>
+        <viewModel:CalendarViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding RefreshCommand}">
+            <StackLayout>
+                <schedule:SfSchedule
+                     MonthInlineAppointmentTapped="schedule_MonthInlineAppointmentTapped"
+                     VerticalOptions="FillAndExpand"
+                     x:Name="schedule"
+                     DataSource="{Binding Model.Events}"
+                     ScheduleView="MonthView"
+                     Locale="ru"
+                     VisibleDatesChangedEvent="schedule_VisibleDatesChangedEvent">
+                    <schedule:SfSchedule.MonthViewSettings>
+                        <schedule:MonthViewSettings
+                             ShowAgendaView="true">
+                        </schedule:MonthViewSettings>
+                    </schedule:SfSchedule.MonthViewSettings>
+                    <schedule:SfSchedule.AppointmentMapping>
+                        <schedule:ScheduleAppointmentMapping
+                            ColorMapping="Color"
+                            EndTimeMapping="EndTime"
+                            IsAllDayMapping="IsAllDay"
+                            StartTimeMapping="StartTime"
+                            IdMapping="Id"
+                            SubjectMapping="Name"/>
+                    </schedule:SfSchedule.AppointmentMapping>
+                </schedule:SfSchedule>
+            </StackLayout>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

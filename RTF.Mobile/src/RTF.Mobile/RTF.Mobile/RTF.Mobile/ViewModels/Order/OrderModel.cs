@@ -8,6 +8,6 @@ namespace RTF.Mobile.ViewModels.Order
 {
     public class OrderModel : EditableModel
     {
-        public ObservableCollection<OrderItemModel> Orders;
+        public ObservableCollection<OrderItemModel> Orders { get; set; }
     }
 }

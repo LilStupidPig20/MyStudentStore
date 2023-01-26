@@ -15,7 +15,7 @@ namespace RTF.Mobile.Droid.Resources.Renderers
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
-          base.OnElementChanged(e);
+            base.OnElementChanged(e);
             if (Control != null)
             {
                 var drawable = new GradientDrawable();

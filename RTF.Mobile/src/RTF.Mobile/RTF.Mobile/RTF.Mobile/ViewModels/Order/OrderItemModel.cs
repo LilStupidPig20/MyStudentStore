@@ -44,6 +44,7 @@ namespace RTF.Mobile.ViewModels.Order
             {
                 orderStatus = value;
                 UpdateIsCancellationPossible();
+                OnPropertyChanged(nameof(Status));
             }
         }
 
@@ -69,7 +70,7 @@ namespace RTF.Mobile.ViewModels.Order
         public void UpdateTotalValues()
         {
             TotalCount = Items.Sum(bp => bp.Count);
-            TotalPrice = Items.Sum(bp => bp.Count * TotalPrice);
+            TotalPrice = Items.Sum(bp => bp.Count * bp.ProductPrice);
         }
     }
 }

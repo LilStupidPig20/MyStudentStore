@@ -55,7 +55,6 @@ namespace RTF.Mobile.ViewModels.Shop
 
         private async void UpdateItemsCommandExecute()
         {
-            IsRefreshing = true;
             Model = new ShopModel();
             var shopItems =  await apiService.GetShopItems(CancellationToken.None);
             var shopPreviewItems = new List<ShopItemPreviewModel>();
@@ -66,8 +65,6 @@ namespace RTF.Mobile.ViewModels.Shop
             Model.Items = shopPreviewItems;
             Model.OrderedItems = GetOrderedItemsCount(await apiService.GetBasketAsync());
             Model.ItemsWithSearchFilter = new ObservableCollection<ShopItemPreviewModel>(Model.Items.Where(i => i.Name.Contains(Model.SearchText)));
-            SelectedItem = null;
-            IsRefreshing = false;
         }
 
         private async void RefreshItemsCommandExecute()

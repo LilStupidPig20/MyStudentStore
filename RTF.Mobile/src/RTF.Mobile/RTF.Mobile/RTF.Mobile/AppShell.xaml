@@ -7,6 +7,7 @@
        xmlns:shop="clr-namespace:RTF.Mobile.Views.Shop"
        xmlns:rules="clr-namespace:RTF.Mobile.Views.Rules"
        xmlns:orders="clr-namespace:RTF.Mobile.Views.Order"
+       xmlns:calendar="clr-namespace:RTF.Mobile.Views.Calendar"
        Title="RTF.Mobile"
        x:Class="RTF.Mobile.AppShell">
 
@@ -41,7 +42,7 @@
             <ShellContent Title="Магазин" Icon="shop.png" ContentTemplate="{DataTemplate shop:ShopPage}"/>
         </Tab>
         <Tab Title="Календарь" Icon="calendar.png" TabIndex="2">
-            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate calendar:CalendarPage}"/>
         </Tab>
         <Tab Title="Мой профиль" Icon="profile.png" TabIndex="3">
             <ShellContent ContentTemplate="{DataTemplate profile:ProfilePage}"/>

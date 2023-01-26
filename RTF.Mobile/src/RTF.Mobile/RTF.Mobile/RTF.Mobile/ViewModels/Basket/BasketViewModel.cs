@@ -73,6 +73,7 @@ namespace RTF.Mobile.ViewModels.Basket
             {
                 Model.BasketItemModels.Remove(basketModel);
             }
+            Model.IsAllItemsSelected = false;
             await Shell.Current.DisplayAlert("Оплата прошла успешно!", "Для продолжнения покупок, перейдите в магазин", "Ок");
         }
 

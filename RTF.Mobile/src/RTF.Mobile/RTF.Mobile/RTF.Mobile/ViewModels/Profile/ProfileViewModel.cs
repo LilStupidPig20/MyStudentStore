@@ -22,7 +22,13 @@ namespace RTF.Mobile.ViewModels.Profile
 
         public ObservableCollection<EventModel> Events { get; private set; }
 
-        public bool IsRefreshing { get; set; }
+        private bool isRefreshing;
+
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set => SetProperty(ref isRefreshing, value);
+        }
 
         public Command RefreshCommand { get; }
 
@@ -46,7 +52,7 @@ namespace RTF.Mobile.ViewModels.Profile
             }
             foreach (var @event in events)
             {
-                Events.Add(new EventModel(@event.Title, @event.Points, @event.EventType));
+                Events.Add(new EventModel(@event.Name, @event.Points, @event.EventType));
             }
             var points = await apiService.GetCurrentUserBalanceAsync();
             ProfileModel.Points = points;
@@ -58,7 +64,7 @@ namespace RTF.Mobile.ViewModels.Profile
             await apiService.LoginAsync(new LoginDto());
             var events = await apiService.GetEventsAsync();
             Events = new ObservableCollection<EventModel>(events.Select(ev => 
-                new EventModel(ev.Title, ev.Points, ev.EventType)));
+                new EventModel(ev.Name, ev.Points, ev.EventType)));
             var profile = await userStorage.GetSettingsAsync();
             var points = await apiService.GetCurrentUserBalanceAsync();
             ProfileModel = new ProfileInformationModel(profile.FirstName, profile.LastName, profile.Group, points);

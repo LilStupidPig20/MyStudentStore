@@ -1,20 +1,34 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace RTF.Mobile.Infrastructure.Abstractions.Models
 {
     public class EventDto
     {
-        public Guid Id { get; }
+        public Guid Id { get; set; }
 
-        public string Title { get; }
+        public string Name { get; set; }
 
-        public int Points { get; }
+        public string Desciption { get; set; }
 
-        public EventType EventType { get; }
+        public DateTime StartTime { get; set; }
+
+        public DateTime EndTime { get; set; }
+
+        public EventType EventType { get; set; }
+
+        public IEnumerable<string> OrganizersNames { get; set; }
+
+        public int Points { get; set; }
+
+        public EventDto()
+        {
+        }
 
         public EventDto(Guid id, string title, int points, EventType eventType)
         {
-            Title = title;
+            Name = title;
             Points = points;
             EventType = eventType;
         }
