@@ -1,0 +1,46 @@
+.wrapper {
+  box-sizing: border-box;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-left: 125px;
+  padding-right: 125px;
+  position: relative;
+  width: max-content;
+  font-family: 'Manrope';
+}
+
+.orders_title {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 44px;
+  color: #302E2E;
+  border-bottom: 1px solid #302E2E;
+  padding-bottom: 16px;
+  margin-bottom: 0;
+}
+
+.orders_title:last-child {
+  border-bottom: none;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+.loading{
+  margin-top: 50px;
+  text-align: center;
+  font-family: 'Manrope';
+  font-size: 30px;
+  font-weight: 700;
+}

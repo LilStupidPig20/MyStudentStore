@@ -8,18 +8,30 @@ import {showUserBalance} from "../../features/userBalanceSlice";
 import {showUser} from "../../features/authSlice";
 import {getCart, showCartInfo} from "../../features/cartSlice";
 import {ShopLayout} from "../../components/Layouts/ShopLayout/shopLayout";
+import OrderAnswer from "../../components/OrderAnswer/orderAnswer";
 
 export default function CartPage() {
     const balance = useSelector(showUserBalance);
     const dispatch = useDispatch();
     const cart = useSelector(showCartInfo);
     const [itemsIds, setItemsIds] = useState([]);
+    const [itemsCount, setItemsCount] = useState(0);
     const token = useSelector(showUser).token;
     let [ordered, setOrdered] = useState(false);
 
     useEffect(() => {
         dispatch(getCart(token))
     }, [dispatch])
+
+    useEffect(() => {
+        let count = 0;
+        if(cart.basketProducts !== null && cart.basketProducts !== undefined) {
+            cart?.basketProducts.map((item) => {
+                return count += item.count
+            })
+        }
+        setItemsCount(count);
+    }, [cart])
 
     console.log(cart);
 
@@ -33,7 +45,7 @@ export default function CartPage() {
             body: JSON.stringify({
                 basketProductsIds: itemsIds
             })
-        })
+        }).then(res => res.status === 200 ? setOrdered(true) : '')
     }
 
     useEffect(() => {
@@ -56,7 +68,7 @@ export default function CartPage() {
             ?
             <div className={styles.emptyCart}>
                 <div className={styles.title}>В корзине пока ничего нет</div>
-                <p className={styles.subTitle}>Перейдите в <Link to='/store' className={styles.link}>магазин</Link>, чтобы купить мерч</p>
+                <p className={styles.subTitle}>Перейдите в <Link to='/shop' className={styles.link}>магазин</Link>, чтобы купить мерч</p>
             </div>
             :
             <div className={styles.wrapper}>
@@ -86,7 +98,7 @@ export default function CartPage() {
                             <span className={styles.headerTitle}>Итого</span>
                             <span className={styles.sumCoins}>{cart?.totalPrice} баллов</span>
                         </div>
-                        <p className={styles.counter}>Товары, {cart?.basketProducts?.length} шт.</p>
+                        <p className={styles.counter}>Товары, {itemsCount} шт.</p>
                     </div>
 
                     <div className={styles.bottomBlock}>
@@ -100,8 +112,11 @@ export default function CartPage() {
             {
                 ordered
                     ?
-                    // <OrderAnswer setActive={setOrdered} setCart={setCart} orderID={orderID} products={cart}/>
-                    ''
+                    <OrderAnswer
+                        setActive={setOrdered}
+                        products={cart.basketProducts}
+                        sumPrice={cart.totalPrice}
+                    />
                     :
                     null
             }

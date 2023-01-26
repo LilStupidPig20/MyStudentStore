@@ -7,6 +7,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media(max-width: 1600px) {
+  body{ zoom: 80%}
+  .user-layout__side-menu, .shopPage__back-img, .calendarPage__back-img, .admin-layout__side-menu {
+    height: 130vh !important;
+  }
+
+  .react-datepicker__portal, .create-event__portal, .eventInfo__portal {
+    width: calc(125.2vw - 511px) !important;
+    height: 130vh !important;
+  }
+}
+
 *, *:before, *:after {
   box-sizing: border-box;
 }

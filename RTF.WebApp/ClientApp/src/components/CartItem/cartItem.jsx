@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './cartItem.module.css'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {showUser} from "../../features/authSlice";
 import {useNavigate} from "react-router-dom";
+import {getCart} from "../../features/cartSlice";
 
 export default function CartItem({
                                      img,
@@ -17,6 +18,15 @@ export default function CartItem({
     // let [countIn, setCountIn] = useState(0);
     const token = useSelector(showUser).token;
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const sizesObj = {
+        0: 'XsSize',
+        1: 'SSize',
+        2: 'MSize',
+        3: 'LSize',
+        4: 'XlSize',
+        5: 'XllSize'
+    }
     // useEffect(() => {
     //     setCountIn(count);
     // }, [count])
@@ -28,11 +38,9 @@ export default function CartItem({
                 'Authorization': `Bearer ${token}`,
                 'Content-Type' : 'application/json'
             },
-            body: JSON.stringify({
-                productId: storeId,
-            })
+            body: JSON.stringify({productId: basketId})
         })
-        navigate(0);
+        dispatch(getCart(token))
     }
 
     const decrementCount = () => {
@@ -42,9 +50,9 @@ export default function CartItem({
                 'Authorization': `Bearer ${token}`,
                 'Content-Type' : 'application/json'
             },
-            body: JSON.stringify({productId: storeId})
+            body: JSON.stringify({productId: basketId})
         })
-        navigate(0);
+        dispatch(getCart(token))
     }
 
     const incrementCount = () => {
@@ -54,9 +62,9 @@ export default function CartItem({
                 'Authorization': `Bearer ${token}`,
                 'Content-Type' : 'application/json'
             },
-            body: JSON.stringify({productId: storeId})
+            body: JSON.stringify({productId: basketId})
         })
-        navigate(0)
+        dispatch(getCart(token))
     }
 
     return (
@@ -81,13 +89,13 @@ export default function CartItem({
                             </svg>
                         </div>
                     </div>
-                    {/*{*/}
-                    {/*    size !== null*/}
-                    {/*        ?*/}
-                    {/*        <p className={styles.size}>Размер: {size.toUpperCase()}</p>*/}
-                    {/*        :*/}
-                    {/*        null*/}
-                    {/*}*/}
+                    {
+                        size !== null && size !== 0
+                            ?
+                            <p className={styles.size}>Размер: {sizesObj[size].slice(0,-4)}</p>
+                            :
+                            null
+                    }
                     <span className={styles.price}>{price * count} баллов</span>
 
                 </div>

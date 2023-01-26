@@ -126,13 +126,13 @@
 .popup {
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, .4);
+  background: rgba(76, 44, 130, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 13%;
 }
 
 .container {
@@ -144,6 +144,7 @@
 }
 
 .title {
+  font-family: 'Manrope';
   font-size: 30px;
 }
 
@@ -159,8 +160,8 @@
 .popupButton {
   position: static;
   margin-top: 20px;
-  background-color: #00D29D;
-  color: #000;
+  background: #4C2C82;
+  color: #fff;
   cursor: pointer;
   border: none;
   border-radius: 10px;
@@ -168,10 +169,11 @@
   font-family: inherit;
   font-size: 22px;
   font-weight: 400;
+  font-family: 'Manrope';
 }
 
 .link {
-  color: #00D29D;
+  color: #4C2C82;
 }
 
 .navigatePrev {

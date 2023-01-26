@@ -1,16 +1,19 @@
 import {Link, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import styles from './shopItemPage.module.scss';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {showUser} from "../../features/authSlice";
-import right_back from "../../images/shop/back-img.png";
 import {ShopLayout} from "../../components/Layouts/ShopLayout/shopLayout";
+import OrderAnswer from "../../components/OrderAnswer/orderAnswer";
+import {getUserBalanceAsync} from "../../features/userBalanceSlice";
 
 export const ShopItemPage = () => {
     const { itemId } = useParams();
     const authData = useSelector(showUser);
+    const dispatch = useDispatch();
     const [itemInfo, setItemInfo] = useState({});
     const [inCart, setInCart] = useState(false);
+    const [bought, setBought] = useState(false);
     const [selectedSize, setSelectedSize] = useState(0);
     const [sizes, setSizes] = useState([]);
     const sizesObj = {
@@ -31,12 +34,12 @@ export const ShopItemPage = () => {
     console.log(selectedSize);
 
     useEffect(() => {
-            const arr = document.getElementsByClassName('sizeButton');
-            for(let elem of arr) {
-                console.log(elem);
-            }
-        } ,
-        [selectedSize])
+        const arr = document.getElementsByClassName('sizeButton');
+        for(let elem of arr) {
+            console.log(elem);
+        }
+    } ,
+    [selectedSize])
 
     useEffect(() => {
         if(itemInfo.sizesToAvailable !== null && itemInfo.sizesToAvailable !== undefined) {
@@ -58,36 +61,24 @@ export const ShopItemPage = () => {
                 count: 1,
                 size: selectedSize
             })
-        }).then(r => console.log(r))
+        }).then(res => res.status === 200 ? setInCart(true) : '')
     }
 
-    // const makeInOneClickOrder = async () => {
-    //     await fetch('/api/basket/add', {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Authorization': `Bearer ${authData.token}`
-    //         },
-    //         body: JSON.stringify({
-    //             productId: itemId,
-    //             count: 1,
-    //             size: selectedSize
-    //         })
-    //     })
-    //
-    //     await fetch('/api/basket/get')
-    //
-    //     await fetch('/api/store/makeAnOrder', {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Authorization': `Bearer ${authData.token}`
-    //         },
-    //         body: JSON.stringify({
-    //             basketProductsIds: [itemId]
-    //         })
-    //     })
-    // }
+    const makeInOneClickOrder = async () => {
+        fetch('/api/store/makeOrderRightNow', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authData.token}`
+            },
+            body: JSON.stringify({
+                storeProductId: itemId,
+                count: 1,
+                size: selectedSize
+            })
+        }).then(res => res.status === 200 ? setBought(true) : '')
+        dispatch(getUserBalanceAsync(authData.token))
+    }
 
     return (
         <div style={{marginRight: '100px', paddingRight: '125px', paddingLeft: '125px'}}>
@@ -139,15 +130,19 @@ export const ShopItemPage = () => {
                                 :
                                 null
                         }
-                        <div className={styles.actionButtons}>
-                            <button className={styles.addButton} onClick={addToCart}>
-                                В корзину
-                            </button>
+                        {window.location.pathname.includes('/admin/shop') ? ''
+                            :
+                            <div className={styles.actionButtons}>
+                                <button className={styles.addButton} onClick={addToCart}>
+                                    В корзину
+                                </button>
 
-                            <button className={styles.buyButton}>
-                                Купить сейчас
-                            </button>
-                        </div>
+                                <button className={styles.buyButton} onClick={makeInOneClickOrder}>
+                                    Купить сейчас
+                                </button>
+                            </div>
+                        }
+
                     </div>
                     <div className={styles.mainBlock}>
                         <div className={styles.descr}>
@@ -169,6 +164,23 @@ export const ShopItemPage = () => {
                             </div>
                         </div>
                     </div>
+                    :
+                    null
+            }
+            {
+                bought
+                    ?
+                    <OrderAnswer
+                        setActive={setBought}
+                        products={[{
+                            img: itemInfo.image,
+                            title: itemInfo.name,
+                            count: 1,
+                            price: itemInfo.price
+                        }]}
+                        // orderID={orderId}
+                        sumPrice={itemInfo.price}
+                    />
                     :
                     null
             }

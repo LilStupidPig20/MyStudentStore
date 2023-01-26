@@ -55,6 +55,9 @@ export const CalendarPage = memo(() => {
     if (startDate !== null && endDate !== null)
         dateWidth = '1150px'
     else dateWidth = '800px';
+    if(window.location.pathname === '/user/calendar') {
+        dateWidth = '800px';
+    }
 
     useEffect(() => {
         const addDay = function(str) {

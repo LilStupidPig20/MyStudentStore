@@ -14,6 +14,15 @@ export const ProductItem = ({
             {
                 ! availability
                     ?
+                    window.location.pathname === '/admin/shop' ?
+                        <Link to={`/admin/shop/${id}`} style={{ textDecoration: 'none' }}>
+                            <div className='productItem'>
+                                <img src={imgSrc} alt="" className='productItem__image' />
+                                <div className='productItem__title'>{title}</div>
+                                <div className='productItem__price'>Цена: {price} </div>
+                            </div>
+                        </Link>
+                        :
                     <Link to={`/shop/${id}`} style={{ textDecoration: 'none' }}>
                         <div className='productItem'>
                             <img src={imgSrc} alt="" className='productItem__image' />
