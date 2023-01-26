@@ -1,0 +1,205 @@
+.profile {
+    overflow-x: hidden;
+
+    &__pic-top {
+        margin-bottom: 16px;
+    }
+
+    &__cont {
+        padding-left: 47px;
+        padding-right: 76px;
+    }
+
+    &__user {
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+
+        &-info {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            background: rgba(21, 182, 233, 0.15);
+            border-radius: 25px;
+            padding: 46px 68px;
+            margin-bottom: 62px;
+        }
+    
+        &-greetings {
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 40px;
+            line-height: 48px;
+            color: #4C2C82;
+        }
+    
+        &-name {
+            color: #000000;
+        }
+    
+        &-group {
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 32px;
+            line-height: 38px;
+            color: #000000;
+        }
+    
+        &-balance {
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 30px;
+            color: #000000;
+            background: #FFFFFF;
+            box-shadow: 4px 4px 10px rgba(76, 44, 130, 0.45);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            justify-content: center;
+            padding: 26px 31px;
+
+            &-count {
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 30px;
+                color: #000000;
+            }
+        }
+
+        &-qr {
+            &-cont {
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 30px;
+                line-height: 38px;
+                color: #000000;
+                display: flex;
+                gap: 12px;
+                background: #FFFFFF;
+                box-shadow: 4px 4px 10px rgba(76, 44, 130, 0.45);
+                border-radius: 20px;
+                padding: 23px 22px;
+            }
+
+            &-text {
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                color: #666666;
+                width: 245px;
+                padding-left: 26px;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &__attended-meetings {
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 500;
+        color: #000000;
+        max-height: 400px;
+
+        &__title {
+            font-family: 'Manrope';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 44px;
+            color: #4C2C82;
+            padding-left: 30px;
+            margin-bottom: 16px;
+        }
+
+        &__table {
+            background: #EDE3FF;
+            border-radius: 25px;
+            width: 100%;
+                height: 100%;
+                border-collapse: collapse;
+
+            & table {
+                
+            }
+
+            & th {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                font-family: 'Manrope';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 28px;
+                line-height: 38px;
+                color: #000000;
+
+                &:first-of-type {
+                    width: 27px;
+                }
+            }
+        }
+
+        &__table-body {
+            height: 32vh;
+            overflow-y: auto;
+
+            & table tbody td {
+                &:first-of-type {
+                    width: 27px;
+                    padding-left: 0;
+                    border: none;
+                }
+            }
+
+            &-green {
+                background: #B7FFBA;
+                border-top-left-radius: 25px;
+                border-bottom-left-radius: 25px;
+            }
+
+            &-purple {
+                background: #9FA3FF;
+                border-top-left-radius: 25px;
+                border-bottom-left-radius: 25px;
+            }
+        }
+
+        &__table-body table {
+            width: 100%;
+            border-collapse: collapse; 
+            height: 100%;
+
+            & th {
+                font-size: 24px;
+                line-height: 29px;
+                font-weight: 500;
+                text-align: left;
+                padding-left: 40px;
+                padding-bottom: 16px;
+            }
+
+            & tbody tr {
+                &:last-of-type td {
+                    border: none;
+                }
+            }
+
+            & tbody td {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 40px;
+                font-size: 28px;
+                line-height: 38px;
+                font-weight: 400;
+                border-bottom: 1px solid #C7C7C7;
+            }
+        }
+    }
+    
+}

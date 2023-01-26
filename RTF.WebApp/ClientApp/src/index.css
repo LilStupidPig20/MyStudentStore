@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media(max-width: 1600px) {
+  body{ zoom: 80%}
+  .user-layout__side-menu, .shopPage__back-img, .calendarPage__back-img, .admin-layout__side-menu {
+    height: 130vh !important;
+  }
+
+  .react-datepicker__portal, .create-event__portal, .eventInfo__portal {
+    width: calc(125.2vw - 511px) !important;
+    height: 130vh !important;
+  }
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f9f9fd;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4C2C82;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  background-color: #f9f9fd;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

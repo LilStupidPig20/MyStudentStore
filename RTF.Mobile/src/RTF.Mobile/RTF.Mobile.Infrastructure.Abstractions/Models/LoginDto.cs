@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RTF.Mobile.Infrastructure.Abstractions.Models
+﻿namespace RTF.Mobile.Infrastructure.Abstractions.Models
 {
-    internal class LoginDto
+    public class LoginDto
     {
+        public string Email { get; }
+
+        public string Password { get; }
+
+        public bool RememberMe { get; }
+
+        public LoginDto(string email, string password, bool rememberMe)
+        {
+            Email = email;
+            Password = password;
+            RememberMe = rememberMe;
+        }
     }
 }

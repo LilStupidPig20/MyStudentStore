@@ -1,4 +1,5 @@
-﻿using RTF.Mobile.ViewModels.Register;
+﻿using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
+using RTF.Mobile.ViewModels.Register;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,8 @@ namespace RTF.Mobile.Views.Register
         public RegisterPage()
         {
             InitializeComponent();
-            this.BindingContext = new RegisterViewModel();
+            var apiService = DependencyService.Get<IApiService>();
+            this.BindingContext = new RegisterViewModel(apiService);
         }
     }
 }

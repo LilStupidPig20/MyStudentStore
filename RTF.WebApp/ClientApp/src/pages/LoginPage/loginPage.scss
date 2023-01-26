@@ -1,0 +1,99 @@
+.login {
+    display: flex;
+    padding-left: 7.9%;
+
+    &__halfCont {
+        &:first-of-type {
+            padding-right: 60px;
+        }
+    }
+
+    &__title {
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 100px;
+        line-height: 137px;
+        color: #4C2C82;
+        margin-top: 40px;
+        margin-bottom: 64px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: url(../../images/login/login-cont-back.svg) no-repeat 67px 0;
+        background-size: 80%;
+    }
+
+    &__formTitle {
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 38px;
+        line-height: 52px;
+        color: #302E2E;
+        margin-bottom: 40px;
+    }
+
+    &__input {
+        width: 49%;
+        border: 2px solid #15B6E9;
+        border-radius: 9px;
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: 0.07em;
+        color: #302E2E;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 14px;
+
+        &:first-of-type {
+            margin-bottom: 40px;
+        }
+    }
+
+    &__wrong {
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.07em;
+        color: #FF5D5D;
+        margin-top: 7px;
+    }
+
+    &__button {
+        background: #4C2C82;
+        border-radius: 15px;
+        border: none;
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 27px;
+        color: #FFFFFF;
+        padding: 10px 35px;
+        margin-top: 40px;
+        cursor: pointer;
+    }
+
+    &__pic-bottom {
+        position: relative;
+        overflow: hidden;
+        height: 250px;
+
+        & img {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            object-fit: cover;
+        }
+    }
+}

@@ -1,0 +1,126 @@
+.user-layout {
+  display: grid;
+  grid-template-columns: 511px 1fr;
+  
+
+  &__side-menu {
+    position: relative;
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background: #FFFFFF;
+    box-shadow: 10px 6px 30px rgba(21, 182, 233, 0.4);
+    height: 100vh;
+    z-index: 2;
+
+    &-cont {
+      padding-left: 66px;
+      padding-right: 66px;
+    }
+  }
+
+  &__logo-cont {
+    display: flex;
+    align-items: center;
+    margin-bottom: 55px;
+    margin-top: 41px;
+  }
+  &__logo {
+    padding-right: 26px;
+  }
+
+  &__shop-name {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 37.6393px;
+    line-height: 45px;
+    color: #4C2C82;
+  }
+
+  &__user {
+    display: flex;
+    margin-bottom: 26px;
+
+    &-logo {
+      background: #CFF1FC;
+      border-radius: 10px;
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 64.5px;
+      line-height: 77px;
+      color: #FFFFFF;
+      margin-right: 32px;
+      padding: 2px 17px;
+    }
+    &-name {
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 38px;
+      color: #000000;
+    }
+  }
+
+  &__balance {
+    background: #FFFFFF;
+    border: 2px solid #15B6E9;
+    border-radius: 10px;
+    display: flex;
+    width: fit-content;
+    margin-bottom: 24px;
+
+    &-name, &-count {
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 29px;
+      color: #000000;
+      padding: 12px 22px;
+    }
+
+    &-name {
+      border-right: 2px solid #15B6E9;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+
+    &-link {
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 38px;
+      color: #000000;
+      text-decoration: none;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      padding-left: 66px;
+      padding-right: 66px;
+      &.active {
+        box-shadow: inset 0px -5px 16px rgba(21, 182, 233, 0.3);
+      }
+    }
+  }
+
+  &__exit {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 38px;
+    color: #000000;
+    margin-top: 20%;
+    cursor: pointer;
+    padding-left: 66px;
+    padding-right: 66px;
+  }
+}

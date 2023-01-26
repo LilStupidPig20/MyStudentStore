@@ -1,0 +1,30 @@
+.nonAuthLayout {
+    position: relative;
+    
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding: 13px 158px 11px 54px;
+        border-bottom: 3px solid #15B6E9;
+    }
+
+    &__cont {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+
+        & img {
+            width: 59px;
+        }
+    }
+    
+    &__link {
+        text-decoration: none;
+        font-family: 'Manrope';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 30px;
+        color: #000000;
+    }
+}

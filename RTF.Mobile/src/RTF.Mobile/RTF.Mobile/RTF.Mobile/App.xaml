@@ -14,11 +14,17 @@
             <Color x:Key="PrimaryBold">#000000</Color>
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="PrimaryButton">#4C2C82</Color>
+            <Color x:Key="LightPrimaryButton">#EDE3FF</Color>
+            <Color x:Key="Social">#B7FFBA</Color>
+            <Color x:Key="Educational">#9FA3FF</Color>
             <Color x:Key="DisabledColor">#332196F3</Color>
             <Color x:Key="PrimaryBackground">#15B6E9</Color>
             <Color x:Key="ContentBackground">#FFFFFF</Color>
             <Color x:Key="LightPrimaryBackground">#00b7eb</Color>
+            <Color x:Key="SecondaryBorder">#C7C7C7</Color>
             <Color x:Key="SecondaryBackground">#666666</Color>
+            <SolidColorBrush x:Key="SocialBrush" Color="{StaticResource Social}"/>
+            <SolidColorBrush x:Key="EducationalBrush" Color="{StaticResource Educational}"/>
 
             <Style x:Key="BaseLabel" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource PrimaryBold}"/>

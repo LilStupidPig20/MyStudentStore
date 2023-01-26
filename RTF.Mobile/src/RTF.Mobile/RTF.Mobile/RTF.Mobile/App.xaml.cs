@@ -1,9 +1,9 @@
-﻿using RTF.Mobile.Services;
-using RTF.Mobile.Views;
-using RTF.Mobile.Views.Login;
+﻿using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
+using RTF.Mobile.Services;
 using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using RTF.Mobile.Infrastructure.Abstractions.Implementations;
+using RTF.Mobile.Utils.MockServices;
 
 namespace RTF.Mobile
 {
@@ -13,7 +13,8 @@ namespace RTF.Mobile
         public App()
         {
             InitializeComponent();
-
+            DependencyService.Register<IUserStorage, UserStorage>();
+            DependencyService.Register<IApiService, MockApiService>();
             DependencyService.Register<MockDataStore>();
             this.BindingContext = new MockDataStore();
             MainPage = new AppShell();

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
+using RTF.Mobile.ViewModels.Profile;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +11,9 @@ namespace RTF.Mobile.Views.Profile
         public ProfilePage()
         {
             InitializeComponent();
+            var apiService = DependencyService.Get<IApiService>();
+            var userStorage = DependencyService.Get<IUserStorage>();
+            BindingContext = new ProfileViewModel(apiService, userStorage);
         }
     }
 }

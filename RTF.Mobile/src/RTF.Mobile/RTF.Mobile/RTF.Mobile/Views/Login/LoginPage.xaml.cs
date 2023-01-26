@@ -1,4 +1,5 @@
-﻿using RTF.Mobile.ViewModels.Login;
+﻿using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
+using RTF.Mobile.ViewModels.Login;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,8 @@ namespace RTF.Mobile.Views.Login
         public LoginPage()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+            var apiService = DependencyService.Get<IApiService>();
+            this.BindingContext = new LoginViewModel(apiService);
         }
     }
 }
