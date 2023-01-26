@@ -7,6 +7,8 @@ public class OrderFrame
     public Guid OrderId { get; set; }
 
     public OrderStatus Status { get; set; }
-    
+
+    public DateTime TimeOfOrder { get; set; }
+
     public IReadOnlyList<OrderProductFrame> OrderProducts { get; set; }
 }

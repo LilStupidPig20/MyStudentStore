@@ -10,4 +10,7 @@ public class ProductFrame
     public bool NotAvailable { get; set; }
     
     public string Image { get; set; }
+    
+    // По факту служебная инфа, нужная админу, но за день до защиты влепил сюда
+    public int StorageQuantity { get; set; }
 }

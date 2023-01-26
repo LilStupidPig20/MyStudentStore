@@ -4,5 +4,5 @@ namespace RTF.CQS.Commands;
 
 public class IncrementProductInBasketCommand : Command
 {
-    public Guid ProductId { get; set; }
+    public Guid BasketProductId { get; set; }
 }

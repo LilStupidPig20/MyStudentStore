@@ -11,7 +11,7 @@ public interface IBasketService
 
     Task RemoveProductFromBasket(OrderProductDto orderProductDto, Guid studentId, CancellationToken ct);
 
-    Task IncrementProductCount(Guid productId, Guid studentId, CancellationToken ct);
+    Task IncrementProductCount(Guid basketProductId, Guid studentId, CancellationToken ct);
 
-    Task DecrementProductCount(Guid productId, Guid studentId, CancellationToken ct);
+    Task DecrementProductCount(Guid basketProductId, Guid studentId, CancellationToken ct);
 }

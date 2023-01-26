@@ -17,7 +17,9 @@ public class CqsMappingProfile : Profile
 
         CreateMap<StoreProduct, ProductFrame>()
             .ForMember(x => x.NotAvailable, x =>
-                x.MapFrom(y => y.TotalQuantity <= 0));
+                x.MapFrom(y => y.TotalQuantity <= 0))
+            .ForMember(x => x.StorageQuantity, x =>
+                x.MapFrom(y => y.TotalQuantity));
 
         CreateMap<Order, AdminOrderFrame>()
             .ForMember(x => x.OrderId, x =>
@@ -25,6 +27,8 @@ public class CqsMappingProfile : Profile
             .ForMember(x => x.StudentFullName, x =>
                 x.MapFrom(y => $"{y.Student.LastName} {y.Student.FirstName}"))
             .ForMember(x => x.OrderProducts, x =>
-                x.MapFrom(y => string.Join(", ", y.OrderProducts.Select(z => z.Product.Name))));
+                x.MapFrom(y => string.Join(", ", y.OrderProducts.Select(z => z.Product.Name))))
+            .ForMember(x => x.TimeOfOrder, x =>
+                x.MapFrom(y => y.PurchaseTime));
     }
 }
