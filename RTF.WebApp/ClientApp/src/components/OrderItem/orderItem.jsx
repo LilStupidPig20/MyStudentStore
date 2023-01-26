@@ -95,7 +95,7 @@ export default function OrderItem({
                                 counter += 1;
                                 return (
                                     <div className={styles.productItem} key={product.productId}>
-                                        <img src={product.imageLink} width={137} height={187} alt="" />
+                                        <img src={product.imageUrl} width={137} height={187} alt="" />
                                         <p className={styles.title}>{product.name}</p>
                                         {
                                             product.size !== null && product.size !== 0
@@ -148,7 +148,7 @@ export default function OrderItem({
                                     products.map(product => {
                                         return (
                                             <div className={styles.productItem} key={product.productId}>
-                                                <img src={product.imageLink} width={137} height={187} alt="" />
+                                                <img src={product.imageUrl} width={137} height={187} alt="" />
                                                 <p className={styles.title}>{product.name}</p>
                                                 {
                                                     product.size !== null && product.size !== 0
@@ -165,7 +165,7 @@ export default function OrderItem({
                                 }
                             </div>
 
-                            <h2>Сумма заказа: {totalPrice} UC</h2>
+                            <h2>Сумма заказа: {totalPrice} б.</h2>
                             <p>Вы действительно хотите отменить заказ?</p>
                             <div>
                                 <textarea

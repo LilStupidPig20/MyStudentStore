@@ -5,6 +5,7 @@
     flex-direction: column;
     transition: 0.2s ease-in-out;
     padding: 10px;
+    min-height: 430px;
 
     &:hover {
         transform: translateY(-30px);
@@ -14,7 +15,8 @@
 
     &__image{
         border-radius: 20px;
-        margin-bottom: 10px;
+        margin-bottom: auto;
+        margin-top: auto;
     }
 
     &__title {

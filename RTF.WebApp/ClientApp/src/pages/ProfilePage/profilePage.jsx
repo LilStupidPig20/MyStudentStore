@@ -7,6 +7,7 @@ import {showUser} from "../../features/authSlice";
 import {setPageName} from "../../features/pageNameSlice";
 import {showUserBalance} from "../../features/userBalanceSlice";
 import QRCode from "react-qr-code";
+import {ProfileEvent} from "../../components/ProfileEvent/profileEvent";
 
 export const ProfilePage = memo(() => {
     const profileData = useSelector(showUser);
@@ -14,6 +15,7 @@ export const ProfilePage = memo(() => {
     const dispatch = useDispatch();
     const [qrCodeValue, setQrCodeValue] = useState('');
     const [isClicked, setClicked] = useState(false);
+    const [visitedEvents, setVisitedEvents] = useState([])
     useEffect(()=> {
         dispatch(setPageName('profile'));
     },[dispatch])
@@ -22,7 +24,17 @@ export const ProfilePage = memo(() => {
         fetch('/api/qrCode/getActualQrCodeId')
             .then(res => res.json())
             .then(value => setQrCodeValue(value))
+
+        fetch('/api/events/getVisited', {
+            headers: {
+                'Authentication': `Bearer ${profileData.token}`
+            }
+        })
+            .then(res => res.json())
+            .then(items => setVisitedEvents(items))
     }, [])
+
+    console.log(visitedEvents)
     let typeOfEvent;
     const eventClasses = {
         green: 'profile__attended-meetings__table-body-green', 
@@ -57,7 +69,7 @@ export const ProfilePage = memo(() => {
                         <div className='profile__user-qr-cont' style={isClicked ? {flexDirection: 'column'} : {}}>
                             <div style={{display: 'flex', gap: '12px',}}>
                                 Мой QR-код
-                                <div>
+                                <div style={{cursor: 'pointer'}}>
                                     <svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={()=>setClicked(!isClicked)}>
                                         <path d="M2 2L9.5 10L17 2" stroke="black" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
@@ -79,56 +91,23 @@ export const ProfilePage = memo(() => {
                             <tr>
                                 <th></th>
                                 <th style={{textAlign: 'left', paddingLeft: '40px'}}>Название</th>
-                                <th style={{textAlign: 'left', width: '230px'}}>Дата</th>
-                                <th style={{textAlign: 'left', width: '337px', paddingLeft: '28px'}}>Баллы</th>
+                                <th style={{textAlign: 'left', width: '316px', paddingLeft: '24px'}}>Дата</th>
+                                <th style={{textAlign: 'left', width: '292px', paddingLeft: '28px'}}>Баллы</th>
                             </tr>
                         </thead>
                     </table>
                     <div className='profile__attended-meetings__table-body'>
                         <table>
                             <tbody>
-                                <tr>
-                                    <td className={eventClasses.green}></td>
-                                    <td>Неделя первокурсника</td>
-                                    <td>20.12.22</td>
-                                    <td>5 баллов</td>
-                                </tr>
-                                <tr>
-                                    <td className={eventClasses.green}></td>
-                                    <td>Караоке</td>
-                                    <td>20.12.22</td>
-                                    <td>5.5 баллов</td>
-                                </tr>
-                                <tr>
-                                    <td className={eventClasses.purple}></td>
-                                    <td>Хакатон</td>
-                                    <td>23.12.22</td>
-                                    <td>4 балла</td>
-                                </tr>
-                                <tr>
-                                    <td className={eventClasses.green}></td>
-                                    <td>Литературный вечер</td>
-                                    <td>24.12.22</td>
-                                    <td>2 балла</td>
-                                </tr>
-                                <tr>
-                                    <td className={eventClasses.purple}></td>
-                                    <td>Хакатон</td>
-                                    <td>25.12.22</td>
-                                    <td>2 балла</td>
-                                </tr>
-                                <tr>
-                                    <td className={eventClasses.green}></td>
-                                    <td>Концерт</td>
-                                    <td>28.12.22</td>
-                                    <td>2 балла</td>
-                                </tr>
-                                <tr>
-                                    <td className={eventClasses.green}></td>
-                                    <td>Киноклуб «35мм»</td>
-                                    <td>28.12.22</td>
-                                    <td>2 балла</td>
-                                </tr>
+                            {visitedEvents?.map((event, index) => {
+                                return <ProfileEvent
+                                    key={index}
+                                    name={event.name}
+                                    date={event.startDateTime}
+                                    eventType={event.eventType}
+                                    coins={event.coins}
+                                />
+                            })}
                             </tbody>
                         </table>
                     </div>

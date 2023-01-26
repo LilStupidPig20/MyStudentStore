@@ -25,11 +25,16 @@ export default function OrderAnswer({
                 <div className={styles.products}>
                     {
                         products.map((product) => {
+                            console.log(product)
                             if (counter < 4) {
                                 counter += 1;
                                 return (
                                     <div className={styles.productItem}>
-                                        <img src={product.img} width={137} height={187} alt="" />
+
+                                        {window.location.pathname === '/shop/cart' ?
+                                            <img src={product.imageUrl} width={137} height={187} alt="" />
+                                            :
+                                            <img src={product.img} width={137} height={187} alt="" />}
                                         <p className={styles.prodTitle}>{product.title}</p>
                                         <p className={styles.prodCount}>Кол-во {product.count} шт.</p>
                                         <p className={styles.price}>Цена: {window.location.pathname === '/shop/cart' ? product.productPrice : product.price} баллов</p>

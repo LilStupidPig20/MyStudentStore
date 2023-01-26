@@ -38,9 +38,11 @@ export default function CartItem({
                 'Authorization': `Bearer ${token}`,
                 'Content-Type' : 'application/json'
             },
-            body: JSON.stringify({productId: basketId})
+            body: JSON.stringify({productId: storeId, size: size})
         })
-        dispatch(getCart(token))
+        setTimeout(()=>{
+            dispatch(getCart(token))
+        },200)
     }
 
     const decrementCount = () => {
@@ -50,9 +52,11 @@ export default function CartItem({
                 'Authorization': `Bearer ${token}`,
                 'Content-Type' : 'application/json'
             },
-            body: JSON.stringify({productId: basketId})
+            body: JSON.stringify({basketProductId: basketId})
         })
-        dispatch(getCart(token))
+        setTimeout(()=>{
+            dispatch(getCart(token))
+        },200)
     }
 
     const incrementCount = () => {
@@ -62,9 +66,11 @@ export default function CartItem({
                 'Authorization': `Bearer ${token}`,
                 'Content-Type' : 'application/json'
             },
-            body: JSON.stringify({productId: basketId})
+            body: JSON.stringify({basketProductId: basketId})
         })
-        dispatch(getCart(token))
+        setTimeout(()=>{
+            dispatch(getCart(token))
+        },200)
     }
 
     return (

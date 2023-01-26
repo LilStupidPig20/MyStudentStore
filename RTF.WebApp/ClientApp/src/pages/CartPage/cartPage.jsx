@@ -56,7 +56,6 @@ export default function CartPage() {
             })
         }
         setItemsIds(ids);
-        console.log(ids)
     }, [cart.basketProducts])
 
     return (

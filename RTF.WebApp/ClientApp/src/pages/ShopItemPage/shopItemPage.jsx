@@ -30,9 +30,6 @@ export const ShopItemPage = () => {
             .then(items => setItemInfo(items))
     },[])
 
-    console.log(itemInfo)
-    console.log(selectedSize);
-
     useEffect(() => {
         const arr = document.getElementsByClassName('sizeButton');
         for(let elem of arr) {
@@ -45,8 +42,6 @@ export const ShopItemPage = () => {
         if(itemInfo.sizesToAvailable !== null && itemInfo.sizesToAvailable !== undefined) {
             setSizes(Object.entries(itemInfo.sizesToAvailable))
         }
-
-        console.log(sizes);
     }, [itemInfo])
 
     const addToCart = () => {
@@ -80,6 +75,17 @@ export const ShopItemPage = () => {
         dispatch(getUserBalanceAsync(authData.token))
     }
 
+    const changeColor = (id) => {
+        let buttons = document.getElementsByName('sizeButton');
+        for(let elem of buttons) {
+            elem.style.background = '#fff';
+            elem.style.color = '#15B6E9';
+        }
+        let sizes = document.getElementById(id);
+        sizes.style.background = '#15B6E9';
+        sizes.style.color = '#fff';
+    }
+
     return (
         <div style={{marginRight: '100px', paddingRight: '125px', paddingLeft: '125px'}}>
             <ShopLayout />
@@ -90,7 +96,7 @@ export const ShopItemPage = () => {
                 <div className={styles.productInfo}>
                     <div className={styles.mainBlock}>
                         <h2 className={styles.productTitle}>{itemInfo?.name}</h2>
-                        <p className={styles.price}>{itemInfo?.price} б</p>
+                        <p className={styles.price}>{itemInfo?.price} б.</p>
                         {
                             itemInfo?.sizesToAvailable !== null && itemInfo?.sizesToAvailable !== undefined
                                 ?
@@ -104,11 +110,13 @@ export const ShopItemPage = () => {
                                                         <button key={index}
                                                                     name="sizeButton"
                                                                     className={styles.sizeButton}
+                                                                    id={el[0].slice(0,-4)}
                                                                     // style={{
                                                                     //     backgroundColor: isActive ? 'salmon' : '',
                                                                     //     color: isActive ? 'white' : '',
                                                                     // }}
-                                                                    onClick={() => { setSelectedSize(sizesObj[el[0]])}}
+                                                                    onClick={() => { setSelectedSize(sizesObj[el[0]]);
+                                                                        changeColor(el[0].slice(0,-4))}}
                                                         >{el[0].slice(0,-4)}
                                                         </button>
                                                     );

@@ -266,7 +266,7 @@ export default function AdminOrder({
                                             {details?.orderProducts?.map((prod, index) => {
                                                 return <div className={styles.orderProducts} key={index}>
                                                     <div className={styles.prodImg}>
-                                                        <img src={prod.imageLink} width='90px' height='120px' alt="Фото товара"/>
+                                                        <img src={prod.imageUrl} width='90px' height='120px' alt="Фото товара"/>
                                                     </div>
                                                     <div>
                                                         <div className={styles.prodName}>{prod.name}</div>
@@ -325,6 +325,9 @@ export default function AdminOrder({
                                         </svg>
                                     </Link>
                                     <div className={styles.flexCont}>
+                                        <div className={styles.orderTitle}>Подробности заказа</div>
+                                    </div>
+                                    <div className={styles.flexCont}>
                                         <div className={styles.orderTitle}>ФИО:</div>
                                         <div className={styles.orderInfo}>{fio}</div>
                                     </div>
@@ -338,7 +341,7 @@ export default function AdminOrder({
                                             {details?.orderProducts?.map((prod, index) => {
                                                 return <div className={styles.orderProducts} key={index}>
                                                     <div className={styles.prodImg}>
-                                                        <img src={prod.imageLink} width='90px' height='120px' alt="Фото товара"/>
+                                                        <img src={prod.imageUrl} width='90px' height='120px' alt="Фото товара"/>
                                                     </div>
                                                     <div>
                                                         <div className={styles.prodName}>{prod.name}</div>
