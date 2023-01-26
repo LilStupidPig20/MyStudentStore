@@ -69,8 +69,8 @@ namespace RTF.Mobile.Utils.MockServices
                     Id = Guid.NewGuid(),
                     Name = "Литературный вечер",
                     Points = 5,
-                    EndTime = new DateTime(2023, 10, 1, 18, 30, 0),
-                    StartTime = new DateTime(2023, 11, 1, 20, 30, 0),
+                    EndTime = new DateTime(2022, 10, 1, 18, 30, 0),
+                    StartTime = new DateTime(2022, 11, 1, 20, 30, 0),
                     EventType = EventType.Social,
                     OrganizersNames = new List<string>()
                     {
@@ -244,7 +244,7 @@ namespace RTF.Mobile.Utils.MockServices
 
         public Task<IEnumerable<EventDto>> GetEventsAsync(CancellationToken cancellationToken = default)
         {
-            return Task.FromResult(userEvents.OrderBy(ev => ev.StartTime) as IEnumerable<EventDto>);
+            return Task.FromResult(userEvents.OrderByDescending(ev => ev.StartTime) as IEnumerable<EventDto>);
         }
 
 

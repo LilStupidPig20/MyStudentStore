@@ -9,7 +9,7 @@
         <viewModel:ShopViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <RefreshView Command="{Binding RefreshItemsCommand}"
+        <RefreshView Command="{Binding RefreshCommand}"
                      IsRefreshing="{Binding IsRefreshing}">
             <StackLayout VerticalOptions="Fill">
                 <StackLayout
