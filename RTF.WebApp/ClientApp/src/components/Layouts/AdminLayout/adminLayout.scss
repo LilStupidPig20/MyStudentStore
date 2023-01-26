@@ -1,0 +1,87 @@
+.admin-layout {
+  display: grid;
+  grid-template-columns: 511px 1fr;
+
+
+  &__side-menu {
+    position: relative;
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background: #FFFFFF;
+    box-shadow: 10px 6px 30px rgba(21, 182, 233, 0.4);
+    height: 100vh;
+    z-index: 2;
+
+    &-cont {
+      padding-left: 66px;
+      padding-right: 66px;
+    }
+  }
+
+  &__logo-cont {
+    display: flex;
+    align-items: center;
+    margin-bottom: 116px;
+    margin-top: 41px;
+  }
+  &__logo {
+    padding-right: 26px;
+  }
+
+  &__shop-name {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 37.6393px;
+    line-height: 45px;
+    color: #4C2C82;
+  }
+
+  &__admin-name {
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 40px;
+      line-height: 55px;
+      color: #000000;
+      margin-bottom: 93px;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+
+    &-link {
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 38px;
+      color: #000000;
+      text-decoration: none;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      padding-left: 66px;
+      padding-right: 66px;
+      &.active {
+        box-shadow: inset 0px -5px 16px rgba(21, 182, 233, 0.3);
+      }
+    }
+  }
+
+  &__exit {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 38px;
+    color: #000000;
+    margin-top: 20%;
+    cursor: pointer;
+    padding-left: 66px;
+    padding-right: 66px;
+  }
+}

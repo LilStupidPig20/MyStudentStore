@@ -1,0 +1,188 @@
+.wrapper {
+    box-sizing: border-box;
+    width: 1000px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    font-family: 'Hero';
+}
+
+.emptyCart{
+    box-sizing: border-box;
+    width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Manrope';
+    padding-left: 125px;
+}
+
+.title{
+    margin-top: 20%;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 44px;
+    color: #302E2E;
+}
+
+.subTitle{
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 33px;
+}
+
+.cartItems {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #15B6E9;
+    padding: 15px 30px;
+}
+
+.summaryBlock{
+    width: 360px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #15B6E9;
+    padding: 15px 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.headerTitle {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 41px;
+    color: #302E2E;
+}
+
+.sumCoins{
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 41px;
+    color: #302E2E;
+}
+
+.balance{
+    margin-bottom: 15px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 34px;
+    color: #302E2E;
+}
+
+.addButton {
+    align-self: center;
+    position: static;
+    cursor: pointer;
+    width: 100%;
+    padding: 8px 28px;
+    background: #4C2C82;
+    border: 1px solid #4C2C82;
+    border-radius: 11px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 33px;
+    color: #FFFFFF;
+}
+
+.small_counter {
+
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #737373;
+}
+
+.counter {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    color: #302E2E;
+}
+
+.link{
+    text-decoration: underline;
+    color: #15B6E9;
+}
+
+.popup {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.container {
+    padding: 30px 50px;
+    background-color: #fff;
+    border-radius: 36px;
+
+    font-family: 'Hero';
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.popupTitle{
+    font-size: 30px;
+}
+
+.popupButton {
+    position: static;
+    margin-top: 20px;
+    background-color: #00D29D;
+    color: #000;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 75px;
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.navigatePrev {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 33px;
+    color: #4C2C82;
+}
+
+.navigatePrev svg {
+    margin-right: 6px;
+}
