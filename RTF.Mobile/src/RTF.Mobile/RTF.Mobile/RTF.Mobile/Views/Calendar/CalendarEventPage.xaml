@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RTF.Mobile.Views.Calendar.CalendarEventPage"
+             xmlns:viewModel="clr-namespace:RTF.Mobile.ViewModels.Calendar"
+             xmlns:converters="clr-namespace:RTF.Mobile.Utils.Converters">
+    <ContentPage.BindingContext>
+        <viewModel:EventViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Margin="30,20" HorizontalOptions="Center">
+            <Label Text="{Binding Model.Name}"
+                   TextColor="#6B6868"
+                   FontSize="24"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
+            <StackLayout Margin="0, 20" Orientation="Horizontal">
+                <StackLayout>
+                    <Label Text="Дата:"
+                           FontSize="10"
+                           TextColor="#6B6868"/>
+                    <Label Text="{Binding Model.StartDate, Converter={converters:DateTimeToDateConverter}}"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand" Margin="0,0,50,0">
+                    <Label Text="Время"
+                           FontSize="10"
+                           TextColor="#6B6868"/>
+                    <Label Text="{Binding Model.StartDate, Converter={converters:DateTimeToTimeConverter}}"/>
+                </StackLayout>
+            </StackLayout>
+            <Label Text="Описание:"
+                   FontSize="10"
+                   TextColor="#6B6868"/>
+            <Label Text="{Binding Model.Description}"/>
+            <Label Text="Организаторы:"
+                   Margin="0, 20, 0, 0"
+                   FontSize="10"
+                   TextColor="#6B6868"/>
+            <Label 
+                Text="{Binding Model.Organizers}"/>
+            <Label
+                Margin="0, 20, 0, 0"
+                Text="Баллы:"
+                   FontSize="10"
+                   TextColor="#6B6868"/>
+            <Label Text="{Binding Model.Points}"/>
+            <Button Text="Добавить участников"
+                    IsVisible="{Binding Model.CanAddPeople}"
+                    VerticalOptions="EndAndExpand"
+                    Command="{Binding ScanQrCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

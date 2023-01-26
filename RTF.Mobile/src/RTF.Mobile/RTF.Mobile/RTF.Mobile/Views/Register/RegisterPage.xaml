@@ -4,7 +4,11 @@
              xmlns:custom="clr-namespace:RTF.Mobile.Custom"
              x:Class="RTF.Mobile.Views.Register.RegisterPage"
              Shell.NavBarIsVisible="False"
-             BackgroundImageSource="register_new_bg.png">
+             BackgroundImageSource="register_new_bg.png"
+             xmlns:viewModel="clr-namespace:RTF.Mobile.ViewModels.Register">
+    <ContentPage.BindingContext>
+        <viewModel:RegisterViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <Style TargetType="{x:Type custom:CustomEntry}">
             <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>

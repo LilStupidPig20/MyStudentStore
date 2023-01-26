@@ -17,7 +17,7 @@ namespace RTF.Mobile.Infrastructure.Abstractions.Implementations
             }
         }
 
-        public static FileStream GetFileStream(string path, FileMode mode = FileMode.Open)
+        public static FileStream GetFileStream(string path, FileMode mode = FileMode.OpenOrCreate)
         {
             try
             {

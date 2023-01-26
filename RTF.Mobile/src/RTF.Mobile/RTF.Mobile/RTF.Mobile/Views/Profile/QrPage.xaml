@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RTF.Mobile.Views.Profile.QrPage"
+             xmlns:viewModels="clr-namespace:RTF.Mobile.ViewModels.Profile"
+             xmlns:converters="clr-namespace:RTF.Mobile.Utils.Converters">
+    <ContentPage.BindingContext>
+        <viewModels:QrViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Label Text="Мой QR-код:"
+                   HeightRequest="30"
+                   FontAttributes="Bold"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="StartAndExpand" />
+            <Image
+                Margin="0,0,0,0"
+                VerticalOptions="CenterAndExpand"
+                Source="{Binding UserQrId, Converter={converters:GuidToQrConverter}}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

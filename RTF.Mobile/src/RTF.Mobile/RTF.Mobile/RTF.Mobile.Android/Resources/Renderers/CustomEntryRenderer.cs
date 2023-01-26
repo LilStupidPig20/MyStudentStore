@@ -1,17 +1,8 @@
-﻿using Android.App;
-using Android.Content;
+﻿using Android.Content;
 using Android.Content.Res;
 using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using RTF.Mobile.Custom;
 using RTF.Mobile.Droid.Resources.Renderers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Color = Android.Graphics.Color;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

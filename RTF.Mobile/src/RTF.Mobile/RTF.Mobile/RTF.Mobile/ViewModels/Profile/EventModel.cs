@@ -1,4 +1,5 @@
 ﻿using RTF.Mobile.Infrastructure.Abstractions.Models;
+using System.Runtime.CompilerServices;
 
 namespace RTF.Mobile.ViewModels.Profile
 {
@@ -8,13 +9,13 @@ namespace RTF.Mobile.ViewModels.Profile
 
         public int Points { get; }
 
-        public EventType EventType { get; }
+        public bool IsSocial { get; }
 
         public EventModel(string title, int points, EventType eventType)
         {
             Title = title;
             Points = points;
-            EventType = eventType;
+            IsSocial = eventType == EventType.Social;
         }
     }
 }

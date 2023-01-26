@@ -8,6 +8,11 @@
 
         public bool RememberMe { get; }
 
+        public LoginDto()
+        {
+
+        }
+
         public LoginDto(string email, string password, bool rememberMe)
         {
             Email = email;

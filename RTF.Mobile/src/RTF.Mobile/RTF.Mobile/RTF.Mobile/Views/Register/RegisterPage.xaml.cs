@@ -1,4 +1,6 @@
-﻿using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
+﻿using RTF.Mobile.Infrastructure.Abstractions.Implementations;
+using RTF.Mobile.Infrastructure.Abstractions.Interfaces;
+using RTF.Mobile.Utils.MockServices;
 using RTF.Mobile.ViewModels.Register;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,8 +13,8 @@ namespace RTF.Mobile.Views.Register
         public RegisterPage()
         {
             InitializeComponent();
-            var apiService = DependencyService.Get<IApiService>();
-            this.BindingContext = new RegisterViewModel(apiService);
+            //var apiService = DependencyService.Get<IApiService>();
+            this.BindingContext = new RegisterViewModel();
         }
     }
 }

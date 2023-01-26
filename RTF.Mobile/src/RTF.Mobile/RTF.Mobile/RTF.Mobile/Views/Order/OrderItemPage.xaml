@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RTF.Mobile.Views.Order.OrderItemPage"
+             xmlns:converters="clr-namespace:RTF.Mobile.Utils.Converters"
+             xmlns:viewModel="clr-namespace:RTF.Mobile.ViewModels.Order">
+  <ContentView.Content>
+      <StackLayout>
+            <ListView 
+                      ItemsSource="{Binding Items}"
+                      HorizontalOptions="Start"
+                      WidthRequest="200"
+                      RowHeight="150">
+               <ListView.ItemTemplate>
+                   <DataTemplate>
+                       <ViewCell>
+                           <StackLayout Margin="20" Orientation="Horizontal">
+                              <Image HorizontalOptions="Start"
+                                  WidthRequest="70"
+                                  Source="{Binding ImageSource}" />
+                               <StackLayout HorizontalOptions="Start"
+                                        WidthRequest="150">
+                                   <Label Text="{Binding Name}"
+                                      FontSize="12"/>
+                                    <Label Text="{Binding Description}"
+                                      Style="{StaticResource AssistLabel}"
+                                      FontSize="10"/>
+                                   <Label
+                                   FontAttributes="Bold"
+                                   Text="{Binding ProductPrice, Converter={converters:PointsConverter}}"/>
+                               </StackLayout>
+                           </StackLayout>
+                       </ViewCell>
+                   </DataTemplate>
+               </ListView.ItemTemplate>
+               </ListView>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

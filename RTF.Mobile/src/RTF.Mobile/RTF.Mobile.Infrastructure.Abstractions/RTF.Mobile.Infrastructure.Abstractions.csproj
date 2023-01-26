@@ -99,12 +99,22 @@
     <Compile Include="Implementations\RestHelper.cs" />
     <Compile Include="Implementations\UserStorage.cs" />
     <Compile Include="Interfaces\IApiService.cs" />
+    <Compile Include="Interfaces\IMessageService.cs" />
     <Compile Include="Interfaces\IUserStorage.cs" />
+    <Compile Include="Models\BasketDto.cs" />
+    <Compile Include="Models\BasketProductDto.cs" />
     <Compile Include="Models\EventDto.cs" />
+    <Compile Include="Models\EventShortInfoDto.cs" />
+    <Compile Include="Models\FullShopItemInfoDto.cs" />
     <Compile Include="Models\LoginDto.cs" />
     <Compile Include="Models\LoginResponseDto.cs" />
+    <Compile Include="Models\NewBasketItemDto.cs" />
+    <Compile Include="Models\OrderDto.cs" />
+    <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\ProblemsDto.cs" />
     <Compile Include="Models\RegisterDto.cs" />
+    <Compile Include="Models\ShopItemDto.cs" />
+    <Compile Include="Models\UserDto.cs" />
     <Compile Include="Models\UserSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

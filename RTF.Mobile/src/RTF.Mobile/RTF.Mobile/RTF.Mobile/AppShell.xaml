@@ -3,6 +3,11 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:login="clr-namespace:RTF.Mobile.Views.Login"
        xmlns:register="clr-namespace:RTF.Mobile.Views.Register"
+       xmlns:profile="clr-namespace:RTF.Mobile.Views.Profile"
+       xmlns:shop="clr-namespace:RTF.Mobile.Views.Shop"
+       xmlns:rules="clr-namespace:RTF.Mobile.Views.Rules"
+       xmlns:orders="clr-namespace:RTF.Mobile.Views.Order"
+       xmlns:calendar="clr-namespace:RTF.Mobile.Views.Calendar"
        Title="RTF.Mobile"
        x:Class="RTF.Mobile.AppShell">
 
@@ -30,31 +35,24 @@
         </ResourceDictionary>
     </Shell.Resources>
 
+
     <TabBar>
-        <Tab Title="Магазин" Icon="shop.png">
-            <ShellContent ContentTemplate="{DataTemplate login:LoginPage}"/>
+        <!--<ShellContent Title="Магазин" Icon="shop.png" ContentTemplate="{DataTemplate shop:ShopPage}"/>-->
+        <Tab Title="Магазин" Icon="shop.png" TabIndex="1">
+            <ShellContent Title="Магазин" Icon="shop.png" ContentTemplate="{DataTemplate shop:ShopPage}"/>
         </Tab>
-        <Tab Title="Календарь" Icon="calendar.png">
-            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        <Tab Title="Календарь" Icon="calendar.png" TabIndex="2">
+            <ShellContent ContentTemplate="{DataTemplate calendar:CalendarPage}"/>
         </Tab>
-        <Tab Title="Мой профиль" Icon="profile.png">
-            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        <Tab Title="Мой профиль" Icon="profile.png" TabIndex="3">
+            <ShellContent ContentTemplate="{DataTemplate profile:ProfilePage}"/>
         </Tab>
-        <Tab Title="Мои заказы" Icon="orders.png">
-            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        <Tab Title="Мои заказы" Icon="orders.png" TabIndex="4">
+            <ShellContent ContentTemplate="{DataTemplate orders:OrderPage}"/>
         </Tab>
-        <Tab Title="Правила" Icon="question.png">
-            <ShellContent ContentTemplate="{DataTemplate register:RegisterPage}"/>
+        <Tab Title="Правила" Icon="question.png" TabIndex="5">
+            <ShellContent ContentTemplate="{DataTemplate rules:RulesPage}"/>
         </Tab>
     </TabBar>
-
-    <!--
-        If you would like to navigate to this content you can do so by calling
-        await Shell.Current.GoToAsync("//LoginPage");
-    -->
-    <!--<TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
-    </TabBar>-->
-
 
 </Shell>
