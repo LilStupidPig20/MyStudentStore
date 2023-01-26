@@ -27,6 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="ClientApp\public\productImages" />
       <Folder Include="ClientApp\src\images\shop\Products" />
     </ItemGroup>
 
